@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bear LP</title>
+<meta name="description" content="An Investment Holding Company">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta property="og:title" content="Bear LP">
+<meta property="og:description" content="An Investment Holding Company">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://bearlp.com/">
+<meta property="og:image" content="https://bearlp.com/assets/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;background:#0c2a42;background:radial-gradient(1100px 700px at 50% 44%,#143a56 0%,#0d2f47 60%,#081f31 100%);color:#f3eee3;min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 20px;gap:34px}
+.mount{width:min(880px,92vw);background:#f5f1e6;padding:clamp(12px,2.2vw,26px);box-shadow:0 40px 90px rgba(0,0,0,.55);animation:rise 1.2s ease-out both}
+@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@media (prefers-reduced-motion: reduce){.mount,main{animation:none}}
+.mount .inner{border:1px solid rgba(170,147,109,.6);padding:8px}
+.mount img{width:100%;height:min(56vh,560px);object-fit:cover;object-position:center;display:block}
+main{text-align:center;animation:rise 1.2s ease-out both}
+main img{width:min(320px,68vw);height:auto;display:block;margin:0 auto}
+.descriptor{margin-top:16px;font-size:10px;font-weight:500;letter-spacing:.4em;text-indent:.4em;text-transform:uppercase;color:#c9b184;line-height:1.9}
+.visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+@media (max-width:640px){.mount img{height:44vh}body{gap:26px}}
+</style>
+</head>
+<body>
+<div class="mount"><div class="inner"><img src="assets/lake.jpg" alt=""></div></div>
+<main>
+  <h1 class="visually-hidden">Bear LP</h1>
+  <img src="assets/horiz-gold.svg" alt="Bear LP" width="790" height="170">
+  <p class="descriptor">An Investment Holding Company</p>
+</main>
+</body>
+</html>

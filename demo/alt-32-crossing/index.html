@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bear LP</title>
+<meta name="description" content="An Investment Holding Company">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta property="og:title" content="Bear LP">
+<meta property="og:description" content="An Investment Holding Company">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://bearlp.com/">
+<meta property="og:image" content="https://bearlp.com/assets/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;background:#0a1c2c;color:#f3eee3;min-height:100vh;min-height:100dvh;position:relative;overflow:hidden}
+.stage{position:absolute;inset:0;overflow:hidden}
+.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;animation:drift 48s ease-in-out infinite alternate;will-change:transform}
+@keyframes drift{from{transform:scale(1)}to{transform:scale(1.08)}}
+@media (prefers-reduced-motion: reduce){.bg{animation:none}}
+.scrim{position:absolute;inset:0;background:linear-gradient(to top,rgba(6,22,36,.8) 0%,rgba(6,22,36,.3) 28%,rgba(6,22,36,0) 48%)}
+main{position:absolute;left:0;right:0;bottom:40px;display:flex;flex-direction:column;align-items:center;text-align:center;animation:rise 1.4s ease-out both}
+@keyframes rise{from{opacity:0}to{opacity:1}}
+@media (prefers-reduced-motion: reduce){main{animation:none}}
+main img{width:min(290px,60vw);height:auto;display:block}
+.descriptor{margin-top:15px;font-size:10px;font-weight:500;letter-spacing:.4em;text-indent:.4em;text-transform:uppercase;color:rgba(243,238,227,.94);line-height:1.9}
+.visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+@media (max-width:640px){main{bottom:30px}}
+</style>
+</head>
+<body>
+<div class="stage"><img class="bg" src="assets/pair.jpg" alt=""></div>
+<div class="scrim" aria-hidden="true"></div>
+<main>
+  <h1 class="visually-hidden">Bear LP</h1>
+  <img src="assets/horiz-gold.svg" alt="Bear LP" width="790" height="170">
+  <p class="descriptor">An Investment Holding Company</p>
+</main>
+</body>
+</html>

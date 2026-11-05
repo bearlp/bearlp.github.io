@@ -6,9 +6,11 @@
     <meta name="color-scheme" content="light dark" />
     <meta name="description" content="The Isle reference catalogues by M & D Silver: Volume One Furniture, Volume Two Decor, Volume Three Build Selections. Covers, contents and the complete PDF of each volume." />
     <link rel="icon" type="image/png" sizes="512x512" href="assets/favicon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
+    <meta name="theme-color" id="themeColor" content="#ffffff" />
     <title>The Isle &#183; Reference Catalogues</title>
     <script>window.goatcounter = { no_onload: true };</script>
-    <script>try { var savedTheme = localStorage.getItem("isle-theme"); if (savedTheme === "dark" || savedTheme === "light") document.documentElement.setAttribute("data-theme", savedTheme); } catch (e) {}</script>
+    <script>try { var savedTheme = localStorage.getItem("isle-theme"); if (savedTheme === "dark" || savedTheme === "light") document.documentElement.setAttribute("data-theme", savedTheme); var tcMeta = document.getElementById("themeColor"); if (tcMeta) { var startsDark = savedTheme === "dark" || (!savedTheme && window.matchMedia("(prefers-color-scheme: dark)").matches); tcMeta.setAttribute("content", startsDark ? "#121c28" : "#ffffff"); } } catch (e) {}</script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
@@ -224,6 +226,22 @@
       .inside-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
       .inside-row figure { margin: 0; }
       .inside-row a { display: block; }
+      .inside-row a:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+      .dl-fail { flex: 1 1 100%; margin: 12px 0 0; font-size: 14.5px; line-height: 1.55; }
+      .dl-fail a { color: var(--gold-text); font-weight: 600; }
+      .hero .dl-fail { color: #e8e2d2; }
+      .hero .dl-fail a { color: var(--gold-bright); }
+      .page-fail {
+        margin: 14px 0 0; padding: 12px 16px; text-align: center;
+        color: #f2ead6; font-size: 14.5px; line-height: 1.55;
+        border: 1px solid rgba(201, 171, 114, 0.55);
+      }
+      .page-fail button {
+        margin-left: 8px; font: inherit; font-size: 12.5px; font-weight: 700;
+        letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer;
+        color: var(--gold-bright); background: transparent; min-height: 44px;
+        border: 1px solid rgba(201, 171, 114, 0.6); padding: 8px 14px;
+      }
       .inside-row img {
         width: 100%; height: 190px; object-fit: cover; object-position: top center;
         box-shadow: var(--shadow-page);
@@ -349,7 +367,8 @@
       .tool-link {
         font-size: 12.5px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
         color: var(--ink); text-decoration: none; border: 1px solid var(--line);
-        background: var(--paper); padding: 9px 14px; display: inline-block;
+        background: var(--paper); padding: 9px 14px; display: inline-flex; align-items: center;
+        justify-content: center; min-height: 44px;
       }
       .tool-link:hover { border-color: var(--gold); color: var(--gold-text); }
       button.tool-link { font-family: var(--sans); cursor: pointer; }
@@ -388,7 +407,7 @@
         font-family: var(--sans); cursor: pointer;
         font-size: 13px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
         color: var(--gold-bright); background: transparent;
-        border: 1px solid rgba(201, 171, 114, 0.6); padding: 9px 16px;
+        border: 1px solid rgba(201, 171, 114, 0.6); padding: 9px 16px; min-height: 44px;
       }
       .fullsize-close:hover, .fullsize-close:focus-visible { background: var(--gold); color: #16222f; }
       .fullsize-scroll {
@@ -427,7 +446,7 @@
       .toc-sec .sec-name { font-family: var(--serif); font-size: 17px; margin: 3px 0 0; }
       .toc-sec .sec-meta { font-size: 12px; color: var(--ink-soft); margin: 2px 0 0; }
       .toc-entry {
-        display: flex; justify-content: space-between; align-items: baseline; gap: 12px;
+        display: flex; justify-content: space-between; align-items: center; gap: 12px; min-height: 44px;
         width: 100%; text-align: left; background: none; border: none; cursor: pointer;
         font-family: var(--sans);
         padding: 7px 20px; color: var(--ink); font-size: 14.5px; line-height: 1.35;
@@ -465,14 +484,14 @@
       .nav-btn {
         cursor: pointer; font-family: var(--sans);
         border: 1px solid var(--gold); background: transparent; color: var(--gold-bright);
-        padding: 10px 22px; font-size: 13px; font-weight: 700;
+        padding: 10px 22px; font-size: 13px; font-weight: 700; min-height: 44px;
         letter-spacing: 0.16em; text-transform: uppercase;
       }
       .nav-btn:hover:not(:disabled) { background: var(--gold); color: #16222f; }
       .nav-btn:disabled { opacity: 0.35; cursor: default; }
       .page-jump { display: flex; align-items: center; gap: 8px; color: #c9cfd4; font-size: 14px; }
       .page-jump input {
-        width: 62px; padding: 8px; font: inherit; text-align: center;
+        width: 62px; padding: 8px; min-height: 44px; font: inherit; text-align: center;
         background: #0d1826; color: #f2ead6; border: 1px solid #33506e; border-radius: 0;
       }
       .progress { width: 100%; max-width: 780px; height: 3px; background: #22374d; margin-top: 18px; }
@@ -671,7 +690,7 @@
         <nav class="trio" aria-label="The three volumes">
           <a href="#vol-1">
             <figure>
-              <img src="assets/cover-vol-1.jpg" alt="Cover of The Isle, Volume One, Furniture: a carved palm and flower panel in dark wood above the title on deep navy" width="1445" height="1870" />
+              <img fetchpriority="high" decoding="async" src="assets/cover-vol-1.jpg" alt="Cover of The Isle, Volume One, Furniture: a carved palm and flower panel in dark wood above the title on deep navy" width="1445" height="1870" />
               <figcaption>
                 <span class="t-vol">Volume One</span>
                 <span class="t-name">Furniture</span>
@@ -681,7 +700,7 @@
           </a>
           <a href="#vol-2">
             <figure>
-              <img src="assets/cover-vol-2.jpg" alt="Cover of The Isle, Volume Two, Decor: Hokusai, Under the Wave off Kanagawa, above the title on deep navy" width="1445" height="1870" />
+              <img fetchpriority="high" decoding="async" src="assets/cover-vol-2.jpg" alt="Cover of The Isle, Volume Two, Decor: Hokusai, Under the Wave off Kanagawa, above the title on deep navy" width="1445" height="1870" />
               <figcaption>
                 <span class="t-vol">Volume Two</span>
                 <span class="t-name">Decor</span>
@@ -691,7 +710,7 @@
           </a>
           <a href="#vol-3">
             <figure>
-              <img src="assets/cover-vol-3.jpg" alt="Cover of The Isle, Volume Three, Build Selections: the house at dusk above the title on deep navy" width="1445" height="1870" />
+              <img fetchpriority="high" decoding="async" src="assets/cover-vol-3.jpg" alt="Cover of The Isle, Volume Three, Build Selections: the house at dusk above the title on deep navy" width="1445" height="1870" />
               <figcaption>
                 <span class="t-vol">Volume Three</span>
                 <span class="t-name">Build Selections</span>
@@ -717,7 +736,7 @@
         <p class="vol-label"><span class="rule"></span>Volume One<span class="rule"></span></p>
         <div class="vol-grid">
           <figure class="cover-fig">
-            <img src="assets/cover-vol-1.jpg" alt="Cover of The Isle, Volume One, Furniture" width="1445" height="1870" loading="lazy" />
+            <img fetchpriority="high" decoding="async" src="assets/cover-vol-1.jpg" alt="Cover of The Isle, Volume One, Furniture" width="1445" height="1870" />
             <figcaption>Cover: The carved palm panel of the Balboa Carved Door Chest, Cabinet 001 in this volume.</figcaption>
           </figure>
           <div class="vol-info">
@@ -739,11 +758,11 @@
               <h3>Inside the volume</h3>
               <div class="inside-row">
                 <figure>
-                  <a href="#/read/v1/2" data-reader data-vol="v1" data-page="2"><img src="assets/inside-vol-1-contents.jpg" alt="Contents page of Volume One listing the fifteen Case Goods pieces" width="935" height="1210" /></a>
+                  <a href="#/read/v1/2" data-reader data-vol="v1" data-page="2"><img loading="lazy" decoding="async" src="assets/inside-vol-1-contents.jpg" alt="Contents page of Volume One listing the fifteen Case Goods pieces" width="935" height="1210" /></a>
                   <figcaption>Contents, Case Goods, page 2</figcaption>
                 </figure>
                 <figure>
-                  <a href="#/read/v1/5" data-reader data-vol="v1" data-page="5"><img src="assets/inside-vol-1-balboa.jpg" alt="Page for the Balboa Carved Door Chest, with its photograph, details table and summary" width="935" height="1210" /></a>
+                  <a href="#/read/v1/5" data-reader data-vol="v1" data-page="5"><img loading="lazy" decoding="async" src="assets/inside-vol-1-balboa.jpg" alt="Page for the Balboa Carved Door Chest, with its photograph, details table and summary" width="935" height="1210" /></a>
                   <figcaption>Balboa Carved Door Chest, page 5</figcaption>
                 </figure>
               </div>
@@ -827,7 +846,7 @@
                   <li><span>Navy Damask Medallion on Cream Fabric</span><span class="pg">36</span></li>
                   <li><span>Navy Greek Key on Cream Fabric</span><span class="pg">37</span></li>
                   <li><span>Navy Oval Medallion on Cream Fabric</span><span class="pg">38</span></li>
-                  <li><span>Blue Floral on Cream Fabric</span><span class="pg">39</span></li>
+                  <li><span>Blue Floral on Pale Grey Fabric</span><span class="pg">39</span></li>
                   <li><span>Blue and Beige Stripe Fabric</span><span class="pg">40</span></li>
                   <li><span>Cream Floral Vine on Beige Fabric</span><span class="pg">41</span></li>
                 </ul>
@@ -844,7 +863,7 @@
         <p class="vol-label"><span class="rule"></span>Volume Two<span class="rule"></span></p>
         <div class="vol-grid">
           <figure class="cover-fig">
-            <img src="assets/cover-vol-2.jpg" alt="Cover of The Isle, Volume Two, Decor" width="1445" height="1870" loading="lazy" />
+            <img fetchpriority="high" decoding="async" src="assets/cover-vol-2.jpg" alt="Cover of The Isle, Volume Two, Decor" width="1445" height="1870" />
             <figcaption>Cover: Under the Wave off Kanagawa by Katsushika Hokusai, Art 006 in this volume.</figcaption>
           </figure>
           <div class="vol-info">
@@ -866,11 +885,11 @@
               <h3>Inside the volume</h3>
               <div class="inside-row">
                 <figure>
-                  <a href="#/read/v2/2" data-reader data-vol="v2" data-page="2"><img src="assets/inside-vol-2-contents.jpg" alt="Contents page of Volume Two listing the thirteen Artwork pieces" width="935" height="1210" /></a>
+                  <a href="#/read/v2/2" data-reader data-vol="v2" data-page="2"><img loading="lazy" decoding="async" src="assets/inside-vol-2-contents.jpg" alt="Contents page of Volume Two listing the thirteen Artwork pieces" width="935" height="1210" /></a>
                   <figcaption>Contents, Artwork, page 2</figcaption>
                 </figure>
                 <figure>
-                  <a href="#/read/v2/10" data-reader data-vol="v2" data-page="10"><img src="assets/inside-vol-2-wave.jpg" alt="Page for Under the Wave off Kanagawa by Hokusai, with frame and matting corner detail" width="935" height="1210" /></a>
+                  <a href="#/read/v2/10" data-reader data-vol="v2" data-page="10"><img loading="lazy" decoding="async" src="assets/inside-vol-2-wave.jpg" alt="Page for Under the Wave off Kanagawa by Hokusai, with frame and matting corner detail" width="935" height="1210" /></a>
                   <figcaption>Under the Wave off Kanagawa, page 10</figcaption>
                 </figure>
               </div>
@@ -961,7 +980,7 @@
         <p class="vol-label"><span class="rule"></span>Volume Three<span class="rule"></span></p>
         <div class="vol-grid">
           <figure class="cover-fig">
-            <img src="assets/cover-vol-3.jpg" alt="Cover of The Isle, Volume Three, Build Selections" width="1445" height="1870" loading="lazy" />
+            <img fetchpriority="high" decoding="async" src="assets/cover-vol-3.jpg" alt="Cover of The Isle, Volume Three, Build Selections" width="1445" height="1870" />
             <figcaption>Cover: The house at dusk.</figcaption>
           </figure>
           <div class="vol-info">
@@ -983,11 +1002,11 @@
               <h3>Inside the volume</h3>
               <div class="inside-row">
                 <figure>
-                  <a href="#/read/v3/2" data-reader data-vol="v3" data-page="2"><img src="assets/inside-vol-3-contents.jpg" alt="Contents page of Volume Three, the first of its two contents pages" width="935" height="1210" /></a>
+                  <a href="#/read/v3/2" data-reader data-vol="v3" data-page="2"><img loading="lazy" decoding="async" src="assets/inside-vol-3-contents.jpg" alt="Contents page of Volume Three, the first of its two contents pages" width="935" height="1210" /></a>
                   <figcaption>Contents, page 2</figcaption>
                 </figure>
                 <figure>
-                  <a href="#/read/v3/6" data-reader data-vol="v3" data-page="6"><img class="contain" src="assets/inside-vol-3-kitchen.jpg" alt="Preview page of Volume Three, a composed arrangement of cabinets, stone and gold faucet with its seven elements" width="1210" height="935" /></a>
+                  <a href="#/read/v3/6" data-reader data-vol="v3" data-page="6"><img class="contain" loading="lazy" decoding="async" src="assets/inside-vol-3-kitchen.jpg" alt="Preview page of Volume Three, a composed arrangement of cabinets, stone and gold faucet with its seven elements" width="1210" height="935" /></a>
                   <figcaption>A composed preview, page 6</figcaption>
                 </figure>
               </div>
@@ -1225,6 +1244,7 @@
           <div class="stage">
             <figure>
               <img class="page" id="pageImg" src="assets/pages/vol-1/page-01.jpg" alt="Volume One, Furniture, page 1: Cover" />
+              <p class="page-fail" id="pageFail" hidden role="alert">This page could not be loaded. Check your connection, then <button type="button" id="pageRetry">try again</button>.</p>
               <figcaption>
                 <span class="cap-title" id="capTitle">Cover</span>
                 <span class="cap-page" id="capPage">Volume One &middot; Page 1 of 42</span>
@@ -1290,7 +1310,7 @@
               { no: "Section 03", name: "Upholstery Fabrics", meta: "8 pieces \u00B7 Pages 34 to 41", entries: [
                 ["Beige Herringbone Fabric", 34], ["Dark Blue Tone-on-Tone Paisley Fabric", 35],
                 ["Navy Damask Medallion on Cream Fabric", 36], ["Navy Greek Key on Cream Fabric", 37],
-                ["Navy Oval Medallion on Cream Fabric", 38], ["Blue Floral on Cream Fabric", 39],
+                ["Navy Oval Medallion on Cream Fabric", 38], ["Blue Floral on Pale Grey Fabric", 39],
                 ["Blue and Beige Stripe Fabric", 40], ["Cream Floral Vine on Beige Fabric", 41]
               ]}
             ]
@@ -1598,6 +1618,25 @@
           });
         }
 
+        pageImg.addEventListener("error", function () {
+          var f = $("pageFail");
+          if (f) { f.hidden = false; }
+        });
+        pageImg.addEventListener("load", function () {
+          var f = $("pageFail");
+          if (f) { f.hidden = true; }
+        });
+        var pageRetryBtn = $("pageRetry");
+        if (pageRetryBtn) {
+          pageRetryBtn.addEventListener("click", function () {
+            var f = $("pageFail");
+            if (f) { f.hidden = true; }
+            /* A query on the retry only: reassigning the identical
+               address after a failed load is ignored by some browsers,
+               and the file served is the same. */
+            pageImg.src = imgPath(state.vol, state.page) + "?retry=1";
+          });
+        }
         prevBtn.addEventListener("click", function () { goTo(state.page - 1); });
         nextBtn.addEventListener("click", function () { goTo(state.page + 1); });
         pageInput.addEventListener("change", function () {
@@ -1654,13 +1693,15 @@
            percentage is worked out against the file's known exact size
            (below) whenever the response itself does not state a length,
            so percentage and megabytes show on every download. If the
-           request fails, a non-streamed fetch is tried before the plain
-           link, which remains the last fallback. */
+           request fails, a non-streamed fetch is tried, and if that
+           fails too the visitor is told so on the page and given a
+           direct link to the file, so a failed download never takes
+           the visitor off the page and never fails silently. */
         var PDF_SIZES = {
-          "the-isle-vol-1-furniture.pdf": 17617442,
-          "the-isle-vol-2-decor.pdf": 19313983,
+          "the-isle-vol-1-furniture.pdf": 17617497,
+          "the-isle-vol-2-decor.pdf": 19313952,
           "the-isle-vol-3-build-selections.pdf": 6786877,
-          "the-isle-catalogue.zip": 42497003
+          "the-isle-catalogue.zip": 42497109
         };
         var pdfBlobs = {};
         function savePdfBlob(blob, name) {
@@ -1682,16 +1723,27 @@
           var volKey = (url.match(/vol-[123]/) || ["vol"])[0];
           if (url.indexOf("the-isle-catalogue.zip") !== -1) { volKey = "full-catalogue"; }
           var original = link.innerHTML;
-          function fallback() {
+          function failNote() {
             gcHit("/ref/download/" + volKey, true, "Download " + name);
             link.innerHTML = original;
             link.removeAttribute("aria-busy");
+            var note = link.parentNode ? link.parentNode.querySelector(".dl-fail") : null;
+            if (!note) {
+              note = document.createElement("p");
+              note.className = "dl-fail";
+              note.setAttribute("role", "status");
+              link.parentNode.appendChild(note);
+            }
+            note.innerHTML = "";
+            note.appendChild(document.createTextNode("The download could not be completed here. "));
             var a = document.createElement("a");
             a.href = url;
             a.download = name;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
+            a.target = "_blank";
+            a.rel = "noopener";
+            a.textContent = "Get the file with a direct link";
+            note.appendChild(a);
+            note.appendChild(document.createTextNode(", or tap the button again to retry."));
           }
           function finish() {
             gcHit("/ref/download/" + volKey, true, "Download " + name);
@@ -1704,7 +1756,7 @@
           link.innerHTML = url.indexOf(".zip") !== -1 ? "Preparing download&hellip;" : "Preparing PDF&hellip;";
           link.setAttribute("aria-busy", "true");
           if (pdfBlobs[url]) {
-            if (deliverPdf(pdfBlobs[url], name)) { finish(); } else { fallback(); }
+            if (deliverPdf(pdfBlobs[url], name)) { finish(); } else { failNote(); }
             return;
           }
           function fmtMB(bytes) { return (bytes / 1000000).toFixed(1) + " MB"; }
@@ -1725,16 +1777,16 @@
             }
           }
           function done(blob) {
-            if (!blob || blob.size === 0) { fallback(); return; }
+            if (!blob || blob.size === 0) { failNote(); return; }
             pdfBlobs[url] = blob;
-            if (deliverPdf(blob, name)) { finish(); } else { fallback(); }
+            if (deliverPdf(blob, name)) { finish(); } else { failNote(); }
           }
           function fetchBlobFallback() {
-            if (!window.fetch) { fallback(); return; }
+            if (!window.fetch) { failNote(); return; }
             fetch(url).then(function (res) {
               if (!res.ok) { throw new Error("PDF request failed"); }
               return res.blob();
-            }).then(done).catch(function () { fallback(); });
+            }).then(done).catch(function () { failNote(); });
           }
           /* XMLHttpRequest progress: supported by the in-app preview's
              web view, unlike fetch body streaming. */
@@ -1920,6 +1972,8 @@
           var mode = effective();
           btn.setAttribute("data-mode", mode);
           btn.setAttribute("aria-checked", mode === "dark" ? "true" : "false");
+          var tc = document.getElementById("themeColor");
+          if (tc) { tc.setAttribute("content", mode === "dark" ? "#121c28" : "#ffffff"); }
         }
         btn.addEventListener("click", function () {
           var nextTheme = effective() === "dark" ? "light" : "dark";

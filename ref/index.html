@@ -7,6 +7,7 @@
     <meta name="description" content="The Isle reference catalogues by M & D Silver: Volume One Furniture, Volume Two Decor, Volume Three Build Selections. Covers, contents and the complete PDF of each volume." />
     <link rel="icon" href="assets/cover-vol-1.jpg" />
     <title>The Isle &#183; Reference Catalogues</title>
+    <script>window.goatcounter = { no_onload: true };</script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
@@ -1413,6 +1414,7 @@
           [state.page - 1, state.page + 1].forEach(function (n) {
             if (n >= 1 && n <= V.pages) { var im = new Image(); im.src = imgPath(state.vol, n); }
           });
+          gcHit("/ref/read/" + state.vol + "/" + state.page, false, V.name + " " + V.title + ", page " + state.page);
         }
 
         function goTo(n) {
@@ -1648,8 +1650,10 @@
         function downloadPdf(link) {
           var url = link.href;
           var name = link.getAttribute("download") || "The Isle.pdf";
+          var volKey = (url.match(/vol-[123]/) || ["vol"])[0];
           var original = link.innerHTML;
           function fallback() {
+            gcHit("/ref/download/" + volKey, true, "Download " + name);
             link.innerHTML = original;
             link.removeAttribute("aria-busy");
             var a = document.createElement("a");
@@ -1660,6 +1664,7 @@
             document.body.removeChild(a);
           }
           function finish() {
+            gcHit("/ref/download/" + volKey, true, "Download " + name);
             link.innerHTML = "Download started";
             window.setTimeout(function () {
               link.innerHTML = original;
@@ -1820,6 +1825,7 @@
           readerView.hidden = true;
           homeView.hidden = false;
           document.title = "The Isle \u00B7 Reference Catalogues";
+          gcHit("/ref/", false, "The Isle \u00B7 Reference Catalogues");
           if (anchorId) {
             var el = document.getElementById(anchorId);
             if (el) { el.scrollIntoView(); }
@@ -1841,9 +1847,36 @@
           var anchor = h.replace(/^#/, "");
           showHome(anchor.indexOf("vol-") === 0 ? anchor : null);
         }
+        /* ---------- visit counting (GoatCounter) ----------
+           The counter script is set to no_onload, so every view is
+           counted from here: the home view from showHome, one hit per
+           reader page from show, and a download event per delivered
+           PDF from downloadPdf. Hits made before the counter script
+           arrives are queued and sent once it is ready. */
+        var gcQueue = [];
+        function gcHit(path, isEvent, title) {
+          var hit = { path: path, event: !!isEvent };
+          if (title) { hit.title = title; }
+          if (window.goatcounter && typeof window.goatcounter.count === "function") {
+            try { window.goatcounter.count(hit); } catch (e) {}
+          } else { gcQueue.push(hit); }
+        }
+        var gcTimer = window.setInterval(function () {
+          if (window.goatcounter && typeof window.goatcounter.count === "function") {
+            while (gcQueue.length) {
+              var queued = gcQueue.shift();
+              try { window.goatcounter.count(queued); } catch (e) {}
+            }
+            window.clearInterval(gcTimer);
+          }
+        }, 300);
+        window.setTimeout(function () { window.clearInterval(gcTimer); }, 15000);
+
         window.addEventListener("hashchange", route);
         route();
       })();
     </script>
+    <script data-goatcounter="https://muse.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
   </body>
 </html>

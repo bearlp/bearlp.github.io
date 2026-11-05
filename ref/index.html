@@ -628,25 +628,38 @@
       [data-theme="light"] .fullsize-hint { color: #b6c1cb; }
       [data-theme="light"] .hero-note { color: #98a3ae; }
 
-      /* Delicate theme switch: one small pill, the same place on every view. */
-      .theme-toggle {
-        position: fixed; top: calc(12px + env(safe-area-inset-top, 0px)); right: 14px; z-index: 40;
-        display: inline-flex; align-items: center; gap: 8px;
-        min-height: 36px; padding: 8px 15px; border-radius: 999px;
-        background: rgba(21, 33, 48, 0.94); border: 1px solid rgba(201, 171, 114, 0.55);
-        color: var(--gold-bright); font-family: var(--sans); font-size: 11px; font-weight: 700;
-        letter-spacing: 0.22em; text-transform: uppercase; cursor: pointer;
-        box-shadow: 0 4px 14px rgba(13, 20, 30, 0.25);
-      }
       /* Keep the Reader's brand line clear of the switch. */
       .reader-brand { margin-right: 118px; }
-      .theme-toggle .tt-glyph { font-size: 13px; letter-spacing: 0; line-height: 1; }
-      .theme-toggle:hover { border-color: var(--gold-bright); }
-      .theme-toggle:focus-visible { outline: 2px solid var(--gold-bright); outline-offset: 2px; }
+      /* Theme slider: the same pill outline and footprint as the
+         switch, with a knob that rests on the side of the mode in use. */
+      /* Keep the Reader's brand line clear of the switch. */
+      .reader-brand { margin-right: 118px; }
+      .theme-slider {
+        position: fixed; top: calc(12px + env(safe-area-inset-top, 0px)); right: 14px; z-index: 40;
+        width: 96px; height: 36px; border-radius: 999px; padding: 0;
+        background: rgba(21, 33, 48, 0.94); border: 1px solid rgba(201, 171, 114, 0.55);
+        cursor: pointer; box-shadow: 0 4px 14px rgba(13, 20, 30, 0.25);
+      }
+      .theme-slider .ts-glyph {
+        position: absolute; top: 50%; transform: translateY(-50%);
+        font-size: 11px; line-height: 1; color: rgba(201, 171, 114, 0.85);
+      }
+      .theme-slider .ts-sun { left: 11px; }
+      .theme-slider .ts-moon { right: 11px; }
+      .theme-slider .ts-knob {
+        position: absolute; top: 50%; left: 4px; width: 44px; height: 26px; border-radius: 999px;
+        background: var(--gold-bright); transform: translate(0, -50%);
+        transition: transform 0.25s ease;
+        display: flex; align-items: center; justify-content: center;
+      }
+      .theme-slider .ts-knob-glyph { font-size: 13px; line-height: 1; color: #16222f; }
+      .theme-slider[data-mode="dark"] .ts-knob { transform: translate(42px, -50%); }
+      .theme-slider:hover { border-color: var(--gold-bright); }
+      .theme-slider:focus-visible { outline: 2px solid var(--gold-bright); outline-offset: 2px; }
     </style>
   </head>
   <body>
-    <button id="themeToggle" class="theme-toggle" type="button" aria-label="Switch to dark mode"><span class="tt-glyph" aria-hidden="true">&#9790;</span><span class="tt-label">Dark</span></button>
+    <button id="themeToggle" class="theme-slider" type="button" role="switch" aria-checked="false" aria-label="Dark mode" data-mode="light"><span class="ts-glyph ts-sun" aria-hidden="true">&#9728;</span><span class="ts-glyph ts-moon" aria-hidden="true">&#9790;</span><span class="ts-knob" aria-hidden="true"><span class="ts-knob-glyph">&#9728;</span></span></button>
     <div id="view-home">
     <!-- ================= HERO ================= -->
     <header class="hero">
@@ -1948,10 +1961,10 @@
           return root.getAttribute("data-theme") || (mq.matches ? "dark" : "light");
         }
         function sync() {
-          var next = effective() === "dark" ? "light" : "dark";
-          btn.querySelector(".tt-glyph").innerHTML = next === "dark" ? "&#9790;" : "&#9728;";
-          btn.querySelector(".tt-label").textContent = next;
-          btn.setAttribute("aria-label", "Switch to " + next + " mode");
+          var mode = effective();
+          btn.setAttribute("data-mode", mode);
+          btn.setAttribute("aria-checked", mode === "dark" ? "true" : "false");
+          btn.querySelector(".ts-knob-glyph").innerHTML = mode === "dark" ? "&#9790;" : "&#9728;";
         }
         btn.addEventListener("click", function () {
           var nextTheme = effective() === "dark" ? "light" : "dark";

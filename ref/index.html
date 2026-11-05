@@ -585,9 +585,67 @@
         details.full summary { padding: 16px 16px; }
         .full-body { padding: 4px 16px 20px; }
       }
+    
+      /* Manual theme choice: an explicit pick wins over the
+         visitor's system setting in both directions. */
+      :root[data-theme="dark"] {
+        color-scheme: dark;
+        --gold-text: #c9ab72;
+        --paper: #121c28;
+        --paper-tint: #172636;
+        --ink: #eae6da;
+        --ink-soft: #a7b1bd;
+        --line: #3a4a5f;
+        --line-soft: #28394e;
+        --shadow-cover: 0 22px 44px rgba(0, 0, 0, 0.55), 0 4px 12px rgba(0, 0, 0, 0.4);
+        --shadow-page: 0 10px 26px rgba(0, 0, 0, 0.45), 0 2px 6px rgba(0, 0, 0, 0.3);
+      }
+      :root[data-theme="light"] {
+        color-scheme: light;
+        --gold-text: #85683a;
+        --paper: #ffffff;
+        --paper-tint: #f6f2ea;
+        --ink: #232a31;
+        --ink-soft: #5c6672;
+        --line: #ddd5c2;
+        --line-soft: #eae5d8;
+        --shadow-cover: 0 22px 44px rgba(13, 20, 30, 0.32), 0 4px 12px rgba(13, 20, 30, 0.18);
+        --shadow-page: 0 10px 26px rgba(13, 20, 30, 0.16), 0 2px 6px rgba(13, 20, 30, 0.1);
+      }
+      [data-theme="dark"] .btn-dl { color: var(--gold-bright); }
+      [data-theme="dark"] .btn-dl:hover, [data-theme="dark"] .btn-dl:focus-visible { color: #16222f; }
+      [data-theme="dark"] .btn-read { border-color: var(--gold); }
+      [data-theme="dark"] .toc-entry.current { background: rgba(201, 171, 114, 0.22); box-shadow: inset 3px 0 0 var(--gold-bright); }
+      [data-theme="dark"] .thumb.current { box-shadow: 0 0 0 1px var(--gold-bright); }
+      [data-theme="dark"] .fullsize-hint { color: #c3ced8; }
+      [data-theme="dark"] .hero-note { color: #aeb9c4; }
+      [data-theme="light"] .btn-dl { color: var(--ink); }
+      [data-theme="light"] .btn-dl:hover, [data-theme="light"] .btn-dl:focus-visible { color: #ffffff; }
+      [data-theme="light"] .btn-read { border-color: var(--navy); }
+      [data-theme="light"] .toc-entry.current { background: rgba(176, 141, 87, 0.16); box-shadow: none; }
+      [data-theme="light"] .thumb.current { box-shadow: none; }
+      [data-theme="light"] .fullsize-hint { color: #b6c1cb; }
+      [data-theme="light"] .hero-note { color: #98a3ae; }
+
+      /* Delicate theme switch: one small pill, the same place on every view. */
+      .theme-toggle {
+        position: fixed; top: calc(12px + env(safe-area-inset-top, 0px)); right: 14px; z-index: 40;
+        display: inline-flex; align-items: center; gap: 8px;
+        min-height: 36px; padding: 8px 15px; border-radius: 999px;
+        background: rgba(21, 33, 48, 0.94); border: 1px solid rgba(201, 171, 114, 0.55);
+        color: var(--gold-bright); font-family: var(--sans); font-size: 11px; font-weight: 700;
+        letter-spacing: 0.22em; text-transform: uppercase; cursor: pointer;
+        box-shadow: 0 4px 14px rgba(13, 20, 30, 0.25);
+      }
+      /* Keep the Reader's brand line clear of the switch. */
+      .reader-brand { margin-right: 118px; }
+      .theme-toggle .tt-glyph { font-size: 13px; letter-spacing: 0; line-height: 1; }
+      .theme-toggle:hover { border-color: var(--gold-bright); }
+      .theme-toggle:focus-visible { outline: 2px solid var(--gold-bright); outline-offset: 2px; }
     </style>
   </head>
   <body>
+    <button id="themeToggle" class="theme-toggle" type="button" aria-label="Switch to dark mode"><span class="tt-glyph" aria-hidden="true">&#9790;</span><span class="tt-label">Dark</span></button>
     <div id="view-home">
     <!-- ================= HERO ================= -->
     <header class="hero">
@@ -1878,5 +1936,29 @@
     </script>
     <script data-goatcounter="https://muse.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
+  
+    <script>
+      (function () {
+        var btn = document.getElementById("themeToggle");
+        if (!btn) return;
+        var root = document.documentElement;
+        var mq = window.matchMedia("(prefers-color-scheme: dark)");
+        function effective() {
+          return root.getAttribute("data-theme") || (mq.matches ? "dark" : "light");
+        }
+        function sync() {
+          var next = effective() === "dark" ? "light" : "dark";
+          btn.querySelector(".tt-glyph").innerHTML = next === "dark" ? "&#9790;" : "&#9728;";
+          btn.querySelector(".tt-label").textContent = next;
+          btn.setAttribute("aria-label", "Switch to " + next + " mode");
+        }
+        btn.addEventListener("click", function () {
+          root.setAttribute("data-theme", effective() === "dark" ? "light" : "dark");
+          sync();
+        });
+        if (typeof mq.addEventListener === "function") mq.addEventListener("change", sync);
+        sync();
+      })();
+    </script>
   </body>
 </html>

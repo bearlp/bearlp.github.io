@@ -1466,15 +1466,15 @@
         }
 
         var swapTokens = {};
-        function swapPageImage(img, src, key) {
-          if (img.getAttribute("src") === src) { return; }
+        function swapPageImage(img, src, key, onSwap) {
+          if (img.getAttribute("src") === src) { if (onSwap) { onSwap(); } return; }
           var token = (swapTokens[key] = (swapTokens[key] || 0) + 1);
           var pre = new Image();
           pre.onload = function () {
-            if (swapTokens[key] === token) { img.src = src; }
+            if (swapTokens[key] === token) { img.src = src; if (onSwap) { onSwap(); } }
           };
           pre.onerror = function () {
-            if (swapTokens[key] === token) { img.src = src; }
+            if (swapTokens[key] === token) { img.src = src; if (onSwap) { onSwap(); } }
           };
           pre.src = src;
         }
@@ -1540,7 +1540,12 @@
         function updateFullsize() {
           var V = VOLUMES[state.vol];
           var src = imgPath(state.vol, state.page);
-          swapPageImage(fullsizeImg, src, "fullsize");
+          swapPageImage(fullsizeImg, src, "fullsize", function () {
+            /* Reset again once the new page is actually in place: the
+               deferred swap lets the browser's scroll anchoring restore
+               the previous depth in the meantime. */
+            fullsizeScroll.scrollTop = 0; fullsizeScroll.scrollLeft = 0;
+          });
           fullsizeImg.alt = V.name + ", " + V.title + ", page " + state.page + ": " + label(state.vol, state.page) + ", full size";
           fullsizeTitle.innerHTML = V.name + " &middot; " + V.title + " &middot; Page " + state.page + " of " + V.pages + " <span>&middot; " + label(state.vol, state.page) + "</span>";
         }

@@ -1,0 +1,73 @@
+:root{
+  --bg:#faf7f1; --panel:#ffffff; --ink:#1c1a16; --muted:#6f675a; --line:#e4dccf;
+  --gold:#9a7b2d; --gold-soft:#f3ead3; --heart:#b3402a;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.5}
+h1,h2,h3{font-family:Georgia,"Times New Roman",serif;font-weight:normal;margin:0}
+.site-header{background:#17150f;color:#f5efe2;padding:56px 20px 44px}
+.header-inner{max-width:1180px;margin:0 auto}
+.kicker{letter-spacing:.22em;text-transform:uppercase;font-size:12px;color:#c9a959;margin:0 0 14px}
+.site-header h1{font-size:44px;line-height:1.1;margin-bottom:16px}
+.standfirst{max-width:760px;font-size:17px;color:#ddd3bd;margin:0 0 18px}
+.stats{font-size:14px;color:#bdb098;margin:0}
+.toolbar{position:sticky;top:0;z-index:30;background:rgba(250,247,241,.97);border-bottom:1px solid var(--line);padding:12px 20px 8px}
+.toolbar-inner{max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap;gap:10px;align-items:end}
+.control{display:flex;flex-direction:column;gap:4px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.control.grow{flex:1 1 240px}
+.control input,.control select,.export-inner textarea{font:inherit;font-size:15px;text-transform:none;letter-spacing:0;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:9px 12px}
+.export-inner textarea{width:100%;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px}
+.btn{font:inherit;font-size:14px;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:999px;padding:9px 16px;cursor:pointer}
+.btn:hover{border-color:var(--gold)}
+.btn.primary{background:var(--gold);border-color:var(--gold);color:#fff}
+.btn.subtle{background:transparent}
+.btn.toggle[aria-pressed="true"]{background:var(--gold-soft);border-color:var(--gold);color:var(--ink)}
+.resort-nav{max-width:1180px;margin:10px auto 4px;display:flex;flex-wrap:wrap;gap:6px}
+.resort-nav button{font:inherit;font-size:13px;border:1px solid var(--line);background:var(--panel);border-radius:999px;padding:5px 12px;cursor:pointer}
+.resort-nav button.active{background:#17150f;color:#f5efe2;border-color:#17150f}
+.export-panel{background:var(--gold-soft);border-bottom:1px solid var(--line);padding:22px 20px}
+.export-inner{max-width:1180px;margin:0 auto}
+.export-inner h2{font-size:26px;margin-bottom:6px}
+.export-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+.copy-note{font-size:14px;color:var(--muted);min-height:1.2em}
+main{max-width:1180px;margin:0 auto;padding:10px 20px 30px}
+.resort-section{margin-top:42px}
+.resort-head{display:flex;align-items:baseline;gap:14px;border-bottom:2px solid #17150f;padding-bottom:8px}
+.resort-head h2{font-size:32px}
+.resort-head p{color:var(--muted);margin:0;font-size:14px}
+.space-block{margin-top:26px}
+.space-block h3{font-size:21px;color:#3d372c;margin-bottom:12px}
+.space-block h3 span{color:var(--muted);font-size:14px;font-family:inherit;margin-left:8px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:20px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+.card figure{margin:0;position:relative;background:#eee7d8}
+.card img{width:100%;height:250px;object-fit:cover;display:block;cursor:zoom-in}
+.mark-btn{position:absolute;top:10px;right:10px;width:44px;height:44px;border-radius:50%;border:1px solid rgba(0,0,0,.12);background:rgba(255,255,255,.94);font-size:21px;line-height:1;color:#8a8172;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.mark-btn[aria-pressed="true"]{color:var(--heart);border-color:var(--heart)}
+.card-body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:7px;flex:1}
+.card-num{font-size:12px;letter-spacing:.14em;color:var(--gold);text-transform:uppercase;margin:0}
+.card-title{font-family:Georgia,"Times New Roman",serif;font-size:18px;line-height:1.3;margin:0}
+.card-place{font-size:13px;color:var(--muted);margin:0}
+.card-desc{font-size:14px;color:#3d372c;margin:0;flex:1}
+.card-meta{font-size:12px;color:var(--muted);margin:0;display:flex;gap:14px;flex-wrap:wrap}
+.card .open-btn{align-self:flex-start;margin-top:4px}
+.empty{max-width:1180px;margin:40px auto;padding:0 20px;font-size:16px;color:var(--muted)}
+.site-footer{border-top:1px solid var(--line);padding:26px 20px 40px;color:var(--muted);font-size:14px}
+.site-footer p{max-width:1180px;margin:0 auto}
+.lightbox{position:fixed;inset:0;z-index:60;display:flex;align-items:center;justify-content:center}
+.lightbox[hidden]{display:none}
+.lightbox-backdrop{position:absolute;inset:0;background:rgba(12,11,8,.9)}
+.lightbox-frame{position:relative;margin:0;max-width:min(1180px,94vw);max-height:94vh;overflow:auto;background:#fff;border-radius:12px}
+.lightbox-frame img{width:100%;max-height:70vh;object-fit:contain;background:#111;display:block}
+.lightbox-caption{padding:16px 20px 20px}
+.lightbox-head{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+.lightbox-title{font-family:Georgia,"Times New Roman",serif;font-size:20px;margin:0}
+.lightbox-actions{display:flex;gap:8px;flex-wrap:wrap}
+.lightbox-desc{font-size:15px;color:#3d372c}
+.lightbox-meta{font-size:13px;color:var(--muted)}
+@media (max-width:640px){
+  .site-header h1{font-size:32px}
+  .card img{height:210px}
+  .grid{grid-template-columns:1fr}
+}

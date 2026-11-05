@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="MDS">
+<title>Furniture Research - Luxury Tropical Resorts Worldwide</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <p class="kicker">Interior Design Reference Collection</p>
+    <h1>Luxury Tropical Resorts Worldwide</h1>
+    <p class="standfirst">Furniture, textiles, art and decor from twenty eight resorts around the world, photographed at full quality and described for recreating each look. Tap the heart on any image to mark it, then export your picks and hand the list back for a deeper review of each marked piece.</p>
+    <p class="stats" id="statsLine">Loading the collection...</p>
+  </div>
+</header>
+
+<div class="toolbar" role="region" aria-label="Gallery controls">
+  <div class="toolbar-inner">
+    <label class="control grow">Search
+      <input type="search" id="searchInput" placeholder="Search descriptions, resorts, spaces..." autocomplete="off">
+    </label>
+    <label class="control">Resort
+      <select id="resortFilter"><option value="">All resorts</option></select>
+    </label>
+    <button type="button" id="markedOnlyBtn" class="btn toggle" aria-pressed="false">Marked only (<span id="markedCount">0</span>)</button>
+    <button type="button" id="exportBtn" class="btn primary">Export my picks</button>
+    <button type="button" id="clearMarksBtn" class="btn subtle">Clear marks</button>
+  </div>
+  <nav class="resort-nav" id="resortNav" aria-label="Resorts"></nav>
+</div>
+
+<section class="export-panel" id="exportPanel" hidden aria-label="Export marked items">
+  <div class="export-inner">
+    <h2>Your marked picks</h2>
+    <p id="exportSummary">No images marked yet. Tap the heart on any image to add it here.</p>
+    <label class="control grow">Marked list, copy and paste this back in chat
+      <textarea id="exportText" rows="8" readonly placeholder="Your marked image numbers and file names will appear here."></textarea>
+    </label>
+    <div class="export-actions">
+      <button type="button" id="copyExportBtn" class="btn primary">Copy list</button>
+      <button type="button" id="downloadTxtBtn" class="btn">Download as text file</button>
+      <button type="button" id="downloadCsvBtn" class="btn">Download as CSV</button>
+      <button type="button" id="closeExportBtn" class="btn subtle">Close</button>
+    </div>
+    <p class="copy-note" id="copyNote" role="status"></p>
+  </div>
+</section>
+
+<main id="gallery" aria-live="polite"></main>
+<p class="empty" id="emptyState" hidden>No images match the current view. Clear the search, choose another resort, or turn off Marked only.</p>
+
+<footer class="site-footer">
+  <p>Every image is shown at the full quality of the original file, with its number, resort, space and designer description from the master spreadsheet. Marks are stored only in this browser, on this device.</p>
+</footer>
+
+<div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Full size image view">
+  <div class="lightbox-backdrop" id="lightboxBackdrop"></div>
+  <figure class="lightbox-frame">
+    <img id="lightboxImg" alt="">
+    <figcaption class="lightbox-caption">
+      <div class="lightbox-head">
+        <p class="lightbox-title" id="lightboxTitle"></p>
+        <div class="lightbox-actions">
+          <button type="button" id="lightboxMarkBtn" class="btn toggle" aria-pressed="false">Mark</button>
+          <button type="button" id="lightboxPrevBtn" class="btn">Previous</button>
+          <button type="button" id="lightboxNextBtn" class="btn">Next</button>
+          <button type="button" id="lightboxCloseBtn" class="btn primary">Close</button>
+        </div>
+      </div>
+      <p class="lightbox-desc" id="lightboxDesc"></p>
+      <p class="lightbox-meta" id="lightboxMeta"></p>
+    </figcaption>
+  </figure>
+</div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

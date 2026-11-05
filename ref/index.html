@@ -1677,7 +1677,7 @@
             if (deliverPdf(pdfBlobs[url], name)) { finish(); } else { fallback(); }
             return;
           }
-          function fmtMB(bytes) { return (bytes / 1048576).toFixed(1) + " MB"; }
+          function fmtMB(bytes) { return (bytes / 1000000).toFixed(1) + " MB"; }
           var knownTotal = 0;
           for (var fileName in PDF_SIZES) {
             if (url.indexOf(fileName) !== -1) { knownTotal = PDF_SIZES[fileName]; break; }

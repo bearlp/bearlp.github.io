@@ -325,10 +325,6 @@
         font-family: var(--serif); font-weight: 500;
         font-size: clamp(32px, 4.6vw, 44px); line-height: 1.1; margin: 14px 0 0;
       }
-      .reader-head .lede {
-        margin: 14px auto 0; max-width: 620px;
-        font-size: 16.5px; line-height: 1.65; color: var(--ink-soft);
-      }
       .reader {
         max-width: 1120px; margin: 38px auto 0;
         background: var(--paper); border: 1px solid var(--line);
@@ -527,7 +523,7 @@
       }
       .back-link:hover, .back-link:focus-visible { background: var(--gold); color: #16222f; }
       .reader-brand {
-        margin: 0 0 0 auto; font-family: var(--serif); font-size: 21px; font-weight: 500; color: #ffffff;
+        margin: 0 0 0 auto; font-family: var(--serif); font-size: 21px; font-weight: 500; color: #ffffff; text-decoration: none;
       }
       .reader-brand span {
         font-family: var(--sans); font-size: 11px; font-weight: 600;
@@ -639,14 +635,18 @@
         transition: transform 0.25s ease;
         display: flex; align-items: center; justify-content: center;
       }
-      .theme-slider .ts-knob-glyph { font-size: 13px; line-height: 1; color: #16222f; }
+      .theme-slider .ts-knob-glyph { display: flex; color: #16222f; }
+      .theme-slider .ts-glyph svg, .theme-slider .ts-knob-glyph svg { display: block; }
+      .theme-slider .ts-k-moon { display: none; }
+      .theme-slider[data-mode="dark"] .ts-k-sun { display: none; }
+      .theme-slider[data-mode="dark"] .ts-k-moon { display: flex; }
       .theme-slider[data-mode="dark"] .ts-knob { transform: translate(42px, -50%); }
       .theme-slider:hover { border-color: var(--gold-bright); }
       .theme-slider:focus-visible { outline: 2px solid var(--gold-bright); outline-offset: 2px; }
     </style>
   </head>
   <body>
-    <button id="themeToggle" class="theme-slider" type="button" role="switch" aria-checked="false" aria-label="Dark mode" data-mode="light"><span class="ts-glyph ts-sun" aria-hidden="true">&#9728;</span><span class="ts-glyph ts-moon" aria-hidden="true">&#9790;</span><span class="ts-knob" aria-hidden="true"><span class="ts-knob-glyph">&#9728;</span></span></button>
+    <button id="themeToggle" class="theme-slider" type="button" role="switch" aria-checked="false" aria-label="Dark mode" data-mode="light"><span class="ts-glyph ts-sun" aria-hidden="true"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.1"/><path d="M12 2.8v2.6M12 18.6v2.6M2.8 12h2.6M18.6 12h2.6M5 5l1.8 1.8M17.2 17.2L19 19M19 5l-1.8 1.8M6.8 17.2L5 19"/></svg></span><span class="ts-glyph ts-moon" aria-hidden="true"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span><span class="ts-knob" aria-hidden="true"><span class="ts-knob-glyph ts-k-sun"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.1"/><path d="M12 2.8v2.6M12 18.6v2.6M2.8 12h2.6M18.6 12h2.6M5 5l1.8 1.8M17.2 17.2L19 19M19 5l-1.8 1.8M6.8 17.2L5 19"/></svg></span><span class="ts-knob-glyph ts-k-moon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span></span></button>
     <div id="view-home">
     <!-- ================= HERO ================= -->
     <header class="hero">
@@ -1189,7 +1189,7 @@
     <div id="view-reader" hidden>
       <header class="reader-topbar">
         <a class="back-link" id="backLink" href="#vol-1">&larr; All volumes</a>
-        <p class="reader-brand">The Isle <span>Reference Catalogues</span></p>
+        <a class="reader-brand" href="#">The Isle <span>Reference Catalogues</span></a>
         <p class="reader-topbar-vol" id="topbarVol">Volume One &middot; Furniture</p>
       </header>
     <!-- ================= FULL READER ================= -->
@@ -1197,7 +1197,6 @@
       <div class="reader-head" id="readerTop">
         <div class="ornament" aria-hidden="true"><i></i></div>
         <h2 id="reader-heading">Volume One &middot; Furniture</h2>
-        <p class="lede">Turn the pages in order, jump from the contents of this volume, or pick any page from the thumbnails below.</p>
       </div>
 
       <div class="reader" id="reader" aria-label="Catalogue reader">
@@ -1915,7 +1914,6 @@
           var mode = effective();
           btn.setAttribute("data-mode", mode);
           btn.setAttribute("aria-checked", mode === "dark" ? "true" : "false");
-          btn.querySelector(".ts-knob-glyph").innerHTML = mode === "dark" ? "&#9790;" : "&#9728;";
         }
         btn.addEventListener("click", function () {
           var nextTheme = effective() === "dark" ? "light" : "dark";

@@ -1870,6 +1870,16 @@
         var pdfLinks = document.querySelectorAll('a[download][href*=".pdf"], a[download][href*=".zip"]');
         for (var p = 0; p < pdfLinks.length; p++) {
           pdfLinks[p].addEventListener("click", function (event) {
+            if (this.href.indexOf("the-isle-catalogue.zip") !== -1) {
+              /* The full catalogue lives on the release host, which does
+                 not allow scripted cross-origin fetching (its redirect
+                 carries no CORS approval), so the scripted downloader
+                 can never fetch it. Leave this link to the browser as a
+                 plain download, as the button worked when the site was
+                 first made, and count the tap here. */
+              gcHit("/ref/download/full-catalogue", true, "Download the-isle-catalogue.zip");
+              return;
+            }
             event.preventDefault();
             if (this.getAttribute("aria-busy") === "true") { return; }
             downloadPdf(this);

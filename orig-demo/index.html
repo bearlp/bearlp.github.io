@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bear LP</title>
+<meta name="description" content="An Investment Holding Company">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta property="og:title" content="Bear LP">
+<meta property="og:description" content="An Investment Holding Company">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://bearlp.com/">
+<meta property="og:image" content="https://bearlp.com/assets/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;background:#0a1c2c;color:#f3eee3;min-height:100vh;min-height:100dvh;position:relative;overflow:hidden}
+.slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;animation:fade 37.5s linear infinite,drift 37.5s linear infinite}
+.slide.s1{object-position:94% center;animation-delay:0s}
+.slide.s2{object-position:center;animation-delay:7.5s}
+.slide.s3{object-position:center;animation-delay:15s}
+.slide.s4{object-position:center;animation-delay:22.5s}
+.slide.s5{object-position:center;animation-delay:30s}
+@keyframes fade{0%{opacity:0;animation-timing-function:ease-in-out}6.67%{opacity:1;animation-timing-function:linear}20%{opacity:1;animation-timing-function:ease-in-out}26.67%{opacity:0}100%{opacity:0}}
+@keyframes drift{0%{transform:scale(1)}26.67%{transform:scale(1.03)}26.7%{transform:scale(1)}100%{transform:scale(1)}}
+body.loading .slide{animation-play-state:paused}
+body.loading .slide.s1{opacity:1}
+@media (prefers-reduced-motion: reduce){.slide{animation:none}.slide.s1{opacity:1}}
+.scrim{position:absolute;inset:0;background:radial-gradient(640px 460px at 4% 100%,rgba(6,24,38,.42),rgba(6,24,38,0) 70%),radial-gradient(125% 95% at 50% 42%,rgba(0,0,0,0) 58%,rgba(4,16,26,.26) 100%),linear-gradient(to top,rgba(6,24,38,.85) 0%,rgba(6,24,38,.35) 32%,rgba(6,24,38,0) 58%),linear-gradient(to bottom,rgba(6,24,38,.35) 0%,rgba(6,24,38,0) 20%)}
+.block{position:absolute;left:48px;bottom:54px;z-index:3;width:min(288px,58vw);container-type:inline-size}
+.block img{width:100%;height:auto;display:block}
+.rule{width:min(288px,58vw);height:1px;background:linear-gradient(90deg,#aa936d 0%,#aa936d 62%,rgba(170,147,109,0) 100%);margin:8px 0 6px}
+.descriptor{font-size:11px;font-size:3.82cqw;font-weight:500;letter-spacing:.272em;text-transform:uppercase;color:#f3eee3;line-height:1.35;white-space:nowrap}
+.visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+@media (max-width:640px){
+    .block{left:24px;right:24px;bottom:36px}
+  .slide.s1{object-position:96% center}
+}
+</style>
+</head>
+<body class="loading">
+<img class="slide s1" src="assets/ridge.jpg" alt="" fetchpriority="high" decoding="async">
+<img class="slide s2" data-src="assets/coast.jpg" alt="" decoding="async">
+<img class="slide s3" data-src="assets/pair.jpg" alt="" decoding="async">
+<img class="slide s4" data-src="assets/forest.jpg" alt="" decoding="async">
+<img class="slide s5" data-src="assets/lake.jpg" alt="" decoding="async">
+<div class="scrim" aria-hidden="true"></div>
+<main class="block">
+  <h1 class="visually-hidden">Bear LP</h1>
+  <img src="assets/vert-silver.svg" alt="Bear LP" width="590" height="285">
+  <div class="rule" aria-hidden="true"></div>
+  <p class="descriptor">An Investment Holding Company</p>
+</main>
+<script>
+(function () {
+  var body = document.body;
+  var slides = Array.prototype.slice.call(document.querySelectorAll(".slide"));
+  var started = false;
+  function startClock() {
+    slides.forEach(function (el) {
+      el.getAnimations().forEach(function (a) { a.currentTime = 2600; });
+    });
+    body.classList.remove("loading");
+  }
+  function loadRest() {
+    var queue = slides.slice(1), i = 0;
+    (function next() {
+      if (i >= queue.length) return;
+      var el = queue[i++], url = el.getAttribute("data-src"), pre = new Image();
+      pre.onload = pre.onerror = function () { el.src = url; next(); };
+      pre.src = url;
+    })();
+  }
+  function begin() {
+    if (started) return;
+    started = true;
+    startClock();
+    loadRest();
+  }
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    body.classList.remove("loading");
+    return;
+  }
+  var s1 = slides[0];
+  if (s1.complete && s1.naturalWidth > 0) begin();
+  else {
+    s1.addEventListener("load", begin);
+    s1.addEventListener("error", begin);
+    setTimeout(begin, 4000);
+  }
+})();
+</script>
+<script data-goatcounter="https://muse.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

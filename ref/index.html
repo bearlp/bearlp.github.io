@@ -306,7 +306,7 @@
       }
       .toc-group h5 small {
         font-family: var(--sans); font-size: 11px; font-weight: 700;
-        letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold-text); margin-left: 8px;
+        letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold-text); margin-left: 8px; white-space: nowrap;
       }
       .toc-list { list-style: none; margin: 0; padding: 0; }
       .toc-list li {
@@ -444,7 +444,7 @@
       .toc-sec { margin: 18px 0 6px; padding: 0 20px; }
       .toc-sec .sec-no { font-size: 11px; font-weight: 700; letter-spacing: 0.26em; text-transform: uppercase; color: var(--gold-text); margin: 0; }
       .toc-sec .sec-name { font-family: var(--serif); font-size: 17px; margin: 3px 0 0; }
-      .toc-sec .sec-meta { font-size: 12px; color: var(--ink-soft); margin: 2px 0 0; }
+      .toc-sec .sec-meta { font-size: 12px; color: var(--ink-soft); margin: 2px 0 0; white-space: nowrap; }
       .toc-entry {
         display: flex; justify-content: space-between; align-items: center; gap: 12px; min-height: 44px;
         width: 100%; text-align: left; background: none; border: none; cursor: pointer;
@@ -1465,10 +1465,25 @@
              (auto-scroll removed at the reader's direction). */
         }
 
+        var swapTokens = {};
+        function swapPageImage(img, src, key) {
+          if (img.getAttribute("src") === src) { return; }
+          var token = (swapTokens[key] = (swapTokens[key] || 0) + 1);
+          var pre = new Image();
+          pre.onload = function () {
+            if (swapTokens[key] === token) { img.src = src; }
+          };
+          pre.onerror = function () {
+            if (swapTokens[key] === token) { img.src = src; }
+          };
+          pre.src = src;
+        }
+
         function show() {
           var V = VOLUMES[state.vol];
           var src = imgPath(state.vol, state.page);
-          pageImg.src = src;
+          swapPageImage(pageImg, src, "reader");
+          if (readerView && !readerView.hidden) { window.scrollTo(0, 0); }
           pageImg.alt = V.name + ", " + V.title + ", page " + state.page + ": " + label(state.vol, state.page);
           capTitle.textContent = label(state.vol, state.page);
           capPage.textContent = V.name + " \u00B7 Page " + state.page + " of " + V.pages;
@@ -1480,7 +1495,7 @@
           progressBar.style.width = (state.page / V.pages * 100) + "%";
           var fsBtn = $("fullSizeBtn");
           if (fsBtn) { fsBtn.setAttribute("data-src", src); }
-          if (!$("fullsizeOverlay").hidden) { updateFullsize(); }
+          if (!$("fullsizeOverlay").hidden) { updateFullsize(); fullsizeScroll.scrollTop = 0; fullsizeScroll.scrollLeft = 0; }
           $("pdfLink").href = V.pdf;
           $("pdfLink").setAttribute("download", V.pdfName);
           $("readerVol").innerHTML = V.name + " <span>\u00B7</span> " + V.title;
@@ -1513,6 +1528,7 @@
           state.vol = vol;
           state.page = Math.max(1, Math.min(VOLUMES[vol].pages, page || 1));
           renderToc();
+          if (toc) { toc.scrollTop = 0; }
           renderThumbs();
           show();
         }
@@ -1524,7 +1540,7 @@
         function updateFullsize() {
           var V = VOLUMES[state.vol];
           var src = imgPath(state.vol, state.page);
-          fullsizeImg.src = src;
+          swapPageImage(fullsizeImg, src, "fullsize");
           fullsizeImg.alt = V.name + ", " + V.title + ", page " + state.page + ": " + label(state.vol, state.page) + ", full size";
           fullsizeTitle.innerHTML = V.name + " &middot; " + V.title + " &middot; Page " + state.page + " of " + V.pages + " <span>&middot; " + label(state.vol, state.page) + "</span>";
         }
@@ -1701,7 +1717,7 @@
           "the-isle-vol-1-furniture.pdf": 17617497,
           "the-isle-vol-2-decor.pdf": 19313958,
           "the-isle-vol-3-build-selections.pdf": 6786861,
-          "the-isle-catalogue.zip": 42497109
+          "the-isle-catalogue.zip": 42497140
         };
         var pdfBlobs = {};
         function savePdfBlob(blob, name) {
@@ -1745,8 +1761,13 @@
             note.appendChild(a);
             note.appendChild(document.createTextNode(", or tap the button again to retry."));
           }
+          function clearNote() {
+            var stale = link.parentNode ? link.parentNode.querySelector(".dl-fail") : null;
+            if (stale) { stale.parentNode.removeChild(stale); }
+          }
           function finish() {
             gcHit("/ref/download/" + volKey, true, "Download " + name);
+            clearNote();
             link.innerHTML = "Download started";
             window.setTimeout(function () {
               link.innerHTML = original;

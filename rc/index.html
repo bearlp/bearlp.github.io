@@ -1,0 +1,1849 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="description" content="The Isle reference catalogues by M & D Silver: Volume One Furniture, Volume Two Decor, Volume Three Build Selections. Covers, contents and the complete PDF of each volume." />
+    <link rel="icon" href="data:," />
+    <title>The Isle &#183; Reference Catalogues</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        color-scheme: light dark;
+        --navy: #1d2a3b;
+        --navy-deep: #152130;
+        --navy-panel: #22344a;
+        --gold: #b08d57;
+        --gold-text: #85683a;
+        --gold-bright: #c9ab72;
+        --gold-pale: #e6d9bd;
+        --paper: #ffffff;
+        --paper-tint: #f6f2ea;
+        --img-back: #ffffff;
+        --ink: #232a31;
+        --ink-soft: #5c6672;
+        --line: #ddd5c2;
+        --line-soft: #eae5d8;
+        --shadow-cover: 0 22px 44px rgba(13, 20, 30, 0.32), 0 4px 12px rgba(13, 20, 30, 0.18);
+        --shadow-page: 0 10px 26px rgba(13, 20, 30, 0.16), 0 2px 6px rgba(13, 20, 30, 0.1);
+        --serif: "Playfair Display", "Iowan Old Style", Georgia, serif;
+        --sans: "Source Sans 3", "Segoe UI", Helvetica, Arial, sans-serif;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --gold-text: #c9ab72;
+          --paper: #121c28;
+          --paper-tint: #172636;
+          --ink: #eae6da;
+          --ink-soft: #a7b1bd;
+          --line: #3a4a5f;
+          --line-soft: #28394e;
+          --shadow-cover: 0 22px 44px rgba(0, 0, 0, 0.55), 0 4px 12px rgba(0, 0, 0, 0.4);
+          --shadow-page: 0 10px 26px rgba(0, 0, 0, 0.45), 0 2px 6px rgba(0, 0, 0, 0.3);
+        }
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+      }
+      body {
+        margin: 0;
+        font-family: var(--sans);
+        color: var(--ink);
+        background: var(--paper);
+        line-height: 1.55;
+        -webkit-font-smoothing: antialiased;
+      }
+      img { display: block; max-width: 100%; }
+      a { color: inherit; }
+
+      /* ---------- shared ornaments ---------- */
+      .ornament {
+        display: flex; align-items: center; justify-content: center; gap: 14px;
+      }
+      .ornament::before, .ornament::after {
+        content: ""; height: 1px; width: 72px; background: var(--gold);
+      }
+      .ornament i {
+        width: 7px; height: 7px; background: var(--gold-bright);
+        transform: rotate(45deg); flex: none;
+      }
+      .vol-label {
+        font-family: var(--sans); font-weight: 600;
+        font-size: 13px; letter-spacing: 0.34em; text-transform: uppercase;
+        color: var(--gold-text); text-align: center; margin: 0;
+      }
+      .vol-label .rule { display: inline-block; vertical-align: middle; width: 44px; height: 1px; background: var(--gold); margin: 0 14px 3px; }
+
+      /* ---------- hero ---------- */
+      .hero {
+        background: var(--navy);
+        background-image: linear-gradient(180deg, var(--navy) 0%, var(--navy-deep) 100%);
+        color: #f2eee3;
+        padding: 54px 20px 64px;
+        text-align: center;
+        border-top: 3px solid var(--gold);
+      }
+      .hero-inner { max-width: 1120px; margin: 0 auto; }
+      .hero h1 {
+        font-family: var(--serif); font-weight: 500;
+        font-size: clamp(54px, 9vw, 88px);
+        line-height: 1.05; margin: 22px 0 0; letter-spacing: 0.01em;
+      }
+      .hero-series {
+        font-family: var(--serif); font-weight: 500;
+        font-size: clamp(17px, 3vw, 23px);
+        letter-spacing: 0.52em; text-transform: uppercase;
+        color: var(--gold-bright); margin: 20px 0 0; padding-left: 0.52em;
+      }
+      .hero-rule { width: 64px; height: 1px; background: var(--gold); margin: 22px auto 0; }
+      .hero-intro {
+        max-width: 620px; margin: 22px auto 0;
+        font-size: 17px; line-height: 1.65; color: #d8dde2;
+      }
+      .hero-intro em { font-family: var(--serif); }
+      .stats {
+        display: flex; flex-wrap: wrap; justify-content: center;
+        margin: 40px auto 0; max-width: 760px;
+        border-top: 1px solid rgba(201, 171, 114, 0.35);
+        border-bottom: 1px solid rgba(201, 171, 114, 0.35);
+      }
+      .stat { padding: 16px 30px 14px; }
+      .stat + .stat { border-left: 1px solid rgba(201, 171, 114, 0.22); }
+      .stat b {
+        display: block; font-family: var(--serif); font-weight: 500;
+        font-size: 30px; line-height: 1.1; color: #ffffff;
+      }
+      .stat span {
+        display: block; margin-top: 4px;
+        font-size: 11.5px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase;
+        color: var(--gold-bright);
+      }
+      .trio {
+        display: grid; grid-template-columns: repeat(3, 1fr);
+        gap: clamp(18px, 3.4vw, 40px);
+        max-width: 1020px; margin: 52px auto 0;
+        text-align: center;
+      }
+      .trio a { text-decoration: none; display: block; }
+      .trio figure { margin: 0; }
+      .trio img {
+        width: 100%; height: auto;
+        background: var(--img-back);
+        box-shadow: var(--shadow-cover);
+        outline: 1px solid rgba(201, 171, 114, 0.4);
+        outline-offset: -1px;
+        transition: transform 0.35s ease;
+      }
+      @media (prefers-reduced-motion: no-preference) {
+        .trio a:hover img, .trio a:focus-visible img { transform: translateY(-6px); }
+      }
+      .trio figcaption { margin-top: 18px; }
+      .trio .t-vol {
+        display: block; font-size: 12px; font-weight: 700;
+        letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold-bright);
+      }
+      .trio .t-name {
+        display: block; font-family: var(--serif); font-size: 24px; font-weight: 500;
+        color: #ffffff; margin-top: 5px;
+      }
+      .trio .t-pages { display: block; font-size: 13.5px; color: #b9c1ca; margin-top: 3px; }
+      .hero-note { margin: 46px auto 0; font-size: 13.5px; color: #98a3ae; letter-spacing: 0.04em; }
+
+      /* ---------- volume sections ---------- */
+      .vol { padding: 76px 20px 84px; }
+      .vol.tint { background: var(--paper-tint); }
+      .vol-inner { max-width: 1120px; margin: 0 auto; }
+      .vol-grid {
+        display: grid; grid-template-columns: 340px 1fr;
+        gap: clamp(30px, 5vw, 64px);
+        margin-top: 40px; align-items: start;
+      }
+      .cover-fig { margin: 0; }
+      .cover-fig img {
+        width: 100%; height: auto;
+        background: var(--img-back);
+        box-shadow: var(--shadow-cover);
+        outline: 1px solid var(--line);
+        outline-offset: -1px;
+      }
+      .cover-fig figcaption {
+        margin-top: 14px; font-size: 13.5px; line-height: 1.5; color: var(--ink-soft);
+        font-style: italic; font-family: var(--serif); font-size: 15px;
+      }
+      .vol-info h2 {
+        font-family: var(--serif); font-weight: 500;
+        font-size: clamp(36px, 5vw, 50px); line-height: 1.08; margin: 2px 0 0;
+      }
+      .vol-subtitle {
+        font-family: var(--serif); font-style: italic; font-weight: 500;
+        font-size: clamp(19px, 2.6vw, 23px); color: var(--ink-soft); margin: 10px 0 0;
+      }
+      .vol-meta {
+        display: flex; flex-wrap: wrap; gap: 8px 0; margin: 20px 0 0;
+        font-size: 12.5px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+        color: var(--gold-text);
+      }
+      .vol-meta span + span::before { content: "·"; margin: 0 12px; color: var(--ink-soft); }
+      .vol-desc { font-size: 16.5px; line-height: 1.7; margin: 18px 0 0; max-width: 56ch; }
+      .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+      .btn {
+        display: inline-flex; align-items: center; gap: 10px;
+        font-family: var(--sans); font-size: 14.5px; font-weight: 700;
+        letter-spacing: 0.1em; text-transform: uppercase;
+        text-decoration: none; padding: 14px 22px;
+        border: 1px solid var(--navy);
+        transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+      }
+      .btn svg { width: 17px; height: 17px; flex: none; }
+      .btn-read { background: var(--navy); color: #f4efe2; }
+      .btn-read:hover, .btn-read:focus-visible { background: var(--navy-panel); border-color: var(--navy-panel); }
+      .btn-dl { background: transparent; color: var(--ink); border-color: var(--gold); }
+      .btn-dl:hover, .btn-dl:focus-visible { background: var(--gold); color: #ffffff; border-color: var(--gold); }
+      @media (prefers-color-scheme: dark) {
+        .btn-dl { color: var(--gold-bright); }
+        .btn-dl:hover, .btn-dl:focus-visible { color: #16222f; }
+      }
+      .inside { margin-top: 36px; }
+      .inside h3 {
+        font-size: 12px; font-weight: 700; letter-spacing: 0.26em; text-transform: uppercase;
+        color: var(--ink-soft); margin: 0 0 14px;
+        display: flex; align-items: center; gap: 14px;
+      }
+      .inside h3::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+      .inside-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+      .inside-row figure { margin: 0; }
+      .inside-row a { display: block; }
+      .inside-row img {
+        width: 100%; height: 190px; object-fit: cover; object-position: top center;
+        box-shadow: var(--shadow-page);
+        outline: 1px solid var(--line-soft); outline-offset: -1px;
+        background: var(--img-back);
+      }
+      .inside-row img.contain { object-fit: contain; }
+      .inside-row figcaption { margin-top: 8px; font-size: 13px; color: var(--ink-soft); }
+      /* ---------- contents at a glance ---------- */
+      .glance { margin-top: 64px; }
+      .glance-head { text-align: center; margin-bottom: 34px; }
+      .glance-head h3 {
+        font-family: var(--serif); font-weight: 500; font-size: 30px; margin: 12px 0 0;
+      }
+      .glance-grid { display: grid; gap: 0 44px; }
+      .glance-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+      .glance-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+      .sec { padding: 20px 0 22px; border-top: 1px solid var(--line); }
+      .sec-top {
+        display: flex; justify-content: space-between; align-items: baseline; gap: 12px;
+        font-size: 11.5px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
+      }
+      .sec-top .sec-no { color: var(--gold-text); }
+      .sec-top .sec-count { color: var(--ink-soft); text-align: right; }
+      .sec h4 { font-family: var(--serif); font-weight: 500; font-size: 23px; margin: 9px 0 0; }
+      .sec p { margin: 7px 0 0; font-size: 14.5px; line-height: 1.6; color: var(--ink-soft); }
+
+      /* ---------- full contents ---------- */
+      details.full {
+        margin-top: 44px; border: 1px solid var(--line);
+        background: var(--paper);
+      }
+      .tint details.full { background: var(--paper); }
+      details.full summary {
+        cursor: pointer; list-style: none;
+        display: flex; align-items: center; justify-content: space-between; gap: 16px;
+        padding: 18px 22px;
+        font-size: 13px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink);
+      }
+      details.full summary::-webkit-details-marker { display: none; }
+      details.full summary .chev {
+        width: 10px; height: 10px; flex: none;
+        border-right: 2px solid var(--gold); border-bottom: 2px solid var(--gold);
+        transform: rotate(45deg); transition: transform 0.25s ease; margin-right: 4px;
+      }
+      details.full[open ] summary .chev { transform: rotate(225deg); }
+      details.full summary .when-open { display: none; }
+      details.full[open ] summary .when-open { display: inline; }
+      details.full[open ] summary .when-closed { display: none; }
+      .full-body { padding: 6px 22px 26px; border-top: 1px solid var(--line-soft); }
+      .full-body .toc-note { font-size: 13.5px; line-height: 1.6; color: var(--ink-soft); margin: 16px 0 0; max-width: 62ch; }
+      .full-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px 40px; }
+      .full-grid.many { grid-template-columns: repeat(3, 1fr); }
+      .toc-group h5 {
+        font-family: var(--serif); font-weight: 500; font-size: 18px; margin: 20px 0 4px;
+      }
+      .toc-group h5 small {
+        font-family: var(--sans); font-size: 11px; font-weight: 700;
+        letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold-text); margin-left: 8px;
+      }
+      .toc-list { list-style: none; margin: 0; padding: 0; }
+      .toc-list li {
+        border-bottom: 1px solid var(--line-soft);
+        font-size: 14.5px;
+      }
+      .toc-list li:last-child { border-bottom: none; }
+      .toc-list a.toc-line {
+        display: flex; justify-content: space-between; align-items: baseline; gap: 14px;
+        padding: 7px 8px; margin: 0 -8px;
+        color: inherit; text-decoration: none; cursor: pointer;
+      }
+      .toc-list a.toc-line:hover { background: var(--paper-tint); }
+      .toc-list a.toc-line:focus-visible {
+        background: var(--paper-tint);
+        outline: 2px solid var(--gold); outline-offset: -2px;
+      }
+      .toc-list .pg { font-family: var(--serif); color: var(--gold-text); font-size: 15px; flex: none; }
+      .toc-list .note { color: var(--ink-soft); font-size: 13px; }
+
+      /* ---------- footer ---------- */
+      footer {
+        background: var(--navy-deep); color: #cfd6dd;
+        padding: 56px 20px 48px; text-align: center;
+      }
+      footer .f-title {
+        font-family: var(--serif); font-size: 30px; font-weight: 500; color: #ffffff; margin: 18px 0 0;
+      }
+      footer .f-imprint {
+        margin: 16px 0 0; font-size: 13px; font-weight: 600;
+        letter-spacing: 0.34em; text-transform: uppercase; color: var(--gold-bright);
+      }
+      footer .f-line { width: min(880px, 90%); height: 1px; background: rgba(201, 171, 114, 0.35); margin: 30px auto 0; }
+      footer p { margin: 18px auto 0; max-width: 560px; font-size: 14px; line-height: 1.65; color: #9aa6b1; }
+
+      /* ---------- full reader ---------- */
+      .reader-section { padding: 76px 20px 84px; background: var(--paper-tint); }
+      .reader-head { text-align: center; max-width: 1120px; margin: 0 auto; }
+      .reader-head h2 {
+        font-family: var(--serif); font-weight: 500;
+        font-size: clamp(32px, 4.6vw, 44px); line-height: 1.1; margin: 14px 0 0;
+      }
+      .reader-head .lede {
+        margin: 14px auto 0; max-width: 620px;
+        font-size: 16.5px; line-height: 1.65; color: var(--ink-soft);
+      }
+      .reader {
+        max-width: 1120px; margin: 38px auto 0;
+        background: var(--paper); border: 1px solid var(--line);
+        box-shadow: var(--shadow-page);
+      }
+      .reader-toolbar {
+        display: flex; flex-wrap: wrap; align-items: center; gap: 12px;
+        padding: 14px 18px; border-bottom: 1px solid var(--line); background: var(--paper-tint);
+      }
+      .reader-vol {
+        margin: 0; font-size: 12.5px; font-weight: 700;
+        letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink);
+      }
+      .reader-vol span { color: var(--gold-text); margin: 0 4px; }
+      .toolbar-spacer { flex: 1; }
+      .tool-link {
+        font-size: 12.5px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+        color: var(--ink); text-decoration: none; border: 1px solid var(--line);
+        background: var(--paper); padding: 9px 14px; display: inline-block;
+      }
+      .tool-link:hover { border-color: var(--gold); color: var(--gold-text); }
+      button.tool-link { font-family: var(--sans); cursor: pointer; }
+      button.tool-link:hover, button.tool-link:focus-visible { border-color: var(--gold); color: var(--gold-text); }
+      .link-bar {
+        display: flex; flex-wrap: wrap; align-items: center; gap: 10px;
+        padding: 12px 18px; border-bottom: 1px solid var(--line); background: var(--paper);
+      }
+      .link-bar label {
+        font-size: 12.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink);
+      }
+      .link-bar input {
+        flex: 1 1 260px; min-width: 0; padding: 9px 12px; font: inherit; font-size: 14px;
+        color: var(--ink); background: var(--paper-tint); border: 1px solid var(--line); border-radius: 0;
+      }
+      .link-bar .link-status { font-size: 13.5px; color: var(--gold-text); font-weight: 600; }
+
+      /* ---------- full size view (in-page, replaces new-tab link) ---------- */
+      .fullsize-overlay {
+        position: fixed; inset: 0; z-index: 100;
+        display: flex; flex-direction: column;
+        background: var(--navy-deep);
+      }
+      .fullsize-bar {
+        flex: none; display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px;
+        background: var(--navy-deep); color: #f2eee3;
+        padding: 14px 20px; border-bottom: 2px solid var(--gold);
+      }
+      .fullsize-title {
+        margin: 0; font-size: 13px; font-weight: 700;
+        letter-spacing: 0.18em; text-transform: uppercase; color: #f2eee3;
+      }
+      .fullsize-title span { color: var(--gold-bright); font-weight: 600; letter-spacing: 0.08em; text-transform: none; }
+      .fullsize-hint { margin: 0 0 0 auto; font-size: 13px; color: #b6c1cb; }
+      .fullsize-zoom { display: flex; gap: 8px; margin-left: auto; }
+      .fullsize-zoom + .fullsize-hint { margin-left: 0; }
+      .fs-zoom-btn {
+        font-family: var(--sans); cursor: pointer;
+        font-size: 12.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+        color: #f2eee3; background: transparent;
+        border: 1px solid rgba(201, 171, 114, 0.6); padding: 9px 13px;
+      }
+      .fs-zoom-btn:hover:not(:disabled), .fs-zoom-btn:focus-visible { background: var(--gold); color: #16222f; }
+      .fs-zoom-btn:disabled { opacity: 0.35; cursor: default; }
+      .fullsize-close {
+        font-family: var(--sans); cursor: pointer;
+        font-size: 13px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+        color: var(--gold-bright); background: transparent;
+        border: 1px solid rgba(201, 171, 114, 0.6); padding: 9px 16px;
+      }
+      .fullsize-close:hover, .fullsize-close:focus-visible { background: var(--gold); color: #16222f; }
+      .fullsize-scroll {
+        flex: 1; overflow: auto; -webkit-overflow-scrolling: touch;
+        display: flex; align-items: flex-start; justify-content: center;
+        padding: 22px 18px 30px;
+      }
+      .fullsize-scroll img {
+        display: block; width: auto; height: auto;
+        max-width: 100%; max-height: none;
+        background: #ffffff; box-shadow: 0 14px 40px rgba(0, 0, 0, 0.55);
+        cursor: zoom-in;
+      }
+      .fullsize-scroll.zoomed { justify-content: flex-start; }
+      .fullsize-scroll.zoomed img { max-width: none; cursor: zoom-out; }
+      @media (max-width: 680px) {
+        .fullsize-hint { display: block; flex-basis: 100%; order: 3; margin: 2px 0 0; font-size: 12.5px; }
+        .fullsize-zoom { margin-left: 0; }
+        .fullsize-scroll { padding: 14px 10px 20px; }
+      }
+      /* Dark scheme refinements: keep gold text and the current-page
+         markers clearly readable on the dark grounds. */
+      @media (prefers-color-scheme: dark) {
+        .btn-read { border-color: var(--gold); }
+        .toc-entry.current { box-shadow: inset 3px 0 0 var(--gold-bright); }
+        .thumb.current { box-shadow: 0 0 0 1px var(--gold-bright); }
+        .reader-toolbar { background: var(--paper-tint); }
+        .fullsize-hint { color: #c3ced8; }
+        .hero-note { color: #aeb9c4; }
+      }
+      .reader-body { display: grid; grid-template-columns: 300px 1fr; min-height: 400px; }
+
+      /* Contents sidebar */
+      .toc {
+        border-right: 1px solid var(--line); padding: 18px 0; overflow-y: auto; max-height: 1060px;
+        background: var(--paper);
+      }
+      .toc h3 { font-family: var(--serif); font-weight: 500; margin: 0 20px 4px; font-size: 21px; }
+      .toc .toc-sub { margin: 0 20px 14px; font-size: 13px; line-height: 1.5; color: var(--ink-soft); }
+      .toc-sec { margin: 18px 0 6px; padding: 0 20px; }
+      .toc-sec .sec-no { font-size: 11px; font-weight: 700; letter-spacing: 0.26em; text-transform: uppercase; color: var(--gold-text); margin: 0; }
+      .toc-sec .sec-name { font-family: var(--serif); font-size: 17px; margin: 3px 0 0; }
+      .toc-sec .sec-meta { font-size: 12px; color: var(--ink-soft); margin: 2px 0 0; }
+      .toc-entry {
+        display: flex; justify-content: space-between; align-items: baseline; gap: 12px;
+        width: 100%; text-align: left; background: none; border: none; cursor: pointer;
+        font-family: var(--sans);
+        padding: 7px 20px; color: var(--ink); font-size: 14.5px; line-height: 1.35;
+      }
+      .toc-entry:hover { background: var(--paper-tint); }
+      .toc-entry .pg { font-family: var(--serif); color: var(--gold-text); font-size: 14px; flex: none; }
+      .toc-entry.current { background: rgba(176, 141, 87, 0.16); }
+      @media (prefers-color-scheme: dark) {
+        .toc-entry.current { background: rgba(201, 171, 114, 0.22); }
+      }
+
+      /* Stage */
+      .stage {
+        background: var(--navy-deep); padding: 26px 18px 22px;
+        display: flex; flex-direction: column; align-items: center;
+      }
+      .stage figure { margin: 0; width: 100%; max-width: 780px; }
+      .stage img.page {
+        display: block; width: 100%; height: auto; background: #ffffff;
+        box-shadow: 0 14px 40px rgba(0, 0, 0, 0.55);
+      }
+      .stage figcaption {
+        display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 18px;
+        padding-top: 14px; color: #d8dee4; font-size: 14px;
+      }
+      .stage figcaption .cap-title { font-family: var(--serif); font-size: 17px; color: #f2ead6; }
+      .stage figcaption .cap-page {
+        letter-spacing: 0.14em; text-transform: uppercase; font-size: 12px; font-weight: 600;
+        color: var(--gold-bright); padding-top: 5px;
+      }
+      .page-nav {
+        display: flex; align-items: center; gap: 14px; margin-top: 18px;
+        flex-wrap: wrap; justify-content: center;
+      }
+      .nav-btn {
+        cursor: pointer; font-family: var(--sans);
+        border: 1px solid var(--gold); background: transparent; color: var(--gold-bright);
+        padding: 10px 22px; font-size: 13px; font-weight: 700;
+        letter-spacing: 0.16em; text-transform: uppercase;
+      }
+      .nav-btn:hover:not(:disabled) { background: var(--gold); color: #16222f; }
+      .nav-btn:disabled { opacity: 0.35; cursor: default; }
+      .page-jump { display: flex; align-items: center; gap: 8px; color: #c9cfd4; font-size: 14px; }
+      .page-jump input {
+        width: 62px; padding: 8px; font: inherit; text-align: center;
+        background: #0d1826; color: #f2ead6; border: 1px solid #33506e; border-radius: 0;
+      }
+      .progress { width: 100%; max-width: 780px; height: 3px; background: #22374d; margin-top: 18px; }
+      .progress i { display: block; height: 100%; background: var(--gold-bright); width: 0; transition: width 0.25s ease; }
+      @media (prefers-reduced-motion: reduce) {
+        .progress i { transition: none; }
+      }
+
+      /* Thumbnail grid */
+      .thumb-band { border-top: 1px solid var(--line); padding: 22px 22px 26px; }
+      .thumb-band h3 { font-family: var(--serif); font-weight: 500; margin: 0 0 4px; font-size: 21px; }
+      .thumb-band p { margin: 0 0 16px; font-size: 13.5px; color: var(--ink-soft); }
+      .thumb-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(86px, 1fr)); gap: 10px; }
+      .thumb {
+        border: 2px solid transparent; padding: 0; background: #ffffff;
+        position: relative; display: block; cursor: pointer;
+      }
+      .thumb img {
+        display: block; width: 100%; aspect-ratio: 612 / 792; object-fit: contain;
+        border: 1px solid var(--line-soft); background: #ffffff;
+      }
+      .thumb .t-no {
+        position: absolute; left: 0; right: 0; bottom: 0; text-align: center;
+        font-size: 11px; letter-spacing: 0.1em; padding: 2px 0;
+        background: rgba(21, 33, 48, 0.85); color: #e9dfc8;
+      }
+      .thumb:hover { border-color: var(--line); }
+      .thumb.current { border-color: var(--gold); }
+      @media (max-width: 900px) {
+        .reader-body { grid-template-columns: 1fr; }
+        .toc { border-right: none; border-bottom: 1px solid var(--line); max-height: 340px; }
+      }
+      @media (max-width: 680px) {
+        .reader-section { padding: 56px 16px 64px; }
+        .stage { padding: 18px 10px 16px; }
+        .thumb-band { padding: 18px 14px 20px; }
+      }
+
+
+      /* ---------- page views: home and reader are separate pages ---------- */
+      [hidden] { display: none !important; }
+      #view-reader { background: var(--paper-tint); min-height: 100vh; }
+      #view-reader .reader-section { padding-top: 44px; }
+      .reader-topbar {
+        position: sticky; top: 0; z-index: 30;
+        display: flex; flex-wrap: wrap; align-items: center; gap: 10px 22px;
+        background: var(--navy-deep); color: #f2eee3;
+        padding: 14px 20px; border-bottom: 2px solid var(--gold);
+      }
+      .back-link {
+        font-size: 13px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+        color: var(--gold-bright); text-decoration: none;
+        border: 1px solid rgba(201, 171, 114, 0.6); padding: 9px 15px;
+      }
+      .back-link:hover, .back-link:focus-visible { background: var(--gold); color: #16222f; }
+      .reader-brand {
+        margin: 0 0 0 auto; font-family: var(--serif); font-size: 21px; font-weight: 500; color: #ffffff;
+      }
+      .reader-brand span {
+        font-family: var(--sans); font-size: 11px; font-weight: 600;
+        letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold-bright); margin-left: 10px;
+      }
+      .reader-topbar-vol {
+        margin: 0; width: 100%;
+        font-size: 12px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: #b9c1ca;
+      }
+      .reader-topbar-vol span { color: var(--gold); margin: 0 4px; }
+      .reader-foot {
+        display: flex; flex-wrap: wrap; gap: 8px 22px; align-items: center; justify-content: space-between;
+        max-width: 1120px; margin: 0 auto; padding: 6px 20px 44px;
+        font-size: 13px; color: var(--ink-soft);
+      }
+      .reader-foot a {
+        font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; font-size: 12.5px;
+        color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--gold); padding-bottom: 2px;
+      }
+      .reader-foot a:hover, .reader-foot a:focus-visible { color: var(--gold-text); }
+      @media (max-width: 680px) {
+        .reader-brand span { display: none; }
+        #view-reader .reader-section { padding-top: 30px; }
+      }
+
+      /* ---------- responsive ---------- */
+      @media (max-width: 900px) {
+        .vol-grid { grid-template-columns: 280px 1fr; }
+        .glance-grid.cols-3, .full-grid, .full-grid.many { grid-template-columns: 1fr 1fr; }
+      }
+      @media (max-width: 680px) {
+        .hero { padding: 42px 16px 52px; }
+        .trio { grid-template-columns: 1fr; max-width: 330px; gap: 40px; }
+        .stat { padding: 14px 16px 12px; }
+        .stat b { font-size: 24px; }
+        .stat:last-child { border-left: none; }
+        .vol { padding: 56px 16px 64px; }
+        .vol-grid { grid-template-columns: 1fr; }
+        .cover-fig { max-width: 330px; margin: 0 auto; width: 100%; }
+        .glance-grid.cols-3, .glance-grid.cols-2, .full-grid, .full-grid.many { grid-template-columns: 1fr; }
+        .inside-row { grid-template-columns: 1fr 1fr; gap: 12px; }
+        .inside-row img { height: 150px; }
+        .actions .btn { flex: 1 1 auto; justify-content: center; }
+        details.full summary { padding: 16px 16px; }
+        .full-body { padding: 4px 16px 20px; }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="view-home">
+    <!-- ================= HERO ================= -->
+    <header class="hero">
+      <div class="hero-inner">
+        <div class="ornament" aria-hidden="true"><i></i></div>
+        <h1>The Isle</h1>
+        <p class="hero-series">Reference Catalogues</p>
+        <div class="hero-rule" aria-hidden="true"></div>
+        <p class="hero-intro">The complete record of the home, in three volumes by M &amp; D Silver. Furniture and decor are recorded piece by piece, each one photographed, measured and described on its own page, and the build selections are shown first as composed previews and then element by element.</p>
+        <div class="stats" role="list" aria-label="The series at a glance">
+          <div class="stat" role="listitem"><b>3</b><span>Volumes</span></div>
+          <div class="stat" role="listitem"><b>98</b><span>Pages</span></div>
+          <div class="stat" role="listitem"><b>128</b><span>Entries</span></div>
+          <div class="stat" role="listitem"><b>2026</b><span>Final edition</span></div>
+        </div>
+        <nav class="trio" aria-label="The three volumes">
+          <a href="#vol-1">
+            <figure>
+              <img src="assets/cover-vol-1.jpg" alt="Cover of The Isle, Volume One, Furniture: a carved palm and flower panel in dark wood above the title on deep navy" width="1445" height="1870" />
+              <figcaption>
+                <span class="t-vol">Volume One</span>
+                <span class="t-name">Furniture</span>
+                <span class="t-pages">42 pages &middot; 37 pieces</span>
+              </figcaption>
+            </figure>
+          </a>
+          <a href="#vol-2">
+            <figure>
+              <img src="assets/cover-vol-2.jpg" alt="Cover of The Isle, Volume Two, Decor: Hokusai, Under the Wave off Kanagawa, above the title on deep navy" width="1445" height="1870" />
+              <figcaption>
+                <span class="t-vol">Volume Two</span>
+                <span class="t-name">Decor</span>
+                <span class="t-pages">32 pages &middot; 27 pieces</span>
+              </figcaption>
+            </figure>
+          </a>
+          <a href="#vol-3">
+            <figure>
+              <img src="assets/cover-vol-3.jpg" alt="Cover of The Isle, Volume Three, Build Selections: the house at dusk above the title on deep navy" width="1445" height="1870" />
+              <figcaption>
+                <span class="t-vol">Volume Three</span>
+                <span class="t-name">Build Selections</span>
+                <span class="t-pages">24 pages &middot; 64 selections</span>
+              </figcaption>
+            </figure>
+          </a>
+        </nav>
+        <p class="hero-note">Select a cover to go to its volume, or read on for the details and contents of each.</p>
+      </div>
+    </header>
+
+    <main>
+    <!-- ================= VOLUME ONE ================= -->
+    <section class="vol" id="vol-1" aria-labelledby="vol-1-title">
+      <div class="vol-inner">
+        <p class="vol-label"><span class="rule"></span>Volume One<span class="rule"></span></p>
+        <div class="vol-grid">
+          <figure class="cover-fig">
+            <img src="assets/cover-vol-1.jpg" alt="Cover of The Isle, Volume One, Furniture" width="1445" height="1870" loading="lazy" />
+            <figcaption>Cover: The carved palm panel of the Balboa Carved Door Chest, Cabinet 001 in this volume.</figcaption>
+          </figure>
+          <div class="vol-info">
+            <h2 id="vol-1-title">Furniture</h2>
+            <p class="vol-subtitle">Hard Goods and Upholstered Furniture</p>
+            <p class="vol-meta"><span>42 pages</span><span>37 pieces</span><span>3 sections</span><span>PDF 17.6 MB</span></p>
+            <p class="vol-desc">Thirty-seven pieces, each given a page of its own with its photograph, series and brand, dimensions and count, and a written summary. Case goods come first: chests, beds, desks and tables in island woods, cane and carved detail. The upholstered chairs and ottomans follow, and the volume closes with the eight custom fabrics, shown full frame.</p>
+            <div class="actions">
+              <a class="btn btn-read" href="#/read/v1" data-reader data-vol="v1">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                Read Volume One
+              </a>
+              <a class="btn btn-dl" href="assets/the-isle-vol-1-furniture.pdf" download="The Isle Vol. 1 - Furniture.pdf">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download PDF
+              </a>
+            </div>
+            <div class="inside">
+              <h3>Inside the volume</h3>
+              <div class="inside-row">
+                <figure>
+                  <a href="#/read/v1/2" data-reader data-vol="v1" data-page="2"><img src="assets/inside-vol-1-contents.jpg" alt="Contents page of Volume One listing the fifteen Case Goods pieces" width="935" height="1210" /></a>
+                  <figcaption>Contents, Case Goods, page 2</figcaption>
+                </figure>
+                <figure>
+                  <a href="#/read/v1/5" data-reader data-vol="v1" data-page="5"><img src="assets/inside-vol-1-balboa.jpg" alt="Page for the Balboa Carved Door Chest, with its photograph, details table and summary" width="935" height="1210" /></a>
+                  <figcaption>Balboa Carved Door Chest, page 5</figcaption>
+                </figure>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="glance">
+          <div class="glance-head">
+            <div class="ornament" aria-hidden="true"><i></i></div>
+            <h3>Contents at a glance</h3>
+          </div>
+          <div class="glance-grid cols-3">
+            <div class="sec">
+              <div class="sec-top"><span class="sec-no">Section 01</span><span class="sec-count">15 pieces &middot; Pages 5-19</span></div>
+              <h4>Case Goods</h4>
+              <p>Chests, beds, desks and tables, island woods, cane and carved detail.</p>
+            </div>
+            <div class="sec">
+              <div class="sec-top"><span class="sec-no">Section 02</span><span class="sec-count">14 pieces &middot; Pages 20-33</span></div>
+              <h4>Upholstered Furniture</h4>
+              <p>Chairs and ottomans in custom fabrics, woven cane, rattan and carved island woods.</p>
+            </div>
+            <div class="sec">
+              <div class="sec-top"><span class="sec-no">Section 03</span><span class="sec-count">8 pieces &middot; Pages 34-41</span></div>
+              <h4>Upholstery Fabrics</h4>
+              <p>The custom fabrics of the collection: herringbone, paisley, medallion, floral and stripe, shown full frame.</p>
+            </div>
+          </div>
+        </div>
+
+        <details class="full">
+          <summary><span><span class="when-closed">Show</span><span class="when-open">Hide</span> the full contents, all 37 pieces with page numbers</span><span class="chev" aria-hidden="true"></span></summary>
+          <div class="full-body">
+            <p class="toc-note">Select any line to open this volume at the page shown.</p>
+            <div class="full-grid">
+              <div class="toc-group">
+                <h5>Case Goods <small>Pages 5-19</small></h5>
+                <ul class="toc-list">
+                  <li><span>Balboa Carved Door Chest</span><span class="pg">5</span></li>
+                  <li><span>Montego Bay Media Console</span><span class="pg">6</span></li>
+                  <li><span>Jakarta Chest</span><span class="pg">7</span></li>
+                  <li><span>Harbour Point Bed King</span><span class="pg">8</span></li>
+                  <li><span>Orchid Nightstand</span><span class="pg">9</span></li>
+                  <li><span>Royal Suite Dresser</span><span class="pg">10</span></li>
+                  <li><span>Poets Crossing Writing Desk</span><span class="pg">11</span></li>
+                  <li><span>Tobacco Daybed</span><span class="pg">12</span></li>
+                  <li><span>Tobacco End Table</span><span class="pg">13</span></li>
+                  <li><span>Crystal Cove Cocktail Table</span><span class="pg">14</span></li>
+                  <li><span>Sandpiper Round Lamp Table</span><span class="pg">15</span></li>
+                  <li><span>Bandera Leather Accent Table</span><span class="pg">16</span></li>
+                  <li><span>Marquesa Rectangular Dining Table</span><span class="pg">17</span></li>
+                  <li><span>Banyan Oval Accent Table</span><span class="pg">18</span></li>
+                  <li><span>Ocean Reef Nesting Tables</span><span class="pg">19</span></li>
+                </ul>
+              </div>
+              <div class="toc-group">
+                <h5>Upholstered Furniture <small>Pages 20-33</small></h5>
+                <ul class="toc-list">
+                  <li><span>Rum Beach Chair</span><span class="pg">20</span></li>
+                  <li><span>Austin Wing Chair</span><span class="pg">21</span></li>
+                  <li><span>Natori Slat Back Arm Chair</span><span class="pg">22</span></li>
+                  <li><span>Natori Slat Back Side Chair</span><span class="pg">23</span></li>
+                  <li><span>Macau Swivel Counter Stool</span><span class="pg">24</span></li>
+                  <li><span>Island Paradise Chair</span><span class="pg">25</span></li>
+                  <li><span>Winslet Arm Chair</span><span class="pg">26</span></li>
+                  <li><span>Cruz Bay Host Chair</span><span class="pg">27</span></li>
+                  <li><span>Koko Chair</span><span class="pg">28</span></li>
+                  <li><span>Shoreline Chair</span><span class="pg">29</span></li>
+                  <li><span>Ottoman</span><span class="pg">30</span></li>
+                  <li><span>Austin Ottoman</span><span class="pg">31</span></li>
+                  <li><span>Winslet Ottoman</span><span class="pg">32</span></li>
+                  <li><span>Shoreline Ottoman</span><span class="pg">33</span></li>
+                </ul>
+              </div>
+              <div class="toc-group">
+                <h5>Upholstery Fabrics <small>Pages 34-41</small></h5>
+                <ul class="toc-list">
+                  <li><span>Beige Herringbone Fabric</span><span class="pg">34</span></li>
+                  <li><span>Dark Blue Tone-on-Tone Paisley Fabric</span><span class="pg">35</span></li>
+                  <li><span>Navy Damask Medallion on Cream Fabric</span><span class="pg">36</span></li>
+                  <li><span>Navy Greek Key on Cream Fabric</span><span class="pg">37</span></li>
+                  <li><span>Navy Oval Medallion on Cream Fabric</span><span class="pg">38</span></li>
+                  <li><span>Blue Floral on Cream Fabric</span><span class="pg">39</span></li>
+                  <li><span>Blue and Beige Stripe Fabric</span><span class="pg">40</span></li>
+                  <li><span>Cream Floral Vine on Beige Fabric</span><span class="pg">41</span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ================= VOLUME TWO ================= -->
+    <section class="vol tint" id="vol-2" aria-labelledby="vol-2-title">
+      <div class="vol-inner">
+        <p class="vol-label"><span class="rule"></span>Volume Two<span class="rule"></span></p>
+        <div class="vol-grid">
+          <figure class="cover-fig">
+            <img src="assets/cover-vol-2.jpg" alt="Cover of The Isle, Volume Two, Decor" width="1445" height="1870" loading="lazy" />
+            <figcaption>Cover: Under the Wave off Kanagawa by Katsushika Hokusai, Art 006 in this volume.</figcaption>
+          </figure>
+          <div class="vol-info">
+            <h2 id="vol-2-title">Decor</h2>
+            <p class="vol-subtitle">Artwork, Lighting and Rugs</p>
+            <p class="vol-meta"><span>32 pages</span><span>27 pieces</span><span>3 sections</span><span>PDF 19.3 MB</span></p>
+            <p class="vol-desc">Thirteen works of art, nine pieces of lighting and five rugs, each on its own page. The artwork runs from Joseph Dwight Strong and his Diamond Head watercolour of 1886 to Hokusai, Jakuch&#363; and Gauguin, and every piece is shown with a close study of its frame and matting corner. The lamps, chandelier and pendants follow, then the rugs, in wool and classic pattern.</p>
+            <div class="actions">
+              <a class="btn btn-read" href="#/read/v2" data-reader data-vol="v2">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                Read Volume Two
+              </a>
+              <a class="btn btn-dl" href="assets/the-isle-vol-2-decor.pdf" download="The Isle Vol. 2 - Decor.pdf">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download PDF
+              </a>
+            </div>
+            <div class="inside">
+              <h3>Inside the volume</h3>
+              <div class="inside-row">
+                <figure>
+                  <a href="#/read/v2/2" data-reader data-vol="v2" data-page="2"><img src="assets/inside-vol-2-contents.jpg" alt="Contents page of Volume Two listing the thirteen Artwork pieces" width="935" height="1210" /></a>
+                  <figcaption>Contents, Artwork, page 2</figcaption>
+                </figure>
+                <figure>
+                  <a href="#/read/v2/10" data-reader data-vol="v2" data-page="10"><img src="assets/inside-vol-2-wave.jpg" alt="Page for Under the Wave off Kanagawa by Hokusai, with frame and matting corner detail" width="935" height="1210" /></a>
+                  <figcaption>Under the Wave off Kanagawa, page 10</figcaption>
+                </figure>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="glance">
+          <div class="glance-head">
+            <div class="ornament" aria-hidden="true"><i></i></div>
+            <h3>Contents at a glance</h3>
+          </div>
+          <div class="glance-grid cols-3">
+            <div class="sec">
+              <div class="sec-top"><span class="sec-no">Section 01</span><span class="sec-count">13 pieces &middot; Pages 5-17</span></div>
+              <h4>Artwork</h4>
+              <p>Paintings, prints and posters, each shown with its frame and matting corner.</p>
+            </div>
+            <div class="sec">
+              <div class="sec-top"><span class="sec-no">Section 02</span><span class="sec-count">9 pieces &middot; Pages 18-26</span></div>
+              <h4>Lighting</h4>
+              <p>Table and floor lamps, a chandelier and pendants, each shown with its image.</p>
+            </div>
+            <div class="sec">
+              <div class="sec-top"><span class="sec-no">Section 03</span><span class="sec-count">5 pieces &middot; Pages 27-31</span></div>
+              <h4>Rugs</h4>
+              <p>Hand-tufted wool and classic pattern, a round rug, three rectangular rugs and a runner.</p>
+            </div>
+          </div>
+        </div>
+
+        <details class="full">
+          <summary><span><span class="when-closed">Show</span><span class="when-open">Hide</span> the full contents, all 27 pieces with page numbers</span><span class="chev" aria-hidden="true"></span></summary>
+          <div class="full-body">
+            <p class="toc-note">Select any line to open this volume at the page shown.</p>
+            <div class="full-grid">
+              <div class="toc-group">
+                <h5>Artwork <small>Pages 5-17</small></h5>
+                <ul class="toc-list">
+                  <li><span>Diamond Head, Hawaii</span><span class="pg">5</span></li>
+                  <li><span>Adventurers Club Plaque</span><span class="pg">6</span></li>
+                  <li><span>Creatures of the Ocean I</span><span class="pg">7</span></li>
+                  <li><span>Creatures of the Ocean II</span><span class="pg">8</span></li>
+                  <li><span>Golden Koi</span><span class="pg">9</span></li>
+                  <li><span>Under the Wave off Kanagawa</span><span class="pg">10</span></li>
+                  <li><span>Old Pine Tree and Peacock</span><span class="pg">11</span></li>
+                  <li><span>Martinique Landscape</span><span class="pg">12</span></li>
+                  <li><span>A New and Accurat Map of the World</span><span class="pg">13</span></li>
+                  <li><span>Hawaiian Hibiscus &#8211; Honolulu, Hawaii</span><span class="pg">14</span></li>
+                  <li><span>Pirates of the Caribbean</span><span class="pg">15</span></li>
+                  <li><span>Enchanted Tiki Room</span><span class="pg">16</span></li>
+                  <li><span>Jungle Cruise</span><span class="pg">17</span></li>
+                </ul>
+              </div>
+              <div class="toc-group">
+                <h5>Lighting <small>Pages 18-26</small></h5>
+                <ul class="toc-list">
+                  <li><span>Square Lamp</span><span class="pg">18</span></li>
+                  <li><span>Photographer&#8217;s Adjustable Tripod Metal Floor Lamp</span><span class="pg">19</span></li>
+                  <li><span>Round Lamp</span><span class="pg">20</span></li>
+                  <li><span>Glass Buoy Lamp</span><span class="pg">21</span></li>
+                  <li><span>Large Round Lamp</span><span class="pg">22</span></li>
+                  <li><span>Art Deco Floor Lamp</span><span class="pg">23</span></li>
+                  <li><span>Tiffany-Style Table Lamp</span><span class="pg">24</span></li>
+                  <li><span>Plantation Large Two-Tier Pineapple Chandelier</span><span class="pg">25</span></li>
+                  <li><span>Plantation Pineapple Mini Pendant</span><span class="pg">26</span></li>
+                </ul>
+              </div>
+              <div class="toc-group">
+                <h5>Rugs <small>Pages 27-31</small></h5>
+                <ul class="toc-list">
+                  <li><span>NR201 Rug <span class="note">round, 5 ft diameter</span></span><span class="pg">27</span></li>
+                  <li><span>Eva Hand-Tufted Wool Persian Rug</span><span class="pg">28</span></li>
+                  <li><span>Braylin Hand-Tufted Wool Rug</span><span class="pg">29</span></li>
+                  <li><span>AWHS-2001 Wool Rug <span class="note">runner</span></span><span class="pg">30</span></li>
+                  <li><span>NR201 Rug <span class="note">rectangular, 5 ft x 7 ft</span></span><span class="pg">31</span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ================= VOLUME THREE ================= -->
+    <section class="vol" id="vol-3" aria-labelledby="vol-3-title">
+      <div class="vol-inner">
+        <p class="vol-label"><span class="rule"></span>Volume Three<span class="rule"></span></p>
+        <div class="vol-grid">
+          <figure class="cover-fig">
+            <img src="assets/cover-vol-3.jpg" alt="Cover of The Isle, Volume Three, Build Selections" width="1445" height="1870" loading="lazy" />
+            <figcaption>Cover: The house at dusk, the home these selections build.</figcaption>
+          </figure>
+          <div class="vol-info">
+            <h2 id="vol-3-title">Build Selections</h2>
+            <p class="vol-subtitle">Kitchen, Bathrooms and Paint</p>
+            <p class="vol-meta"><span>24 pages</span><span>64 selections</span><span>10 sections</span><span>Previews pp. 6-12</span><span>PDF 6.8 MB</span></p>
+            <p class="vol-desc">Sixty-four selections: cabinetry, quartz, faucets, tile and grout, with the flooring and the paint for inside and out. Each set of selections is shown first as a composed preview, cabinets, stone, faucet and tile together, and then element by element, so every choice can be checked on its own before the house is built around it.</p>
+            <div class="actions">
+              <a class="btn btn-read" href="#/read/v3" data-reader data-vol="v3">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                Read Volume Three
+              </a>
+              <a class="btn btn-dl" href="assets/the-isle-vol-3-build-selections.pdf" download="The Isle Vol. 3 - Build Selections.pdf">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download PDF
+              </a>
+            </div>
+            <div class="inside">
+              <h3>Inside the volume</h3>
+              <div class="inside-row">
+                <figure>
+                  <a href="#/read/v3/2" data-reader data-vol="v3" data-page="2"><img src="assets/inside-vol-3-contents.jpg" alt="Contents page of Volume Three, the first of its two contents pages" width="935" height="1210" /></a>
+                  <figcaption>Contents, page 2</figcaption>
+                </figure>
+                <figure>
+                  <a href="#/read/v3/6" data-reader data-vol="v3" data-page="6"><img class="contain" src="assets/inside-vol-3-kitchen.jpg" alt="Preview page of Volume Three, a composed arrangement of cabinets, stone and gold faucet with its seven elements" width="1210" height="935" /></a>
+                  <figcaption>A composed preview, page 6</figcaption>
+                </figure>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="glance">
+          <div class="glance-head">
+            <div class="ornament" aria-hidden="true"><i></i></div>
+            <h3>Contents at a glance</h3>
+          </div>
+          <div class="glance-grid cols-2">
+            <div class="sec">
+              <div class="sec-top"><span class="sec-no">Section 01</span><span class="sec-count">7 selections &middot; Preview p. 6 &middot; Elements p. 13</span></div>
+              <h4>Kitchen</h4>
+              <p>Flagstone Shaker cabinetry, ivory quartz, brushed gold and a pale tile floor.</p>
+            </div>
+            <div class="sec">
+              <div class="sec-top"><span class="sec-no">Section 02</span><span class="sec-count">8 selections &middot; Preview p. 7 &middot; Elements p. 14</span></div>
+              <h4>Master Bathroom</h4>
+              <p>Arid hardwood cabinetry and ivory quartz, with Waves Malibu underfoot and in the shower.</p>
+            </div>
+            <div class="sec">
+              <div class="sec-top"><span class="sec-no">Section 03</span><span class="sec-count">9 selections &middot; Preview p. 8 &middot; Elements p. 15</span></div>
+              <h4>Pool Bathroom</h4>
+              <p>Emerald quartz and a jade mosaic, with white picket tile on the walls.</p>
+            </div>
+            <div class="sec">
+              <div class="sec-top"><span class="sec-no">Section 04</span><span class="sec-count">9 selections &middot; Preview p. 9 &middot; Elements p. 16</span></div>
+              <h4>Guest Suite Bathroom</h4>
+              <p>Parisien Bleu quartz and a pearl mosaic, with dark grey picket tile.</p>
+            </div>
+            <div class="sec">
+              <div class="sec-top"><span class="sec-no">Section 05</span><span class="sec-count">9 selections &middot; Preview p. 10 &middot; Elements p. 17</span></div>
+              <h4>Hallway Bathroom</h4>
+              <p>Parisien Bleu quartz and a moonstone mosaic, with white picket tile.</p>
+            </div>
+            <div class="sec">
+              <div class="sec-top"><span class="sec-no">Section 06</span><span class="sec-count">8 selections &middot; Preview p. 11 &middot; Elements p. 18</span></div>
+              <h4>Studio Bathroom</h4>
+              <p>Parisien Bleu quartz, a Waves Malibu floor and white ceramic around the tub.</p>
+            </div>
+            <div class="sec">
+              <div class="sec-top"><span class="sec-no">Section 07</span><span class="sec-count">6 selections &middot; Preview p. 12 &middot; Elements p. 19</span></div>
+              <h4>Laundry Room</h4>
+              <p>Flagstone cabinetry and Victorian Silver quartz, with a chrome pullout faucet.</p>
+            </div>
+            <div class="sec">
+              <div class="sec-top"><span class="sec-no">Section 08</span><span class="sec-count">2 selections &middot; Page 20</span></div>
+              <h4>Flooring</h4>
+              <p>Waves Malibu porcelain underfoot throughout, jointed in Rolling Fog.</p>
+            </div>
+            <div class="sec">
+              <div class="sec-top"><span class="sec-no">Section 09</span><span class="sec-count">2 colours &middot; Page 21</span></div>
+              <h4>Interior Paint</h4>
+              <p>Agreeable Gray on the walls, with white trim at the floor.</p>
+            </div>
+            <div class="sec">
+              <div class="sec-top"><span class="sec-no">Section 10</span><span class="sec-count">4 colours &middot; Pages 22-23</span></div>
+              <h4>Exterior Paint</h4>
+              <p>The Coastal Toque White Legacy Scheme, from Pulte Homes Refresh 2026.</p>
+            </div>
+          </div>
+        </div>
+
+        <details class="full">
+          <summary><span><span class="when-closed">Show</span><span class="when-open">Hide</span> the full contents, all 64 selections with page numbers</span><span class="chev" aria-hidden="true"></span></summary>
+          <div class="full-body">
+            <p class="toc-note">The contents below follow the volume&#8217;s own contents pages, section by section, and the page given for each selection is the page of its element entry. The composed previews stand on pages 6 to 12, ahead of the elements on pages 13 to 20 and the paint on pages 21 to 23. Select any line to open the volume at the page shown for that selection.</p>
+            <div class="full-grid many">
+              <div class="toc-group">
+                <h5>Kitchen <small>Preview p. 6 &middot; Elements p. 13</small></h5>
+                <ul class="toc-list">
+                  <li><span>Aristokraft Winstead 5-Piece</span><span class="pg">13</span></li>
+                  <li><span>Silestone Versailles Ivory</span><span class="pg">13</span></li>
+                  <li><span>Pelican Crystallite PL-100</span><span class="pg">13</span></li>
+                  <li><span>Moen Align 7565BG</span><span class="pg">13</span></li>
+                  <li><span>Bronze Gold Squared Pull</span><span class="pg">13</span></li>
+                  <li><span>Caesar Waves Malibu 24 x 24</span><span class="pg">13</span></li>
+                  <li><span>Polyblend Plus Rolling Fog</span><span class="pg">13</span></li>
+                </ul>
+              </div>
+              <div class="toc-group">
+                <h5>Master Bathroom <small>Preview p. 7 &middot; Elements p. 14</small></h5>
+                <ul class="toc-list">
+                  <li><span>Aristokraft Blaine 5-Piece</span><span class="pg">14</span></li>
+                  <li><span>Silestone Versailles Ivory</span><span class="pg">14</span></li>
+                  <li><span>Moen Cia 6221BL</span><span class="pg">14</span></li>
+                  <li><span>Bronze Gold Squared Pull</span><span class="pg">14</span></li>
+                  <li><span>Caesar Waves Malibu 24 x 24</span><span class="pg">14</span></li>
+                  <li><span>Caesar Waves Malibu 2 x 2 Mosaic</span><span class="pg">14</span></li>
+                  <li><span>Caesar Waves Malibu 12 x 24</span><span class="pg">14</span></li>
+                  <li><span>Polyblend Plus Rolling Fog</span><span class="pg">14</span></li>
+                </ul>
+              </div>
+              <div class="toc-group">
+                <h5>Pool Bathroom <small>Preview p. 8 &middot; Elements p. 15</small></h5>
+                <ul class="toc-list">
+                  <li><span>Aristokraft Blaine 5-Piece</span><span class="pg">15</span></li>
+                  <li><span>Silestone Jardin Emerald</span><span class="pg">15</span></li>
+                  <li><span>Moen Cia 6221BL</span><span class="pg">15</span></li>
+                  <li><span>Bronze Gold Squared Pull</span><span class="pg">15</span></li>
+                  <li><span>Caesar Waves Malibu 24 x 24</span><span class="pg">15</span></li>
+                  <li><span>Gemstone Jade</span><span class="pg">15</span></li>
+                  <li><span>Roca Flow White 3 x 12 Picket</span><span class="pg">15</span></li>
+                  <li><span>Polyblend Plus Rolling Fog</span><span class="pg">15</span></li>
+                  <li><span>Polyblend Plus Arctic White</span><span class="pg">15</span></li>
+                </ul>
+              </div>
+              <div class="toc-group">
+                <h5>Guest Suite Bathroom <small>Preview p. 9 &middot; Elements p. 16</small></h5>
+                <ul class="toc-list">
+                  <li><span>Aristokraft Blaine 5-Piece</span><span class="pg">16</span></li>
+                  <li><span>Silestone Parisien Bleu</span><span class="pg">16</span></li>
+                  <li><span>Moen Cia 6221BL</span><span class="pg">16</span></li>
+                  <li><span>Bronze Gold Squared Pull</span><span class="pg">16</span></li>
+                  <li><span>Caesar Waves Malibu 24 x 24</span><span class="pg">16</span></li>
+                  <li><span>Gemstone Pearl</span><span class="pg">16</span></li>
+                  <li><span>Roca Flow Dark Grey 3 x 12 Picket</span><span class="pg">16</span></li>
+                  <li><span>Polyblend Plus Rolling Fog</span><span class="pg">16</span></li>
+                  <li><span>Polyblend Plus Arctic White</span><span class="pg">16</span></li>
+                </ul>
+              </div>
+              <div class="toc-group">
+                <h5>Hallway Bathroom <small>Preview p. 10 &middot; Elements p. 17</small></h5>
+                <ul class="toc-list">
+                  <li><span>Aristokraft Blaine 5-Piece</span><span class="pg">17</span></li>
+                  <li><span>Silestone Parisien Bleu</span><span class="pg">17</span></li>
+                  <li><span>Moen Cia 6221BL</span><span class="pg">17</span></li>
+                  <li><span>Bronze Gold Squared Pull</span><span class="pg">17</span></li>
+                  <li><span>Caesar Waves Malibu 24 x 24</span><span class="pg">17</span></li>
+                  <li><span>Gemstone Moonstone</span><span class="pg">17</span></li>
+                  <li><span>Roca Flow White 3 x 12 Picket</span><span class="pg">17</span></li>
+                  <li><span>Polyblend Plus Rolling Fog</span><span class="pg">17</span></li>
+                  <li><span>Polyblend Plus Arctic White</span><span class="pg">17</span></li>
+                </ul>
+              </div>
+              <div class="toc-group">
+                <h5>Studio Bathroom <small>Preview p. 11 &middot; Elements p. 18</small></h5>
+                <ul class="toc-list">
+                  <li><span>Aristokraft Blaine 5-Piece</span><span class="pg">18</span></li>
+                  <li><span>Silestone Parisien Bleu</span><span class="pg">18</span></li>
+                  <li><span>Moen Cia 6221BL</span><span class="pg">18</span></li>
+                  <li><span>Bronze Gold Squared Pull</span><span class="pg">18</span></li>
+                  <li><span>Caesar Waves Malibu 24 x 24</span><span class="pg">18</span></li>
+                  <li><span>Crayon White 4 x 12</span><span class="pg">18</span></li>
+                  <li><span>Polyblend Plus Rolling Fog</span><span class="pg">18</span></li>
+                  <li><span>Polyblend Plus Arctic White</span><span class="pg">18</span></li>
+                </ul>
+              </div>
+              <div class="toc-group">
+                <h5>Laundry Room <small>Preview p. 12 &middot; Elements p. 19</small></h5>
+                <ul class="toc-list">
+                  <li><span>Aristokraft Blaine 5-Piece, Flagstone</span><span class="pg">19</span></li>
+                  <li><span>Silestone Victorian Silver</span><span class="pg">19</span></li>
+                  <li><span>Moen Method 7585C</span><span class="pg">19</span></li>
+                  <li><span>Bronze Gold Squared Pull</span><span class="pg">19</span></li>
+                  <li><span>Caesar Waves Malibu 24 x 24</span><span class="pg">19</span></li>
+                  <li><span>Polyblend Plus Rolling Fog</span><span class="pg">19</span></li>
+                </ul>
+              </div>
+              <div class="toc-group">
+                <h5>Flooring <small>Page 20</small></h5>
+                <ul class="toc-list">
+                  <li><span>Caesar Waves Malibu 24 x 24</span><span class="pg">20</span></li>
+                  <li><span>Polyblend Plus Rolling Fog</span><span class="pg">20</span></li>
+                </ul>
+              </div>
+              <div class="toc-group">
+                <h5>Interior Paint <small>Page 21</small></h5>
+                <ul class="toc-list">
+                  <li><span>Sherwin-Williams Agreeable Gray</span><span class="pg">21</span></li>
+                  <li><span>White Trim</span><span class="pg">21</span></li>
+                </ul>
+              </div>
+              <div class="toc-group">
+                <h5>Exterior Paint <small>Pages 22-23</small></h5>
+                <ul class="toc-list">
+                  <li><span>Sherwin-Williams Toque White</span><span class="pg">22</span></li>
+                  <li><span>Sherwin-Williams Gray Clouds</span><span class="pg">22</span></li>
+                  <li><span>Sherwin-Williams On the Rocks</span><span class="pg">22</span></li>
+                  <li><span>Sherwin-Williams Poolhouse</span><span class="pg">22</span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </details>
+      </div>
+    </section>
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+    <footer>
+      <div class="ornament" aria-hidden="true"><i></i></div>
+      <p class="f-title">The Isle</p>
+      <p class="f-imprint">M &amp; D Silver</p>
+      <div class="f-line" aria-hidden="true"></div>
+      <p>Reference Catalogues, final edition, November 2026. Volume One, Furniture. Volume Two, Decor. Volume Three, Build Selections.</p>
+    </footer>
+    </div><!-- /view-home -->
+
+    <!-- ================= READER PAGE ================= -->
+    <div id="view-reader" hidden>
+      <header class="reader-topbar">
+        <a class="back-link" id="backLink" href="#vol-1">&larr; All volumes</a>
+        <p class="reader-brand">The Isle <span>Reference Catalogues</span></p>
+        <p class="reader-topbar-vol" id="topbarVol">Volume One &middot; Furniture</p>
+      </header>
+    <!-- ================= FULL READER ================= -->
+    <section class="reader-section" aria-labelledby="reader-heading">
+      <div class="reader-head" id="readerTop">
+        <div class="ornament" aria-hidden="true"><i></i></div>
+        <h2 id="reader-heading">Volume One &middot; Furniture</h2>
+        <p class="lede">Turn the pages in order, jump from the contents of this volume, or pick any page from the thumbnails below.</p>
+      </div>
+
+      <div class="reader" id="reader" aria-label="Catalogue reader">
+        <div class="reader-toolbar">
+          <p class="reader-vol" id="readerVol">Volume One <span>&middot;</span> Furniture</p>
+          <div class="toolbar-spacer"></div>
+          <button class="tool-link" type="button" id="fullSizeBtn">Full size</button>
+          <button class="tool-link" type="button" id="linkBtn">Link to this page</button>
+          <a class="tool-link" id="pdfLink" href="assets/the-isle-vol-1-furniture.pdf" download="The Isle Vol. 1 - Furniture.pdf">Download PDF</a>
+        </div>
+        <div class="link-bar" id="linkBar" hidden>
+          <label for="linkInput">Link to this page</label>
+          <input id="linkInput" type="text" readonly value="" aria-label="Link to this page" />
+          <button class="tool-link" type="button" id="linkCopyBtn">Copy link</button>
+          <button class="tool-link" type="button" id="linkHideBtn">Hide</button>
+          <span class="link-status" id="linkStatus" role="status" aria-live="polite"></span>
+        </div>
+        <div class="reader-body">
+          <aside class="toc" id="toc" aria-label="Contents of the current volume"></aside>
+          <div class="stage">
+            <figure>
+              <img class="page" id="pageImg" src="assets/pages/vol-1/page-01.jpg" alt="Volume One, Furniture, page 1: Cover" />
+              <figcaption>
+                <span class="cap-title" id="capTitle">Cover</span>
+                <span class="cap-page" id="capPage">Volume One &middot; Page 1 of 42</span>
+              </figcaption>
+            </figure>
+            <div class="page-nav">
+              <button class="nav-btn" type="button" id="prevBtn">&larr; Previous</button>
+              <label class="page-jump">Page
+                <input type="number" id="pageInput" min="1" max="42" value="1" aria-label="Go to page" />
+                <span id="pageTotal">of 42</span>
+              </label>
+              <button class="nav-btn" type="button" id="nextBtn">Next &rarr;</button>
+            </div>
+            <div class="progress" aria-hidden="true"><i id="progressBar"></i></div>
+          </div>
+        </div>
+        <div class="thumb-band">
+          <h3 id="thumbTitle">All pages, Volume One</h3>
+          <p>Every page of the volume at a glance. Select any page to open it full size.</p>
+          <div class="thumb-grid" id="thumbGrid"></div>
+        </div>
+      </div>
+    </section>
+      <footer class="reader-foot">
+        <a id="backLinkBottom" href="#vol-1">&larr; Return to Volume One</a>
+        <span>The Isle &middot; M &amp; D Silver</span>
+      </footer>
+    </div><!-- /view-reader -->
+
+    <!-- ================= FULL SIZE VIEW ================= -->
+    <div id="fullsizeOverlay" class="fullsize-overlay" hidden role="dialog" aria-modal="true" aria-labelledby="fullsizeTitle">
+      <div class="fullsize-bar">
+        <p class="fullsize-title" id="fullsizeTitle">Volume One &middot; Page 1</p>
+        <div class="fullsize-zoom" role="group" aria-label="Zoom">
+          <button class="fs-zoom-btn" type="button" id="fsZoomOut" disabled>&minus; Zoom out</button>
+          <button class="fs-zoom-btn" type="button" id="fsZoomIn">+ Zoom in</button>
+        </div>
+        <p class="fullsize-hint">Select the page, or use Zoom in, to see it at its full size; select it again, or use Zoom out, to fit.</p>
+        <button class="fullsize-close" type="button" id="fullsizeClose">Close &times;</button>
+      </div>
+      <div class="fullsize-scroll" id="fullsizeScroll">
+        <img id="fullsizeImg" src="assets/pages/vol-1/page-01.jpg" alt="Volume One, Furniture, page 1: Cover, full size" />
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        "use strict";
+        var VOLUMES = {
+          v1: {
+            name: "Volume One", title: "Furniture", pages: 42,
+            pdf: "assets/the-isle-vol-1-furniture.pdf", pdfName: "The Isle Vol. 1 - Furniture.pdf",
+            dir: "vol-1",
+            sections: [
+              { no: "Section 01", name: "Case Goods", meta: "15 pieces \u00B7 Pages 5 to 19", entries: [
+                ["Balboa Carved Door Chest", 5], ["Montego Bay Media Console", 6], ["Jakarta Chest", 7],
+                ["Harbour Point Bed King", 8], ["Orchid Nightstand", 9], ["Royal Suite Dresser", 10],
+                ["Poets Crossing Writing Desk", 11], ["Tobacco Daybed", 12], ["Tobacco End Table", 13],
+                ["Crystal Cove Cocktail Table", 14], ["Sandpiper Round Lamp Table", 15], ["Bandera Leather Accent Table", 16],
+                ["Marquesa Rectangular Dining Table", 17], ["Banyan Oval Accent Table", 18], ["Ocean Reef Nesting Tables", 19]
+              ]},
+              { no: "Section 02", name: "Upholstered Furniture", meta: "14 pieces \u00B7 Pages 20 to 33", entries: [
+                ["Rum Beach Chair", 20], ["Austin Wing Chair", 21], ["Natori Slat Back Arm Chair", 22],
+                ["Natori Slat Back Side Chair", 23], ["Macau Swivel Counter Stool", 24], ["Island Paradise Chair", 25],
+                ["Winslet Arm Chair", 26], ["Cruz Bay Host Chair", 27], ["Koko Chair", 28], ["Shoreline Chair", 29],
+                ["Ottoman", 30], ["Austin Ottoman", 31], ["Winslet Ottoman", 32], ["Shoreline Ottoman", 33]
+              ]},
+              { no: "Section 03", name: "Upholstery Fabrics", meta: "8 pieces \u00B7 Pages 34 to 41", entries: [
+                ["Beige Herringbone Fabric", 34], ["Dark Blue Tone-on-Tone Paisley Fabric", 35],
+                ["Navy Damask Medallion on Cream Fabric", 36], ["Navy Greek Key on Cream Fabric", 37],
+                ["Navy Oval Medallion on Cream Fabric", 38], ["Blue Floral on Cream Fabric", 39],
+                ["Blue and Beige Stripe Fabric", 40], ["Cream Floral Vine on Beige Fabric", 41]
+              ]}
+            ]
+          },
+          v2: {
+            name: "Volume Two", title: "Decor", pages: 32,
+            pdf: "assets/the-isle-vol-2-decor.pdf", pdfName: "The Isle Vol. 2 - Decor.pdf",
+            dir: "vol-2",
+            sections: [
+              { no: "Section 01", name: "Artwork", meta: "13 pieces \u00B7 Pages 5 to 17", entries: [
+                ["Diamond Head, Hawaii", 5], ["Adventurers Club Plaque", 6], ["Creatures of the Ocean I", 7],
+                ["Creatures of the Ocean II", 8], ["Golden Koi", 9], ["Under the Wave off Kanagawa", 10],
+                ["Old Pine Tree and Peacock", 11], ["Martinique Landscape", 12], ["A New and Accurat Map of the World", 13],
+                ["Hawaiian Hibiscus \u2013 Honolulu, Hawaii", 14], ["Pirates of the Caribbean", 15], ["Enchanted Tiki Room", 16],
+                ["Jungle Cruise", 17]
+              ]},
+              { no: "Section 02", name: "Lighting", meta: "9 pieces \u00B7 Pages 18 to 26", entries: [
+                ["Square Lamp", 18], ["Photographer\u2019s Adjustable Tripod Metal Floor Lamp", 19], ["Round Lamp", 20],
+                ["Glass Buoy Lamp", 21], ["Large Round Lamp", 22], ["Art Deco Floor Lamp", 23],
+                ["Tiffany-Style Table Lamp", 24], ["Plantation Large Two-Tier Pineapple Chandelier", 25],
+                ["Plantation Pineapple Mini Pendant", 26]
+              ]},
+              { no: "Section 03", name: "Rugs", meta: "5 pieces \u00B7 Pages 27 to 31", entries: [
+                ["NR201 Rug, Round", 27], ["Eva Hand-Tufted Wool Persian Rug", 28], ["Braylin Hand-Tufted Wool Rug", 29],
+                ["AWHS-2001 Wool Rug, Runner", 30], ["NR201 Rug, Rectangle", 31]
+              ]}
+            ]
+          },
+          v3: {
+            name: "Volume Three", title: "Build Selections", pages: 24,
+            pdf: "assets/the-isle-vol-3-build-selections.pdf", pdfName: "The Isle Vol. 3 - Build Selections.pdf",
+            dir: "vol-3",
+            sections: [
+              { no: "Section 01", name: "Kitchen", meta: "7 selections \u00B7 Preview 6 \u00B7 Elements 13", entries: [
+                ["Kitchen, Preview", 6], ["Kitchen, Elements", 13]
+              ]},
+              { no: "Section 02", name: "Master Bathroom", meta: "8 selections \u00B7 Preview 7 \u00B7 Elements 14", entries: [
+                ["Master Bathroom, Preview", 7], ["Master Bathroom, Elements", 14]
+              ]},
+              { no: "Section 03", name: "Pool Bathroom", meta: "9 selections \u00B7 Preview 8 \u00B7 Elements 15", entries: [
+                ["Pool Bathroom, Preview", 8], ["Pool Bathroom, Elements", 15]
+              ]},
+              { no: "Section 04", name: "Guest Suite Bathroom", meta: "9 selections \u00B7 Preview 9 \u00B7 Elements 16", entries: [
+                ["Guest Suite Bathroom, Preview", 9], ["Guest Suite Bathroom, Elements", 16]
+              ]},
+              { no: "Section 05", name: "Hallway Bathroom", meta: "9 selections \u00B7 Preview 10 \u00B7 Elements 17", entries: [
+                ["Hallway Bathroom, Preview", 10], ["Hallway Bathroom, Elements", 17]
+              ]},
+              { no: "Section 06", name: "Studio Bathroom", meta: "8 selections \u00B7 Preview 11 \u00B7 Elements 18", entries: [
+                ["Studio Bathroom, Preview", 11], ["Studio Bathroom, Elements", 18]
+              ]},
+              { no: "Section 07", name: "Laundry Room", meta: "6 selections \u00B7 Preview 12 \u00B7 Elements 19", entries: [
+                ["Laundry Room, Preview", 12], ["Laundry Room, Elements", 19]
+              ]},
+              { no: "Section 08", name: "Flooring", meta: "2 selections \u00B7 Page 20", entries: [["Flooring", 20]] },
+              { no: "Section 09", name: "Interior Paint", meta: "2 colours \u00B7 Page 21", entries: [["Interior Paint", 21]] },
+              { no: "Section 10", name: "Exterior Paint", meta: "4 colours \u00B7 Pages 22 to 23", entries: [["Exterior Paint", 22], ["Exterior Paint, Colour Placement", 23]] }
+            ]
+          }
+        };
+
+        var PAGE_LABELS = { v1: {}, v2: {}, v3: {} };
+        Object.keys(VOLUMES).forEach(function (k) {
+          var V = VOLUMES[k];
+          PAGE_LABELS[k][1] = "Cover";
+          PAGE_LABELS[k][V.pages] = "Back page";
+          V.sections.forEach(function (s) {
+            s.entries.forEach(function (e) { PAGE_LABELS[k][e[1]] = e[0]; });
+          });
+        });
+        PAGE_LABELS.v1[2] = "Contents, Case Goods";
+        PAGE_LABELS.v1[3] = "Contents, Upholstered Furniture";
+        PAGE_LABELS.v1[4] = "Contents, Upholstery Fabrics";
+        PAGE_LABELS.v2[2] = "Contents, Artwork";
+        PAGE_LABELS.v2[3] = "Contents, Lighting";
+        PAGE_LABELS.v2[4] = "Contents, Rugs";
+        PAGE_LABELS.v3[2] = "Contents, Kitchen and Master Bathroom";
+        PAGE_LABELS.v3[3] = "Contents, Pool Bathroom and Guest Suite Bathroom";
+        PAGE_LABELS.v3[4] = "Contents, Hallway Bathroom and Studio Bathroom";
+        PAGE_LABELS.v3[5] = "Contents, Laundry Room, Flooring and Paint";
+
+        var state = { vol: "v1", page: 1 };
+        function $(id) { return document.getElementById(id); }
+        var readerEl = $("reader"), readerTop = $("readerTop");
+        var homeView = $("view-home"), readerView = $("view-reader");
+        var pageImg = $("pageImg"), capTitle = $("capTitle"), capPage = $("capPage"),
+            prevBtn = $("prevBtn"), nextBtn = $("nextBtn"), pageInput = $("pageInput"),
+            pageTotal = $("pageTotal"), progressBar = $("progressBar"), toc = $("toc"),
+            thumbGrid = $("thumbGrid"), thumbTitle = $("thumbTitle");
+
+        function pad(n) { return (n < 10 ? "0" : "") + n; }
+        function imgPath(vol, n) { return "assets/pages/" + VOLUMES[vol].dir + "/page-" + pad(n) + ".jpg"; }
+        function thumbPath(vol, n) { return "assets/thumbs/" + VOLUMES[vol].dir + "/page-" + pad(n) + ".jpg"; }
+        function label(vol, n) { return PAGE_LABELS[vol][n] || ("Page " + n); }
+        function pageUrl() {
+          var base = "";
+          try { base = location.href.split("#")[0]; } catch (e) { base = ""; }
+          return base + "#/read/" + state.vol + "/" + state.page;
+        }
+
+        function renderToc() {
+          var V = VOLUMES[state.vol];
+          var html = "<h3>Contents</h3><p class=\"toc-sub\">" + V.name + " \u00B7 " + V.title + " \u00B7 " + V.pages + " pages. Select any entry to jump to its page.</p>";
+          html += "<button class=\"toc-entry\" type=\"button\" data-page=\"1\"><span>Cover</span><span class=\"pg\">1</span></button>";
+          if (state.vol === "v3") {
+            html += "<button class=\"toc-entry\" type=\"button\" data-page=\"2\"><span>Contents</span><span class=\"pg\">2 to 5</span></button>";
+          } else {
+            html += "<button class=\"toc-entry\" type=\"button\" data-page=\"2\"><span>Contents</span><span class=\"pg\">2 to 4</span></button>";
+          }
+          V.sections.forEach(function (s) {
+            html += "<div class=\"toc-sec\"><p class=\"sec-no\">" + s.no + "</p><p class=\"sec-name\">" + s.name + "</p><p class=\"sec-meta\">" + s.meta + "</p></div>";
+            s.entries.forEach(function (e) {
+              html += "<button class=\"toc-entry\" type=\"button\" data-page=\"" + e[1] + "\"><span>" + e[0] + "</span><span class=\"pg\">" + e[1] + "</span></button>";
+            });
+          });
+          html += "<button class=\"toc-entry\" type=\"button\" data-page=\"" + V.pages + "\"><span>Back page</span><span class=\"pg\">" + V.pages + "</span></button>";
+          toc.innerHTML = html;
+          var btns = toc.querySelectorAll(".toc-entry");
+          for (var i = 0; i < btns.length; i++) {
+            btns[i].addEventListener("click", function () { goTo(parseInt(this.getAttribute("data-page"), 10)); });
+          }
+        }
+
+        function renderThumbs() {
+          var V = VOLUMES[state.vol];
+          thumbTitle.textContent = "All pages, " + V.name;
+          var html = "";
+          for (var n = 1; n <= V.pages; n++) {
+            html += "<button class=\"thumb\" type=\"button\" data-page=\"" + n + "\" aria-label=\"Open page " + n + ", " + label(state.vol, n) + ", full size\"><img loading=\"lazy\" decoding=\"async\" src=\"" + thumbPath(state.vol, n) + "\" alt=\"\" /><span class=\"t-no\">" + n + "</span></button>";
+          }
+          thumbGrid.innerHTML = html;
+          var btns = thumbGrid.querySelectorAll(".thumb");
+          for (var i = 0; i < btns.length; i++) {
+            btns[i].addEventListener("click", function () {
+              goTo(parseInt(this.getAttribute("data-page"), 10));
+              openFullsize(this);
+            });
+          }
+        }
+
+        function markCurrent() {
+          var entries = toc.querySelectorAll(".toc-entry");
+          for (var i = 0; i < entries.length; i++) {
+            entries[i].classList.toggle("current", parseInt(entries[i].getAttribute("data-page"), 10) === state.page);
+          }
+          var thumbs = thumbGrid.querySelectorAll(".thumb");
+          for (var j = 0; j < thumbs.length; j++) {
+            thumbs[j].classList.toggle("current", parseInt(thumbs[j].getAttribute("data-page"), 10) === state.page);
+          }
+          /* Highlighting only: the current entry and thumbnail are marked
+             as current, and neither list auto-scrolls on a page change
+             (auto-scroll removed at the reader's direction). */
+        }
+
+        function show() {
+          var V = VOLUMES[state.vol];
+          var src = imgPath(state.vol, state.page);
+          pageImg.src = src;
+          pageImg.alt = V.name + ", " + V.title + ", page " + state.page + ": " + label(state.vol, state.page);
+          capTitle.textContent = label(state.vol, state.page);
+          capPage.textContent = V.name + " \u00B7 Page " + state.page + " of " + V.pages;
+          pageInput.value = state.page;
+          pageInput.max = V.pages;
+          pageTotal.textContent = "of " + V.pages;
+          prevBtn.disabled = state.page <= 1;
+          nextBtn.disabled = state.page >= V.pages;
+          progressBar.style.width = (state.page / V.pages * 100) + "%";
+          var fsBtn = $("fullSizeBtn");
+          if (fsBtn) { fsBtn.setAttribute("data-src", src); }
+          if (!$("fullsizeOverlay").hidden) { updateFullsize(); }
+          $("pdfLink").href = V.pdf;
+          $("pdfLink").setAttribute("download", V.pdfName);
+          $("readerVol").innerHTML = V.name + " <span>\u00B7</span> " + V.title;
+          $("reader-heading").textContent = V.name + " \u00B7 " + V.title;
+          $("topbarVol").innerHTML = V.name + " <span>\u00B7</span> " + V.title;
+          var backHref = "#vol-" + state.vol.slice(1);
+          $("backLink").setAttribute("href", backHref);
+          var bb = $("backLinkBottom");
+          bb.setAttribute("href", backHref);
+          bb.innerHTML = "&larr; Return to " + V.name;
+          if (readerView && !readerView.hidden) {
+            try { history.replaceState(null, "", "#/read/" + state.vol + "/" + state.page); } catch (e) {}
+          }
+          var linkInputEl = $("linkInput");
+          if (linkInputEl) { linkInputEl.value = pageUrl(); }
+          markCurrent();
+          [state.page - 1, state.page + 1].forEach(function (n) {
+            if (n >= 1 && n <= V.pages) { var im = new Image(); im.src = imgPath(state.vol, n); }
+          });
+        }
+
+        function goTo(n) {
+          var V = VOLUMES[state.vol];
+          state.page = Math.max(1, Math.min(V.pages, n));
+          show();
+        }
+        function setVolume(vol, page) {
+          if (!VOLUMES[vol]) { return; }
+          state.vol = vol;
+          state.page = Math.max(1, Math.min(VOLUMES[vol].pages, page || 1));
+          renderToc();
+          renderThumbs();
+          show();
+        }
+
+        /* ---------- full size view: shows the current page in-page ---------- */
+        var fullsizeOverlay = $("fullsizeOverlay"), fullsizeImg = $("fullsizeImg"),
+            fullsizeTitle = $("fullsizeTitle"), fullsizeScroll = $("fullsizeScroll"),
+            fullsizeClose = $("fullsizeClose"), fullSizeBtn = $("fullSizeBtn");
+        function updateFullsize() {
+          var V = VOLUMES[state.vol];
+          var src = imgPath(state.vol, state.page);
+          fullsizeImg.src = src;
+          fullsizeImg.alt = V.name + ", " + V.title + ", page " + state.page + ": " + label(state.vol, state.page) + ", full size";
+          fullsizeTitle.innerHTML = V.name + " &middot; " + V.title + " &middot; Page " + state.page + " of " + V.pages + " <span>&middot; " + label(state.vol, state.page) + "</span>";
+        }
+        var fullsizeReturnEl = null;
+        var fsZoomed = false;
+        var fsZoomInBtn = $("fsZoomIn"), fsZoomOutBtn = $("fsZoomOut");
+        function reflectFsZoom() {
+          if (fsZoomInBtn) { fsZoomInBtn.disabled = fsZoomed; }
+          if (fsZoomOutBtn) { fsZoomOutBtn.disabled = !fsZoomed; }
+        }
+        /* Toggle zoom while keeping the reader's place in the page: the
+           point at the centre of the view (or the tapped point) stays at
+           the same relative position in the page after the toggle. */
+        function setFsZoom(z, fx, fy) {
+          if (z === fsZoomed) { return; }
+          var sc = fullsizeScroll;
+          var cfx = (typeof fx === "number") ? fx : (sc.scrollLeft + sc.clientWidth / 2) / Math.max(1, sc.scrollWidth);
+          var cfy = (typeof fy === "number") ? fy : (sc.scrollTop + sc.clientHeight / 2) / Math.max(1, sc.scrollHeight);
+          fsZoomed = z;
+          sc.classList.toggle("zoomed", z);
+          reflectFsZoom();
+          window.requestAnimationFrame(function () {
+            sc.scrollLeft = cfx * sc.scrollWidth - sc.clientWidth / 2;
+            sc.scrollTop = cfy * sc.scrollHeight - sc.clientHeight / 2;
+          });
+        }
+        function openFullsize(returnEl) {
+          fullsizeReturnEl = (returnEl && returnEl !== fullSizeBtn) ? returnEl : fullSizeBtn;
+          updateFullsize();
+          fsZoomed = false;
+          fullsizeScroll.classList.remove("zoomed");
+          reflectFsZoom();
+          fullsizeScroll.scrollTop = 0; fullsizeScroll.scrollLeft = 0;
+          fullsizeOverlay.hidden = false;
+          document.body.style.overflow = "hidden";
+          fullsizeClose.focus();
+        }
+        function closeFullsize() {
+          fullsizeOverlay.hidden = true;
+          document.body.style.overflow = "";
+          var target = (fullsizeReturnEl && document.contains(fullsizeReturnEl)) ? fullsizeReturnEl : fullSizeBtn;
+          fullsizeReturnEl = null;
+          if (target) { target.focus(); }
+        }
+        if (fullSizeBtn) { fullSizeBtn.addEventListener("click", function () { openFullsize(fullSizeBtn); }); }
+        if (fullsizeClose) { fullsizeClose.addEventListener("click", closeFullsize); }
+        if (fsZoomInBtn) { fsZoomInBtn.addEventListener("click", function () { setFsZoom(true); }); }
+        if (fsZoomOutBtn) { fsZoomOutBtn.addEventListener("click", function () { setFsZoom(false); }); }
+        if (fullsizeImg) {
+          fullsizeImg.addEventListener("click", function (event) {
+            if (fsZoomed) { setFsZoom(false); return; }
+            var fx = null, fy = null;
+            if (typeof event.offsetX === "number" && fullsizeImg.offsetWidth > 0) {
+              fx = event.offsetX / fullsizeImg.offsetWidth;
+              fy = event.offsetY / Math.max(1, fullsizeImg.offsetHeight);
+            }
+            setFsZoom(true, fx, fy);
+          });
+        }
+
+        /* ---------- link to this page ----------
+           Restored at the reader's request. The button copies the current
+           page's own address, which the routing already supports
+           (#/read/<volume>/<page>), and always shows that address in a
+           bar below the toolbar, selected, so the link is there to copy
+           by hand even where automatic copying is not available. The
+           button and the status line say plainly which happened. */
+        var linkBtn = $("linkBtn"), linkBar = $("linkBar"), linkInput = $("linkInput"),
+            linkStatus = $("linkStatus"), linkCopyBtn = $("linkCopyBtn"), linkHideBtn = $("linkHideBtn");
+        var linkBtnOriginal = linkBtn ? linkBtn.innerHTML : "";
+        var linkResetTimer = null;
+        function setLinkFeedback(copied) {
+          if (linkStatus) {
+            linkStatus.textContent = copied ? "Link copied." : "Link shown below, ready to copy.";
+          }
+          if (linkBtn) {
+            linkBtn.innerHTML = copied ? "Link copied" : "Link to this page";
+            if (linkResetTimer) { window.clearTimeout(linkResetTimer); }
+            if (copied) {
+              linkResetTimer = window.setTimeout(function () { linkBtn.innerHTML = linkBtnOriginal; }, 3000);
+            }
+          }
+        }
+        function copyLinkText(text, done) {
+          function legacyCopy() {
+            try {
+              var ta = document.createElement("textarea");
+              ta.value = text;
+              ta.setAttribute("readonly", "");
+              ta.style.position = "fixed"; ta.style.opacity = "0";
+              document.body.appendChild(ta);
+              ta.select();
+              var ok = false;
+              try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
+              document.body.removeChild(ta);
+              return ok;
+            } catch (e) { return false; }
+          }
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(function () { done(true); }, function () { done(legacyCopy()); });
+          } else {
+            done(legacyCopy());
+          }
+        }
+        function showLinkBar(attemptCopy) {
+          var url = pageUrl();
+          if (linkInput) { linkInput.value = url; }
+          if (linkBar) { linkBar.hidden = false; }
+          if (linkInput) {
+            try { linkInput.focus(); linkInput.select(); } catch (e) {}
+          }
+          if (attemptCopy) {
+            copyLinkText(url, function (ok) { setLinkFeedback(ok); });
+          }
+        }
+        if (linkBtn) { linkBtn.addEventListener("click", function () { showLinkBar(true); }); }
+        if (linkCopyBtn) {
+          linkCopyBtn.addEventListener("click", function () {
+            var url = pageUrl();
+            if (linkInput) { linkInput.value = url; try { linkInput.focus(); linkInput.select(); } catch (e) {} }
+            copyLinkText(url, function (ok) { setLinkFeedback(ok); });
+          });
+        }
+        if (linkHideBtn) {
+          linkHideBtn.addEventListener("click", function () {
+            if (linkBar) { linkBar.hidden = true; }
+            if (linkStatus) { linkStatus.textContent = ""; }
+            if (linkBtn) { linkBtn.focus(); }
+          });
+        }
+
+        prevBtn.addEventListener("click", function () { goTo(state.page - 1); });
+        nextBtn.addEventListener("click", function () { goTo(state.page + 1); });
+        pageInput.addEventListener("change", function () {
+          var n = parseInt(pageInput.value, 10);
+          if (!isNaN(n)) { goTo(n); } else { pageInput.value = state.page; }
+        });
+
+        /* ---------- full contents lines: each line opens the reader ----------
+           Every line of the home page "Show full contents" lists becomes a
+           link to the reader page of its own volume at the page number the
+           line prints, so a tap on any line opens that page. */
+        var fullSections = document.querySelectorAll("section.vol");
+        for (var fs = 0; fs < fullSections.length; fs++) {
+          (function (sec) {
+            var sm = (sec.id || "").match(/^vol-([123])$/);
+            if (!sm) { return; }
+            var volKey = "v" + sm[1];
+            var items = sec.querySelectorAll("details.full .toc-list li");
+            for (var i = 0; i < items.length; i++) {
+              var li = items[i];
+              var pgEl = li.querySelector(".pg");
+              if (!pgEl) { continue; }
+              var page = parseInt(pgEl.textContent, 10);
+              if (isNaN(page)) { continue; }
+              var line = document.createElement("a");
+              line.className = "toc-line";
+              line.href = "#/read/" + volKey + "/" + page;
+              line.setAttribute("data-reader", "");
+              line.setAttribute("data-vol", volKey);
+              line.setAttribute("data-page", page);
+              while (li.firstChild) { line.appendChild(li.firstChild); }
+              li.appendChild(line);
+            }
+          })(fullSections[fs]);
+        }
+
+        /* ---------- PDF downloads ----------
+           A plain download link relies on the browser's own download
+           handling, which the in-app preview does not provide: the tap
+           there did nothing. So the PDF is fetched by the page itself and
+           handed over as a generated download, and the tap is answered on
+           the page ("Preparing PDF...", progress, then "Download
+           started"). The fetched file is kept, so a second tap on the
+           same volume is instant.
+           Progress fix: the first progress version read the fetch body
+           as a stream. In the in-app preview
+           that stream is not reliably available: where it is missing the
+           code silently fell back to a plain blob fetch with no progress
+           callbacks at all, so the label sat on "Preparing PDF..." for
+           the whole fetch, and where the stream failed mid-read the tap
+           dropped to the plain link, which the preview ignores. The
+           download now uses XMLHttpRequest, whose progress events fire
+           in the preview's web view as they do in a browser, and the
+           percentage is worked out against the file's known exact size
+           (below) whenever the response itself does not state a length,
+           so percentage and megabytes show on every download. If the
+           request fails, a non-streamed fetch is tried before the plain
+           link, which remains the last fallback. */
+        var PDF_SIZES = {
+          "the-isle-vol-1-furniture.pdf": 17617436,
+          "the-isle-vol-2-decor.pdf": 19313977,
+          "the-isle-vol-3-build-selections.pdf": 6786877
+        };
+        var pdfBlobs = {};
+        function savePdfBlob(blob, name) {
+          var objUrl = URL.createObjectURL(blob);
+          var a = document.createElement("a");
+          a.href = objUrl;
+          a.download = name;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          window.setTimeout(function () { URL.revokeObjectURL(objUrl); }, 5000);
+        }
+        function deliverPdf(blob, name) {
+          try { savePdfBlob(blob, name); return true; } catch (e) { return false; }
+        }
+        function downloadPdf(link) {
+          var url = link.href;
+          var name = link.getAttribute("download") || "The Isle.pdf";
+          var original = link.innerHTML;
+          function fallback() {
+            link.innerHTML = original;
+            link.removeAttribute("aria-busy");
+            var a = document.createElement("a");
+            a.href = url;
+            a.download = name;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+          }
+          function finish() {
+            link.innerHTML = "Download started";
+            window.setTimeout(function () {
+              link.innerHTML = original;
+              link.removeAttribute("aria-busy");
+            }, 3000);
+          }
+          link.innerHTML = "Preparing PDF&hellip;";
+          link.setAttribute("aria-busy", "true");
+          if (pdfBlobs[url]) {
+            if (deliverPdf(pdfBlobs[url], name)) { finish(); } else { fallback(); }
+            return;
+          }
+          function fmtMB(bytes) { return (bytes / 1048576).toFixed(1) + " MB"; }
+          var knownTotal = 0;
+          for (var fileName in PDF_SIZES) {
+            if (url.indexOf(fileName) !== -1) { knownTotal = PDF_SIZES[fileName]; break; }
+          }
+          var lastPct = -1;
+          function showProgress(received, total) {
+            var t = total > 0 ? total : knownTotal;
+            if (t > 0) {
+              var pct = Math.min(99, Math.floor(received / t * 100));
+              if (pct === lastPct && received > 0) { return; }
+              lastPct = pct;
+              link.innerHTML = "Downloading&hellip; " + pct + "% &middot; " + fmtMB(received) + " of " + fmtMB(t);
+            } else if (received > 0) {
+              link.innerHTML = "Downloading&hellip; " + fmtMB(received);
+            }
+          }
+          function done(blob) {
+            if (!blob || blob.size === 0) { fallback(); return; }
+            pdfBlobs[url] = blob;
+            if (deliverPdf(blob, name)) { finish(); } else { fallback(); }
+          }
+          function fetchBlobFallback() {
+            if (!window.fetch) { fallback(); return; }
+            fetch(url).then(function (res) {
+              if (!res.ok) { throw new Error("PDF request failed"); }
+              return res.blob();
+            }).then(done).catch(function () { fallback(); });
+          }
+          /* XMLHttpRequest progress: supported by the in-app preview's
+             web view, unlike fetch body streaming. */
+          if (typeof XMLHttpRequest === "undefined") { fetchBlobFallback(); return; }
+          showProgress(0, knownTotal);
+          try {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", url, true);
+            xhr.responseType = "blob";
+            xhr.onprogress = function (event) {
+              var total = (event && event.lengthComputable && event.total) ? event.total : knownTotal;
+              var received = (event && typeof event.loaded === "number") ? event.loaded : 0;
+              showProgress(received, total);
+            };
+            xhr.onload = function () {
+              if (xhr.status >= 200 && xhr.status < 300 && xhr.response) { done(xhr.response); }
+              else { fetchBlobFallback(); }
+            };
+            xhr.onerror = function () { fetchBlobFallback(); };
+            xhr.onabort = function () {
+              link.innerHTML = original;
+              link.removeAttribute("aria-busy");
+            };
+            xhr.send(null);
+          } catch (e) { fetchBlobFallback(); }
+        }
+        /* ---------- faster page turns ----------
+           Once the reader has settled on a volume, quietly fetch that
+           volume's remaining page images in the background, nearest pages
+           first and one at a time, so turning a page is instant. No image
+           is re-encoded; the browser simply caches the files as served. */
+        var preloadToken = 0, preloadTimer = null;
+        function schedulePreload() {
+          preloadToken++;
+          var token = preloadToken, vol = state.vol, start = state.page;
+          if (preloadTimer) { window.clearTimeout(preloadTimer); }
+          preloadTimer = window.setTimeout(function () {
+            var V = VOLUMES[vol];
+            var order = [];
+            var n;
+            for (n = start + 1; n <= V.pages; n++) { order.push(n); }
+            for (n = 1; n < start; n++) { order.push(n); }
+            var idx = 0;
+            function next() {
+              if (token !== preloadToken || state.vol !== vol) { return; }
+              if (idx >= order.length) { return; }
+              var im = new Image();
+              try { im.fetchPriority = "low"; } catch (e) {}
+              im.onload = im.onerror = function () { idx++; window.setTimeout(next, 50); };
+              im.src = imgPath(vol, order[idx]);
+            }
+            next();
+          }, 700);
+        }
+        function cancelPreload() {
+          preloadToken++;
+          if (preloadTimer) { window.clearTimeout(preloadTimer); preloadTimer = null; }
+        }
+
+        var pdfLinks = document.querySelectorAll('a[download][href*=".pdf"]');
+        for (var p = 0; p < pdfLinks.length; p++) {
+          pdfLinks[p].addEventListener("click", function (event) {
+            event.preventDefault();
+            if (this.getAttribute("aria-busy") === "true") { return; }
+            downloadPdf(this);
+          });
+        }
+
+        /* The Read buttons and Inside previews are links to the reader
+           page (#/read/<volume>/<page>); following one navigates to that
+           page, handled by the router below. If the address already names
+           this exact reader page, route again in place. */
+        var readLinks = document.querySelectorAll("a[data-reader]");
+        for (var r = 0; r < readLinks.length; r++) {
+          readLinks[r].addEventListener("click", function (event) {
+            if (location.hash === this.getAttribute("href")) {
+              event.preventDefault();
+              route();
+            }
+          });
+        }
+
+        document.addEventListener("keydown", function (event) {
+          var fsOverlay = $("fullsizeOverlay");
+          if (fsOverlay && !fsOverlay.hidden) {
+            if (event.key === "Escape") { event.preventDefault(); closeFullsize(); }
+            else if (event.key === "+" || event.key === "=") { event.preventDefault(); setFsZoom(true); }
+            else if (event.key === "-" || event.key === "_") { event.preventDefault(); setFsZoom(false); }
+            return;
+          }
+          var tag = (event.target && event.target.tagName) || "";
+          if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") { return; }
+          if (!readerView || readerView.hidden) { return; }
+          var rect = readerEl.getBoundingClientRect();
+          if (rect.bottom < 0 || rect.top > window.innerHeight) { return; }
+          if (event.key === "ArrowRight") { goTo(state.page + 1); }
+          else if (event.key === "ArrowLeft") { goTo(state.page - 1); }
+        });
+        var touchX = null;
+        pageImg.addEventListener("touchstart", function (event) { touchX = event.changedTouches[0].clientX; }, { passive: true });
+        pageImg.addEventListener("touchend", function (event) {
+          if (touchX === null) { return; }
+          var dx = event.changedTouches[0].clientX - touchX;
+          if (dx < -60) { goTo(state.page + 1); }
+          else if (dx > 60) { goTo(state.page - 1); }
+          touchX = null;
+        }, { passive: true });
+
+        /* ---------- routing: home page and Reader page ---------- */
+        function showHome(anchorId) {
+          cancelPreload();
+          var lb = $("linkBar");
+          if (lb) { lb.hidden = true; }
+          var ls = $("linkStatus");
+          if (ls) { ls.textContent = ""; }
+          var fsOv = $("fullsizeOverlay");
+          if (fsOv && !fsOv.hidden) { fsOv.hidden = true; document.body.style.overflow = ""; }
+          readerView.hidden = true;
+          homeView.hidden = false;
+          document.title = "The Isle \u00B7 Reference Catalogues";
+          if (anchorId) {
+            var el = document.getElementById(anchorId);
+            if (el) { el.scrollIntoView(); }
+          }
+        }
+        function openReader(vol, page) {
+          if (!VOLUMES[vol]) { showHome(null); return; }
+          homeView.hidden = true;
+          readerView.hidden = false;
+          setVolume(vol, page);
+          document.title = VOLUMES[vol].name + " " + VOLUMES[vol].title + " \u00B7 The Isle Reader";
+          window.scrollTo(0, 0);
+          schedulePreload();
+        }
+        function route() {
+          var h = location.hash || "";
+          var m = h.match(/^#\/read\/(v[123])(?:\/(\d+))?/);
+          if (m) { openReader(m[1], m[2] ? parseInt(m[2], 10) : 1); return; }
+          var anchor = h.replace(/^#/, "");
+          showHome(anchor.indexOf("vol-") === 0 ? anchor : null);
+        }
+        window.addEventListener("hashchange", route);
+        route();
+      })();
+    </script>
+  </body>
+</html>

@@ -1,6 +1,6 @@
 # Bear LP
 # Only the landing page (and its own assets) may be crawled or indexed.
-# Everything else, including /demo/, is disallowed.
+# Everything else is disallowed.
 User-agent: *
 Allow: /$
 Allow: /assets/

@@ -8,6 +8,7 @@
     <link rel="icon" href="assets/cover-vol-1.jpg" />
     <title>The Isle &#183; Reference Catalogues</title>
     <script>window.goatcounter = { no_onload: true };</script>
+    <script>try { var savedTheme = localStorage.getItem("isle-theme"); if (savedTheme === "dark" || savedTheme === "light") document.documentElement.setAttribute("data-theme", savedTheme); } catch (e) {}</script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
@@ -1953,7 +1954,9 @@
           btn.setAttribute("aria-label", "Switch to " + next + " mode");
         }
         btn.addEventListener("click", function () {
-          root.setAttribute("data-theme", effective() === "dark" ? "light" : "dark");
+          var nextTheme = effective() === "dark" ? "light" : "dark";
+          root.setAttribute("data-theme", nextTheme);
+          try { localStorage.setItem("isle-theme", nextTheme); } catch (e) {}
           sync();
         });
         if (typeof mq.addEventListener === "function") mq.addEventListener("change", sync);

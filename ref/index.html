@@ -51,7 +51,7 @@
         }
       }
       * { box-sizing: border-box; }
-      html { scroll-behavior: smooth; touch-action: manipulation; }
+      html { scroll-behavior: smooth; touch-action: manipulation; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
       @media (prefers-reduced-motion: reduce) {
         html { scroll-behavior: auto; }
       }
@@ -379,7 +379,7 @@
       footer .f-title-row .f-title { margin: 0; }
       footer .f-palm { width: 44px; height: 44px; flex: none; }
       footer .f-imprint {
-        margin: 16px auto 0; font-size: 13px; font-weight: 600;
+        margin: 5px auto 0; font-size: 13px; font-weight: 600;
         letter-spacing: 0.34em; text-transform: uppercase; color: var(--gold-bright);
       }
       footer .f-line { width: min(880px, 90%); height: 1px; background: rgba(201, 171, 114, 0.35); margin: 30px auto 0; }

@@ -372,6 +372,12 @@
       footer .f-title {
         font-family: var(--serif); font-size: 30px; font-weight: 500; color: #ffffff; margin: 18px auto 0;
       }
+      footer .f-title-row {
+        display: flex; align-items: center; justify-content: center; gap: 10px;
+        margin: 18px auto 0;
+      }
+      footer .f-title-row .f-title { margin: 0; }
+      footer .f-palm { width: 44px; height: 44px; flex: none; }
       footer .f-imprint {
         margin: 16px auto 0; font-size: 13px; font-weight: 600;
         letter-spacing: 0.34em; text-transform: uppercase; color: var(--gold-bright);
@@ -1558,7 +1564,11 @@
     <!-- ================= FOOTER ================= -->
     <footer>
       <div class="ornament" aria-hidden="true"><i></i></div>
-      <p class="f-title">The Isle</p>
+      <div class="f-title-row">
+        <img class="f-palm" src="assets/footer-palm.png" alt="" width="44" height="44" />
+        <p class="f-title">The Isle</p>
+        <img class="f-palm" src="assets/footer-palm.png" alt="" width="44" height="44" />
+      </div>
       <p class="f-imprint">M &amp; D Silver</p>
       <div class="f-line" aria-hidden="true"></div>
       <p>Reference Catalogues, final edition, November 2026.</p>

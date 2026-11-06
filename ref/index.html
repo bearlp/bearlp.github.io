@@ -112,15 +112,36 @@
       }
       /* The intro is composed as two blocks, one per sentence. The first
          sentence sits on a single line at desktop width, with "M & D
-         Silver" kept unbreakable at every width. The second sentence is
-         set on a measure close to that first line's width and balanced,
-         so it wraps into even lines with no short trailing line. */
+         Silver" kept unbreakable at every width. Below desktop width its
+         line breaks are structural, not left to the wrapping algorithm
+         or to text-wrap: balance (unsupported in older Safari/WebKit):
+         the sentence is marked up in four phrase spans and set as a
+         wrapping flex row, so the phrases pack deterministically in
+         every engine: three near-even lines on phones ("The complete
+         record of the home," / "in three volumes and a companion" /
+         "appendix by M & D Silver."), two near-even lines at tablet
+         widths, the break before "and a companion" forced there by the
+         .brk-t spacer. The second sentence is set on a measure close
+         to the first line's width and balanced where balance exists;
+         without it, it wraps as an ordinary paragraph. */
       .hero-intro p { margin: 0; }
       .hero-intro .hi-s1 { white-space: nowrap; }
+      .hero-intro .hi-s1 .brk-t { display: none; }
       .hero-intro .hi-name { white-space: nowrap; }
       .hero-intro .hi-s2 { max-width: 860px; margin: 0 auto; text-wrap: balance; }
       @media (max-width: 940px) {
-        .hero-intro .hi-s1 { white-space: normal; }
+        .hero-intro .hi-s1 {
+          white-space: normal;
+          display: flex; flex-wrap: wrap; justify-content: center;
+        }
+        .hero-intro .hi-s1 > span { margin-right: 0.28em; }
+        .hero-intro .hi-s1 > span:last-child { margin-right: 0; }
+      }
+      /* Tablet widths: force the break between "in three volumes" and
+         "and a companion" so the two lines stay near even instead of
+         packing three phrases onto the first line. */
+      @media (min-width: 561px) and (max-width: 940px) {
+        .hero-intro .hi-s1 .brk-t { display: block; flex: 0 0 100%; height: 0; margin-right: 0; }
       }
       .hero-intro em { font-family: var(--serif); }
       .stats {
@@ -695,7 +716,7 @@
         <h1>The Isle</h1>
         <p class="hero-series">Reference Catalogues</p>
         <div class="hero-rule" aria-hidden="true"></div>
-        <div class="hero-intro"><p class="hi-s1">The complete record of the home, in three volumes and a companion appendix by <span class="hi-name">M&nbsp;&amp;&nbsp;D&nbsp;Silver</span>.</p><p class="hi-s2">Furniture and decor are recorded piece by piece, each one photographed, measured and described on its own page, and the build selections are shown first as composed previews and then element by element, and last, the appendix gathers inspiration for the next phase, using curated photographs from resorts and hotels around the world.</p></div>
+        <div class="hero-intro"><p class="hi-s1"><span class="s-a">The complete record of the home,</span> <span class="s-b">in three volumes</span><span class="brk-t" aria-hidden="true"></span> <span class="s-c">and a companion</span> <span class="s-d">appendix by <span class="hi-name">M&nbsp;&amp;&nbsp;D&nbsp;Silver</span>.</span></p><p class="hi-s2">Furniture and decor are recorded piece by piece, each one photographed, measured and described on its own page, and the build selections are shown first as composed previews and then element by element, and last, the appendix gathers inspiration for the next phase, using curated photographs from resorts and hotels around the world.</p></div>
         <div class="stats" role="list" aria-label="The series at a glance">
           <div class="stat" role="listitem"><b>4</b><span>Books</span></div>
           <div class="stat" role="listitem"><b>188</b><span>Pages</span></div>

@@ -5,14 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Bear LP - Page Not Found</title>
 <meta name="description" content="An Investment Holding Company">
+<meta name="theme-color" content="#061826">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-html,body{height:100%}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;background:#0a1c2c;color:#f3eee3;min-height:100vh;min-height:100dvh;position:relative;overflow:hidden}
-.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:94% center}
+html,body{height:100%}html{background:#061826}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;background:#061826;color:#f3eee3;min-height:100vh;min-height:100dvh;position:relative;overflow:hidden}
+.stage{position:fixed;inset:0;overflow:hidden;background:#061826}
+.bg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.bg img{width:100%;height:100%;object-fit:cover;object-position:94% center;display:block}
 .scrim{position:absolute;inset:0;background:linear-gradient(to top,rgba(6,24,38,.88) 0%,rgba(6,24,38,.5) 45%,rgba(6,24,38,.35) 100%)}
 main{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;z-index:2}
 main img{width:min(220px,50vw);height:auto;display:block}
@@ -23,7 +26,11 @@ a:hover{color:#c9b184}
 </style>
 </head>
 <body>
-<img class="bg" src="/assets/ridge.jpg" alt="">
+<div class="stage">
+<picture class="bg">
+  <source type="image/webp" srcset="/assets/ridge-1170.webp 1170w, assets/ridge.webp 2384w" sizes="100vw">
+  <img src="/assets/ridge.jpg" alt="">
+</picture>
 <div class="scrim" aria-hidden="true"></div>
 <main>
   <img src="/assets/vert-silver.svg" alt="Bear LP" width="590" height="285">
@@ -31,6 +38,7 @@ a:hover{color:#c9b184}
   <p>This page does not exist, or has been moved.</p>
   <a href="/">Return to the home page</a>
 </main>
+</div>
 <script data-goatcounter="https://muse.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>

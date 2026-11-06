@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="color-scheme" content="light dark" />
-    <meta name="description" content="The Isle reference catalogues by M & D Silver: Volume One Furniture, Volume Two Decor, Volume Three Build Selections. Covers, contents and the complete PDF of each volume." />
+    <meta name="description" content="The Isle reference catalogues by M & D Silver: Volume One Furniture, Volume Two Decor, Volume Three Build Selections, and Appendix A, the Inspiration. Covers, contents and the complete PDF of each book." />
     <link rel="icon" type="image/png" sizes="512x512" href="assets/favicon.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
     <meta name="theme-color" id="themeColor" content="#ffffff" />
@@ -107,8 +107,20 @@
       }
       .hero-rule { width: 64px; height: 1px; background: var(--gold); margin: 22px auto 0; }
       .hero-intro {
-        max-width: 620px; margin: 22px auto 0;
+        max-width: 900px; margin: 22px auto 0;
         font-size: 17px; line-height: 1.65; color: #d8dde2;
+      }
+      /* The intro is composed as two blocks, one per sentence. The first
+         sentence sits on a single line at desktop width, with "M & D
+         Silver" kept unbreakable at every width. The second sentence is
+         set on a measure close to that first line's width and balanced,
+         so it wraps into two even lines with no short trailing line. */
+      .hero-intro p { margin: 0; }
+      .hero-intro .hi-s1 { white-space: nowrap; }
+      .hero-intro .hi-name { white-space: nowrap; }
+      .hero-intro .hi-s2 { max-width: 800px; margin: 0 auto; text-wrap: balance; }
+      @media (max-width: 940px) {
+        .hero-intro .hi-s1 { white-space: normal; }
       }
       .hero-intro em { font-family: var(--serif); }
       .stats {
@@ -129,10 +141,13 @@
         color: var(--gold-bright);
       }
       .trio {
-        display: grid; grid-template-columns: repeat(3, 1fr);
+        display: grid; grid-template-columns: repeat(4, 1fr);
         gap: clamp(18px, 3.4vw, 40px);
-        max-width: 1020px; margin: 52px auto 0;
+        max-width: 1120px; margin: 52px auto 0;
         text-align: center;
+      }
+      @media (max-width: 900px) {
+        .trio { grid-template-columns: repeat(2, 1fr); max-width: 620px; }
       }
       .trio a { text-decoration: none; display: block; }
       .trio figure { margin: 0; }
@@ -680,14 +695,14 @@
         <h1>The Isle</h1>
         <p class="hero-series">Reference Catalogues</p>
         <div class="hero-rule" aria-hidden="true"></div>
-        <p class="hero-intro">The complete record of the home, in three volumes by M &amp; D Silver. Furniture and decor are recorded piece by piece, each one photographed, measured and described on its own page, and the build selections are shown first as composed previews and then element by element.</p>
+        <div class="hero-intro"><p class="hi-s1">The complete record of the home, in three volumes and a companion appendix by <span class="hi-name">M&nbsp;&amp;&nbsp;D&nbsp;Silver</span>.</p><p class="hi-s2">Furniture and decor are recorded piece by piece, each one photographed, measured and described on its own page, and the build selections are shown first as composed previews and then element by element.</p></div>
         <div class="stats" role="list" aria-label="The series at a glance">
-          <div class="stat" role="listitem"><b>3</b><span>Volumes</span></div>
-          <div class="stat" role="listitem"><b>98</b><span>Pages</span></div>
-          <div class="stat" role="listitem"><b>128</b><span>Entries</span></div>
+          <div class="stat" role="listitem"><b>4</b><span>Books</span></div>
+          <div class="stat" role="listitem"><b>188</b><span>Pages</span></div>
+          <div class="stat" role="listitem"><b>208</b><span>Entries</span></div>
           <div class="stat" role="listitem"><b>2026</b><span>Final edition</span></div>
         </div>
-        <nav class="trio" aria-label="The three volumes">
+        <nav class="trio" aria-label="The three volumes and Appendix A">
           <a href="#vol-1">
             <figure>
               <img fetchpriority="high" decoding="async" src="assets/cover-vol-1.jpg" alt="Cover of The Isle, Volume One, Furniture: a carved palm and flower panel in dark wood above the title on deep navy" width="1445" height="1870" />
@@ -718,8 +733,18 @@
               </figcaption>
             </figure>
           </a>
+          <a href="#appendix-a">
+            <figure>
+              <img loading="lazy" decoding="async" src="assets/cover-appendix-a.jpg" alt="Cover of The Isle, Appendix A, Inspiration: a painted sand spit in Zanzibar at golden hour above the title on deep navy" width="1445" height="1870" />
+              <figcaption>
+                <span class="t-vol">Appendix A</span>
+                <span class="t-name">Inspiration</span>
+                <span class="t-pages">90 pages &middot; 80 photographs</span>
+              </figcaption>
+            </figure>
+          </a>
         </nav>
-        <p class="hero-note">Select a cover to go to its volume, read on for the details and contents of each, or download the full catalogue.</p>
+        <p class="hero-note">Select a cover to go to its book, read on for the details and contents of each, or download the full catalogue.</p>
         <div class="hero-dl">
           <a class="btn btn-dl" href="https://github.com/bearlp/bearlp.github.io/releases/download/catalogue/the-isle-catalogue.zip" download="the-isle-catalogue.zip">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
@@ -889,8 +914,8 @@
                   <figcaption>Contents, Artwork, page 2</figcaption>
                 </figure>
                 <figure>
-                  <a href="#/read/v2/10" data-reader data-vol="v2" data-page="10"><img loading="lazy" decoding="async" src="assets/inside-vol-2-wave.jpg" alt="Page for Under the Wave off Kanagawa by Hokusai, with frame and matting corner detail" width="935" height="1210" /></a>
-                  <figcaption>Under the Wave off Kanagawa, page 10</figcaption>
+                  <a href="#/read/v2/7" data-reader data-vol="v2" data-page="7"><img loading="lazy" decoding="async" src="assets/pages/vol-2/page-07.jpg" alt="Page for Creatures of the Ocean I by Patricia Pinto, with frame and matting corner detail" width="1275" height="1650" /></a>
+                  <figcaption>Creatures of the Ocean I, page 7</figcaption>
                 </figure>
               </div>
             </div>
@@ -911,7 +936,7 @@
             <a class="sec" href="#/read/v2/18" data-reader data-vol="v2" data-page="18">
               <div class="sec-top"><span class="sec-no">Section 02</span><span class="sec-count">9 pieces &middot; Pages 18-26</span></div>
               <h4>Lighting</h4>
-              <p>Table and floor lamps, a chandelier and pendants, each shown with its approved image.</p>
+              <p>Table and floor lamps, a chandelier and pendants, each shown with its image.</p>
             </a>
             <a class="sec" href="#/read/v2/27" data-reader data-vol="v2" data-page="27">
               <div class="sec-top"><span class="sec-no">Section 03</span><span class="sec-count">5 pieces &middot; Pages 27-31</span></div>
@@ -1197,6 +1222,316 @@
         </details>
       </div>
     </section>
+
+    <!-- ================= APPENDIX A ================= -->
+    <section class="vol tint" id="appendix-a" aria-labelledby="appendix-a-title">
+      <div class="vol-inner">
+        <p class="vol-label"><span class="rule"></span>Appendix A<span class="rule"></span></p>
+        <div class="vol-grid">
+          <figure class="cover-fig">
+            <img fetchpriority="high" decoding="async" src="assets/cover-appendix-a.jpg" alt="Cover of The Isle, Appendix A, Inspiration" width="1445" height="1870" />
+            <figcaption>Cover: A sand spit in Zanzibar at golden hour, painted for this book. The back cover shows a lava cove in Samoa at sunset.</figcaption>
+          </figure>
+          <div class="vol-info">
+            <h2 id="appendix-a-title">Inspiration</h2>
+            <p class="vol-subtitle">Companion Volume</p>
+            <p class="vol-meta"><span>90 pages</span><span>80 photographs</span><span>17 resorts</span><span>PDF 44.0 MB</span></p>
+            <p class="vol-desc">A companion to the three volumes: eighty interior and exterior photographs from seventeen resorts and hotels around the world.</p>
+            <div class="actions">
+              <a class="btn btn-read" href="#/read/app" data-reader data-vol="app">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                Read Appendix A
+              </a>
+              <a class="btn btn-dl" href="assets/the-isle-appendix-a-inspiration.pdf" download="The Isle - Appendix A - Inspiration.pdf">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download PDF
+              </a>
+            </div>
+            <div class="inside">
+              <h3>Inside the appendix</h3>
+              <div class="inside-row">
+                <figure>
+                  <a href="#/read/app/2" data-reader data-vol="app" data-page="2"><img loading="lazy" decoding="async" src="assets/inside-appendix-a-contents.jpg" alt="Contents page of Appendix A listing the eleven Capella Bangkok photographs" width="935" height="1210" /></a>
+                  <figcaption>Contents, Capella Bangkok, page 2</figcaption>
+                </figure>
+                <figure>
+                  <a href="#/read/app/33" data-reader data-vol="app" data-page="33"><img loading="lazy" decoding="async" src="assets/pages/appendix-a/page-33.jpg" alt="Page for the Riverfront Pool Villa at Mandapa, with its photograph and summary" width="1275" height="1650" /></a>
+                  <figcaption>Riverfront Pool Villa, Mandapa, page 33</figcaption>
+                </figure>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="glance">
+          <div class="glance-head">
+            <div class="ornament" aria-hidden="true"><i></i></div>
+            <h3>Contents at a Glance</h3>
+          </div>
+          <div class="glance-grid cols-3">
+            <a class="sec" href="#/read/app/10" data-reader data-vol="app" data-page="10">
+              <div class="sec-top"><span class="sec-no">Resort 01</span><span class="sec-count">11 picks &middot; Pages 10-20</span></div>
+              <h4>Capella Bangkok</h4>
+              <p>River Suite Premier, Private Villa, Tea Lounge, Phra Nakhon.</p>
+            </a>
+            <a class="sec" href="#/read/app/21" data-reader data-vol="app" data-page="21">
+              <div class="sec-top"><span class="sec-no">Resort 02</span><span class="sec-count">7 picks &middot; Pages 21-27</span></div>
+              <h4>Joali Maldives</h4>
+              <p>Luxury Water Villa with Pool, Four Bedroom Beach Residence with Pool.</p>
+            </a>
+            <a class="sec" href="#/read/app/28" data-reader data-vol="app" data-page="28">
+              <div class="sec-top"><span class="sec-no">Resort 03</span><span class="sec-count">4 picks &middot; Pages 28-31</span></div>
+              <h4>Amanoi</h4>
+              <p>Amanoi Ocean Pool Villa, The Restaurant, The Bar.</p>
+            </a>
+            <a class="sec" href="#/read/app/32" data-reader data-vol="app" data-page="32">
+              <div class="sec-top"><span class="sec-no">Resort 04</span><span class="sec-count">7 picks &middot; Pages 32-38</span></div>
+              <h4>Mandapa</h4>
+              <p>Riverfront Pool Villa, Mandapa Spa, Library.</p>
+            </a>
+            <a class="sec" href="#/read/app/39" data-reader data-vol="app" data-page="39">
+              <div class="sec-top"><span class="sec-no">Resort 05</span><span class="sec-count">3 picks &middot; Pages 39-41</span></div>
+              <h4>Four Seasons Resort Koh Samui</h4>
+              <p>Specialty Villas, KOH Thai Kitchen, KOH Bar.</p>
+            </a>
+            <a class="sec" href="#/read/app/42" data-reader data-vol="app" data-page="42">
+              <div class="sec-top"><span class="sec-no">Resort 06</span><span class="sec-count">6 picks &middot; Pages 42-47</span></div>
+              <h4>One&amp;Only Reethi Rah</h4>
+              <p>Lobby, Botanica restaurant, Beach Villas.</p>
+            </a>
+            <a class="sec" href="#/read/app/48" data-reader data-vol="app" data-page="48">
+              <div class="sec-top"><span class="sec-no">Resort 07</span><span class="sec-count">5 picks &middot; Pages 48-52</span></div>
+              <h4>The Nautilus Maldives</h4>
+              <p>Beach Residence with Private Pool, Nautilus Retreat with Private Pool.</p>
+            </a>
+            <a class="sec" href="#/read/app/53" data-reader data-vol="app" data-page="53">
+              <div class="sec-top"><span class="sec-no">Resort 08</span><span class="sec-count">6 picks &middot; Pages 53-58</span></div>
+              <h4>Four Seasons Resort The Nam Hai</h4>
+              <p>One Bedroom Villa, Pool Villa, La Sen, Sol &amp; Sao, The Bar.</p>
+            </a>
+            <a class="sec" href="#/read/app/59" data-reader data-vol="app" data-page="59">
+              <div class="sec-top"><span class="sec-no">Resort 09</span><span class="sec-count">5 picks &middot; Pages 59-63</span></div>
+              <h4>Raffles Bali</h4>
+              <p>Residence.</p>
+            </a>
+            <a class="sec" href="#/read/app/64" data-reader data-vol="app" data-page="64">
+              <div class="sec-top"><span class="sec-no">Resort 10</span><span class="sec-count">6 picks &middot; Pages 64-69</span></div>
+              <h4>Kona Village, a Rosewood Resort</h4>
+              <p>Hale Bedroom, Kauhale Bedroom, Hale Living Area, Kauhale Living Room, Signature Kauhale Living Room, Asaya Spa.</p>
+            </a>
+            <a class="sec" href="#/read/app/70" data-reader data-vol="app" data-page="70">
+              <div class="sec-top"><span class="sec-no">Resort 11</span><span class="sec-count">5 picks &middot; Pages 70-74</span></div>
+              <h4>Four Seasons Resort Bali at Sayan</h4>
+              <p>Premier Duplex Suite, One-Bedroom Villa, Sacred River Spa.</p>
+            </a>
+            <a class="sec" href="#/read/app/75" data-reader data-vol="app" data-page="75">
+              <div class="sec-top"><span class="sec-no">Resort 12</span><span class="sec-count">5 picks &middot; Pages 75-79</span></div>
+              <h4>The Datai Langkawi</h4>
+              <p>Canopy Suite, The Datai Suite, One-Bedroom Beach Villa, The Dining Room, The Lobby Lounge.</p>
+            </a>
+            <a class="sec" href="#/read/app/80" data-reader data-vol="app" data-page="80">
+              <div class="sec-top"><span class="sec-no">Resort 13</span><span class="sec-count">3 picks &middot; Pages 80-82</span></div>
+              <h4>Amanpuri</h4>
+              <p>Pavilion, Eight-Bedroom Ocean Villa, Villas.</p>
+            </a>
+            <a class="sec" href="#/read/app/83" data-reader data-vol="app" data-page="83">
+              <div class="sec-top"><span class="sec-no">Resort 14</span><span class="sec-count">1 pick &middot; Page 83</span></div>
+              <h4>The Brando</h4>
+              <p>Three Bedroom Villa.</p>
+            </a>
+            <a class="sec" href="#/read/app/84" data-reader data-vol="app" data-page="84">
+              <div class="sec-top"><span class="sec-no">Resort 15</span><span class="sec-count">3 picks &middot; Pages 84-86</span></div>
+              <h4>Constance Prince Maurice</h4>
+              <p>Junior Suite Beachfront, Villa on Stilts, Princely Villa.</p>
+            </a>
+            <a class="sec" href="#/read/app/87" data-reader data-vol="app" data-page="87">
+              <div class="sec-top"><span class="sec-no">Resort 16</span><span class="sec-count">2 picks &middot; Pages 87-88</span></div>
+              <h4>Alila Ubud</h4>
+              <p>Deluxe Room, Valley Villa.</p>
+            </a>
+            <a class="sec" href="#/read/app/89" data-reader data-vol="app" data-page="89">
+              <div class="sec-top"><span class="sec-no">Resort 17</span><span class="sec-count">1 pick &middot; Page 89</span></div>
+              <h4>COMO Shambhala Estate</h4>
+              <p>Bayugita Residence.</p>
+            </a>
+          </div>
+        </div>
+
+        <details class="full">
+          <summary><span><span class="when-closed">Show</span><span class="when-open">Hide</span> the full contents, all 80 photographs with page numbers</span><span class="chev" aria-hidden="true"></span></summary>
+          <div class="full-body">
+            <p class="toc-note">Select any line to open this book at the page shown.</p>
+            <div class="full-grid">
+              <div class="toc-group">
+                <h5>Capella Bangkok <small>Pages 10-20</small></h5>
+                <ul class="toc-list">
+                  <li><span>Nº 0001 · Bedroom with king bed and river window daybed</span><span class="pg">10</span></li>
+                  <li><span>Nº 0002 · Corner living room with sofa and barrel chairs</span><span class="pg">11</span></li>
+                  <li><span>Nº 0005 · Living room looking through to bedroom</span><span class="pg">12</span></li>
+                  <li><span>Nº 0006 · Dining room with marble table and shell pendant</span><span class="pg">13</span></li>
+                  <li><span>Nº 0007 · Bedroom with striped chaises and pool doors</span><span class="pg">14</span></li>
+                  <li><span>Nº 0011 · Rattan armchairs and lattice screens by the lily pond</span><span class="pg">15</span></li>
+                  <li><span>Nº 0012 · Lobby lounge sofas and Ming style chairs</span><span class="pg">16</span></li>
+                  <li><span>Nº 0014 · Window armchairs overlooking the lily pond</span><span class="pg">17</span></li>
+                  <li><span>Nº 0016 · Conservatory dining room with skylight and banquettes</span><span class="pg">18</span></li>
+                  <li><span>Nº 0018 · Indoor marble table setting with green glassware</span><span class="pg">19</span></li>
+                  <li><span>Nº 0019 · Terrace at dusk with marble tables</span><span class="pg">20</span></li>
+                </ul>
+              </div>
+              <div class="toc-group">
+                <h5>Joali Maldives <small>Pages 21-27</small></h5>
+                <ul class="toc-list">
+                  <li><span>Nº 0020 · Bedroom with canopy net and turquoise pendant</span><span class="pg">21</span></li>
+                  <li><span>Nº 0021 · Living room with blush woven armchairs and library bar</span><span class="pg">22</span></li>
+                  <li><span>Nº 0027 · Bedroom opening to garden terrace</span><span class="pg">23</span></li>
+                  <li><span>Nº 0031 · Dressing room with vanity and green marble panels</span><span class="pg">24</span></li>
+                  <li><span>Nº 0032 · Living room with shelving wall and blue sofa</span><span class="pg">25</span></li>
+                  <li><span>Nº 0034 · Outdoor shower with emerald tile wall</span><span class="pg">26</span></li>
+                  <li><span>Nº 0035 · Library with open shelving and woven chairs</span><span class="pg">27</span></li>
+                </ul>
+              </div>
+              <div class="toc-group">
+                <h5>Amanoi <small>Pages 28-31</small></h5>
+                <ul class="toc-list">
+                  <li><span>Nº 0103 · Living room opening to sea view terrace</span><span class="pg">28</span></li>
+                  <li><span>Nº 0110 · Dining room with white linen and black lamps</span><span class="pg">29</span></li>
+                  <li><span>Nº 0112 · Pavilion interior with lattice screens and columns</span><span class="pg">30</span></li>
+                  <li><span>Nº 0116 · Long timber bar counter with columns</span><span class="pg">31</span></li>
+                </ul>
+              </div>
+              <div class="toc-group">
+                <h5>Mandapa <small>Pages 32-38</small></h5>
+                <ul class="toc-list">
+                  <li><span>Nº 0083 · Living room with hand painted panels</span><span class="pg">32</span></li>
+                  <li><span>Nº 0085 · Bedroom with murals and terrace doors</span><span class="pg">33</span></li>
+                  <li><span>Nº 0086 · King bedroom with mural panel and daybed</span><span class="pg">34</span></li>
+                  <li><span>Nº 0091 · Relaxation lounge with river view</span><span class="pg">35</span></li>
+                  <li><span>Nº 0093 · Reception and retail gallery</span><span class="pg">36</span></li>
+                  <li><span>Nº 0100 · Open pavilion lounge with woven pendants</span><span class="pg">37</span></li>
+                  <li><span>Nº 0101 · Afternoon tea setting with framed deity painting</span><span class="pg">38</span></li>
+                </ul>
+              </div>
+              <div class="toc-group">
+                <h5>Four Seasons Resort Koh Samui <small>Pages 39-41</small></h5>
+                <ul class="toc-list">
+                  <li><span>Nº 0128 · Island Residence living and dining room</span><span class="pg">39</span></li>
+                  <li><span>Nº 0132 · Main dining hall with woven chairs</span><span class="pg">40</span></li>
+                  <li><span>Nº 0136 · Lounge pavilion with rattan armchairs and oversized sofas</span><span class="pg">41</span></li>
+                </ul>
+              </div>
+              <div class="toc-group">
+                <h5>One&amp;Only Reethi Rah <small>Pages 42-47</small></h5>
+                <ul class="toc-list">
+                  <li><span>Nº 0041 · Wide view of reception pavilion</span><span class="pg">42</span></li>
+                  <li><span>Nº 0049 · Orchid house dining room</span><span class="pg">43</span></li>
+                  <li><span>Nº 0050 · Living room with lattice ceiling</span><span class="pg">44</span></li>
+                  <li><span>Nº 0051 · Master bedroom with ocean view</span><span class="pg">45</span></li>
+                  <li><span>Nº 0055 · Veranda lounge with teal daybed</span><span class="pg">46</span></li>
+                  <li><span>Nº 0056 · Dining room with coconut shell table</span><span class="pg">47</span></li>
+                </ul>
+              </div>
+              <div class="toc-group">
+                <h5>The Nautilus Maldives <small>Pages 48-52</small></h5>
+                <ul class="toc-list">
+                  <li><span>Nº 0059 · Curved living room with orange ikat cushions</span><span class="pg">48</span></li>
+                  <li><span>Nº 0060 · Wet bar and dining detail with woven stools</span><span class="pg">49</span></li>
+                  <li><span>Nº 0062 · Upstairs king bedroom opening to ocean balcony</span><span class="pg">50</span></li>
+                  <li><span>Nº 0069 · Living room under domed thatch ceiling with macrame chandelier</span><span class="pg">51</span></li>
+                  <li><span>Nº 0070 · Curved bedroom in yellow scheme with deck doors</span><span class="pg">52</span></li>
+                </ul>
+              </div>
+              <div class="toc-group">
+                <h5>Four Seasons Resort The Nam Hai <small>Pages 53-58</small></h5>
+                <ul class="toc-list">
+                  <li><span>Nº 0653 · Sunken daybed lounge facing the platform bed</span><span class="pg">53</span></li>
+                  <li><span>Nº 0656 · Living pavilion with tassel chandelier and low sectional</span><span class="pg">54</span></li>
+                  <li><span>Nº 0657 · Living and dining pavilion with ocean view</span><span class="pg">55</span></li>
+                  <li><span>Nº 0662 · Interior dining room with bead screen and banquette seating</span><span class="pg">56</span></li>
+                  <li><span>Nº 0664 · Beach bar at dusk with woven pendants and stacked timber counters</span><span class="pg">57</span></li>
+                  <li><span>Nº 0665 · Bar lounge with ring chandelier and cane back chairs</span><span class="pg">58</span></li>
+                </ul>
+              </div>
+              <div class="toc-group">
+                <h5>Raffles Bali <small>Pages 59-63</small></h5>
+                <ul class="toc-list">
+                  <li><span>Nº 0076 · Master bedroom with bed bench and balcony</span><span class="pg">59</span></li>
+                  <li><span>Nº 0077 · Bedroom suite with sitting area and carved screen</span><span class="pg">60</span></li>
+                  <li><span>Nº 0078 · Dining room with long dark table and rattan chairs</span><span class="pg">61</span></li>
+                  <li><span>Nº 0079 · Open plan living room and stone kitchen island</span><span class="pg">62</span></li>
+                  <li><span>Nº 0080 · Study with marble desk and display shelving</span><span class="pg">63</span></li>
+                </ul>
+              </div>
+              <div class="toc-group">
+                <h5>Kona Village, a Rosewood Resort <small>Pages 64-69</small></h5>
+                <ul class="toc-list">
+                  <li><span>Nº 0907 · Tree top king boat bed</span><span class="pg">64</span></li>
+                  <li><span>Nº 0908 · Beach front black sand two beds ocean view</span><span class="pg">65</span></li>
+                  <li><span>Nº 0909 · Beach front living room</span><span class="pg">66</span></li>
+                  <li><span>Nº 0910 · Ocean front black sand lounge</span><span class="pg">67</span></li>
+                  <li><span>Nº 0911 · Maheawalu living space</span><span class="pg">68</span></li>
+                  <li><span>Nº 0924 · Lava field relaxation pavilion</span><span class="pg">69</span></li>
+                </ul>
+              </div>
+              <div class="toc-group">
+                <h5>Four Seasons Resort Bali at Sayan <small>Pages 70-74</small></h5>
+                <ul class="toc-list">
+                  <li><span>Nº 0186 · Carved screen headboard wall detail with bedside pendant</span><span class="pg">70</span></li>
+                  <li><span>Nº 0187 · Mezzanine living room with woven armchairs and valley windows</span><span class="pg">71</span></li>
+                  <li><span>Nº 0188 · Window reading corner with louvered shutters and rattan chair</span><span class="pg">72</span></li>
+                  <li><span>Nº 0192 · Bedroom opening to terrace dining with statue niche</span><span class="pg">73</span></li>
+                  <li><span>Nº 0197 · Relaxation lounge with patterned chairs and bamboo screens</span><span class="pg">74</span></li>
+                </ul>
+              </div>
+              <div class="toc-group">
+                <h5>The Datai Langkawi <small>Pages 75-79</small></h5>
+                <ul class="toc-list">
+                  <li><span>Nº 0215 · Living and dining room with slatted timber cornice</span><span class="pg">75</span></li>
+                  <li><span>Nº 0217 · Dining room with woven chairs and sunburst wall disc</span><span class="pg">76</span></li>
+                  <li><span>Nº 0221 · Living pavilion opening to courtyard pool</span><span class="pg">77</span></li>
+                  <li><span>Nº 0228 · Poolside terrace with curved armchairs</span><span class="pg">78</span></li>
+                  <li><span>Nº 0229 · Lounge pavilion with sunken seating and bar</span><span class="pg">79</span></li>
+                </ul>
+              </div>
+              <div class="toc-group">
+                <h5>Amanpuri <small>Pages 80-82</small></h5>
+                <ul class="toc-list">
+                  <li><span>Nº 0138 · Bedroom with lattice timber headboard wall</span><span class="pg">80</span></li>
+                  <li><span>Nº 0143 · Lounge with leather armchairs and ocean view</span><span class="pg">81</span></li>
+                  <li><span>Nº 0145 · Living room with celadon daybeds and pedestal table</span><span class="pg">82</span></li>
+                </ul>
+              </div>
+              <div class="toc-group">
+                <h5>The Brando <small>Page 83</small></h5>
+                <ul class="toc-list">
+                  <li><span>Nº 0366 · Living and dining room under pandanus vault</span><span class="pg">83</span></li>
+                </ul>
+              </div>
+              <div class="toc-group">
+                <h5>Constance Prince Maurice <small>Pages 84-86</small></h5>
+                <ul class="toc-list">
+                  <li><span>Nº 0389 · Bedroom with draped poster bed and X frame bench</span><span class="pg">84</span></li>
+                  <li><span>Nº 0394 · Bedroom with teal cushions and louvred deck doors</span><span class="pg">85</span></li>
+                  <li><span>Nº 0398 · Thatched dining pavilion with stone wall and chandelier</span><span class="pg">86</span></li>
+                </ul>
+              </div>
+              <div class="toc-group">
+                <h5>Alila Ubud <small>Pages 87-88</small></h5>
+                <ul class="toc-list">
+                  <li><span>Nº 0458 · Twin room with garden terrace and outdoor armchairs</span><span class="pg">87</span></li>
+                  <li><span>Nº 0466 · Open bedroom with timber desk, rattan chair and draped canopy bed</span><span class="pg">88</span></li>
+                </ul>
+              </div>
+              <div class="toc-group">
+                <h5>COMO Shambhala Estate <small>Page 89</small></h5>
+                <ul class="toc-list">
+                  <li><span>Nº 0536 · Living space with sofas under timber pavilion</span><span class="pg">89</span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </details>
+      </div>
+    </section>
     </main>
 
     <!-- ================= FOOTER ================= -->
@@ -1206,7 +1541,7 @@
       <p class="f-imprint">M &amp; D Silver</p>
       <div class="f-line" aria-hidden="true"></div>
       <p>Reference Catalogues, final edition, November 2026.</p>
-      <p>Volume One, Furniture. Volume Two, Decor. Volume Three, Build Selections.</p>
+      <p>Volume One, Furniture. Volume Two, Decor.<br />Volume Three, Build Selections. Appendix A, Inspiration.</p>
     </footer>
     </div><!-- /view-home -->
 
@@ -1292,7 +1627,7 @@
           v1: {
             name: "Volume One", title: "Furniture", pages: 42,
             pdf: "assets/the-isle-vol-1-furniture.pdf", pdfName: "The Isle Vol. 1 - Furniture.pdf",
-            dir: "vol-1",
+            dir: "vol-1", anchor: "vol-1", contents: "2 to 4",
             sections: [
               { no: "Section 01", name: "Case Goods", meta: "15 pieces \u00B7 Pages 5 to 19", entries: [
                 ["Balboa Carved Door Chest", 5], ["Montego Bay Media Console", 6], ["Jakarta Chest", 7],
@@ -1318,7 +1653,7 @@
           v2: {
             name: "Volume Two", title: "Decor", pages: 32,
             pdf: "assets/the-isle-vol-2-decor.pdf", pdfName: "The Isle Vol. 2 - Decor.pdf",
-            dir: "vol-2",
+            dir: "vol-2", anchor: "vol-2", contents: "2 to 4",
             sections: [
               { no: "Section 01", name: "Artwork", meta: "13 pieces \u00B7 Pages 5 to 17", entries: [
                 ["Diamond Head, Hawaii", 5], ["Adventurers Club Plaque", 6], ["Creatures of the Ocean I", 7],
@@ -1342,7 +1677,7 @@
           v3: {
             name: "Volume Three", title: "Build Selections", pages: 24,
             pdf: "assets/the-isle-vol-3-build-selections.pdf", pdfName: "The Isle Vol. 3 - Build Selections.pdf",
-            dir: "vol-3",
+            dir: "vol-3", anchor: "vol-3", contents: "2 to 5",
             sections: [
               { no: "Section 01", name: "Kitchen", meta: "7 selections \u00B7 Preview 6 \u00B7 Elements 13", entries: [
                 ["Kitchen, Preview", 6], ["Kitchen, Elements", 13]
@@ -1369,10 +1704,34 @@
               { no: "Section 09", name: "Interior Paint", meta: "2 colours \u00B7 Page 21", entries: [["Interior Paint", 21]] },
               { no: "Section 10", name: "Exterior Paint", meta: "4 colours \u00B7 Pages 22 to 23", entries: [["Exterior Paint", 22], ["Exterior Paint, Colour Placement", 23]] }
             ]
+          },
+          app: {
+            name: "Appendix A", title: "Inspiration", pages: 90,
+            pdf: "assets/the-isle-appendix-a-inspiration.pdf", pdfName: "The Isle - Appendix A - Inspiration.pdf",
+            dir: "appendix-a", anchor: "appendix-a", contents: "2 to 9",
+            sections: [
+              { no: "Resort 01", name: "Capella Bangkok", meta: "11 picks \u00B7 Pages 10 to 20", entries: [["Nº 0001 \u00B7 Bedroom with king bed and river window daybed", 10], ["Nº 0002 \u00B7 Corner living room with sofa and barrel chairs", 11], ["Nº 0005 \u00B7 Living room looking through to bedroom", 12], ["Nº 0006 \u00B7 Dining room with marble table and shell pendant", 13], ["Nº 0007 \u00B7 Bedroom with striped chaises and pool doors", 14], ["Nº 0011 \u00B7 Rattan armchairs and lattice screens by the lily pond", 15], ["Nº 0012 \u00B7 Lobby lounge sofas and Ming style chairs", 16], ["Nº 0014 \u00B7 Window armchairs overlooking the lily pond", 17], ["Nº 0016 \u00B7 Conservatory dining room with skylight and banquettes", 18], ["Nº 0018 \u00B7 Indoor marble table setting with green glassware", 19], ["Nº 0019 \u00B7 Terrace at dusk with marble tables", 20]] },
+              { no: "Resort 02", name: "Joali Maldives", meta: "7 picks \u00B7 Pages 21 to 27", entries: [["Nº 0020 \u00B7 Bedroom with canopy net and turquoise pendant", 21], ["Nº 0021 \u00B7 Living room with blush woven armchairs and library bar", 22], ["Nº 0027 \u00B7 Bedroom opening to garden terrace", 23], ["Nº 0031 \u00B7 Dressing room with vanity and green marble panels", 24], ["Nº 0032 \u00B7 Living room with shelving wall and blue sofa", 25], ["Nº 0034 \u00B7 Outdoor shower with emerald tile wall", 26], ["Nº 0035 \u00B7 Library with open shelving and woven chairs", 27]] },
+              { no: "Resort 03", name: "Amanoi", meta: "4 picks \u00B7 Pages 28 to 31", entries: [["Nº 0103 \u00B7 Living room opening to sea view terrace", 28], ["Nº 0110 \u00B7 Dining room with white linen and black lamps", 29], ["Nº 0112 \u00B7 Pavilion interior with lattice screens and columns", 30], ["Nº 0116 \u00B7 Long timber bar counter with columns", 31]] },
+              { no: "Resort 04", name: "Mandapa", meta: "7 picks \u00B7 Pages 32 to 38", entries: [["Nº 0083 \u00B7 Living room with hand painted panels", 32], ["Nº 0085 \u00B7 Bedroom with murals and terrace doors", 33], ["Nº 0086 \u00B7 King bedroom with mural panel and daybed", 34], ["Nº 0091 \u00B7 Relaxation lounge with river view", 35], ["Nº 0093 \u00B7 Reception and retail gallery", 36], ["Nº 0100 \u00B7 Open pavilion lounge with woven pendants", 37], ["Nº 0101 \u00B7 Afternoon tea setting with framed deity painting", 38]] },
+              { no: "Resort 05", name: "Four Seasons Resort Koh Samui", meta: "3 picks \u00B7 Pages 39 to 41", entries: [["Nº 0128 \u00B7 Island Residence living and dining room", 39], ["Nº 0132 \u00B7 Main dining hall with woven chairs", 40], ["Nº 0136 \u00B7 Lounge pavilion with rattan armchairs and oversized sofas", 41]] },
+              { no: "Resort 06", name: "One&Only Reethi Rah", meta: "6 picks \u00B7 Pages 42 to 47", entries: [["Nº 0041 \u00B7 Wide view of reception pavilion", 42], ["Nº 0049 \u00B7 Orchid house dining room", 43], ["Nº 0050 \u00B7 Living room with lattice ceiling", 44], ["Nº 0051 \u00B7 Master bedroom with ocean view", 45], ["Nº 0055 \u00B7 Veranda lounge with teal daybed", 46], ["Nº 0056 \u00B7 Dining room with coconut shell table", 47]] },
+              { no: "Resort 07", name: "The Nautilus Maldives", meta: "5 picks \u00B7 Pages 48 to 52", entries: [["Nº 0059 \u00B7 Curved living room with orange ikat cushions", 48], ["Nº 0060 \u00B7 Wet bar and dining detail with woven stools", 49], ["Nº 0062 \u00B7 Upstairs king bedroom opening to ocean balcony", 50], ["Nº 0069 \u00B7 Living room under domed thatch ceiling with macrame chandelier", 51], ["Nº 0070 \u00B7 Curved bedroom in yellow scheme with deck doors", 52]] },
+              { no: "Resort 08", name: "Four Seasons Resort The Nam Hai", meta: "6 picks \u00B7 Pages 53 to 58", entries: [["Nº 0653 \u00B7 Sunken daybed lounge facing the platform bed", 53], ["Nº 0656 \u00B7 Living pavilion with tassel chandelier and low sectional", 54], ["Nº 0657 \u00B7 Living and dining pavilion with ocean view", 55], ["Nº 0662 \u00B7 Interior dining room with bead screen and banquette seating", 56], ["Nº 0664 \u00B7 Beach bar at dusk with woven pendants and stacked timber counters", 57], ["Nº 0665 \u00B7 Bar lounge with ring chandelier and cane back chairs", 58]] },
+              { no: "Resort 09", name: "Raffles Bali", meta: "5 picks \u00B7 Pages 59 to 63", entries: [["Nº 0076 \u00B7 Master bedroom with bed bench and balcony", 59], ["Nº 0077 \u00B7 Bedroom suite with sitting area and carved screen", 60], ["Nº 0078 \u00B7 Dining room with long dark table and rattan chairs", 61], ["Nº 0079 \u00B7 Open plan living room and stone kitchen island", 62], ["Nº 0080 \u00B7 Study with marble desk and display shelving", 63]] },
+              { no: "Resort 10", name: "Kona Village, a Rosewood Resort", meta: "6 picks \u00B7 Pages 64 to 69", entries: [["Nº 0907 \u00B7 Tree top king boat bed", 64], ["Nº 0908 \u00B7 Beach front black sand two beds ocean view", 65], ["Nº 0909 \u00B7 Beach front living room", 66], ["Nº 0910 \u00B7 Ocean front black sand lounge", 67], ["Nº 0911 \u00B7 Maheawalu living space", 68], ["Nº 0924 \u00B7 Lava field relaxation pavilion", 69]] },
+              { no: "Resort 11", name: "Four Seasons Resort Bali at Sayan", meta: "5 picks \u00B7 Pages 70 to 74", entries: [["Nº 0186 \u00B7 Carved screen headboard wall detail with bedside pendant", 70], ["Nº 0187 \u00B7 Mezzanine living room with woven armchairs and valley windows", 71], ["Nº 0188 \u00B7 Window reading corner with louvered shutters and rattan chair", 72], ["Nº 0192 \u00B7 Bedroom opening to terrace dining with statue niche", 73], ["Nº 0197 \u00B7 Relaxation lounge with patterned chairs and bamboo screens", 74]] },
+              { no: "Resort 12", name: "The Datai Langkawi", meta: "5 picks \u00B7 Pages 75 to 79", entries: [["Nº 0215 \u00B7 Living and dining room with slatted timber cornice", 75], ["Nº 0217 \u00B7 Dining room with woven chairs and sunburst wall disc", 76], ["Nº 0221 \u00B7 Living pavilion opening to courtyard pool", 77], ["Nº 0228 \u00B7 Poolside terrace with curved armchairs", 78], ["Nº 0229 \u00B7 Lounge pavilion with sunken seating and bar", 79]] },
+              { no: "Resort 13", name: "Amanpuri", meta: "3 picks \u00B7 Pages 80 to 82", entries: [["Nº 0138 \u00B7 Bedroom with lattice timber headboard wall", 80], ["Nº 0143 \u00B7 Lounge with leather armchairs and ocean view", 81], ["Nº 0145 \u00B7 Living room with celadon daybeds and pedestal table", 82]] },
+              { no: "Resort 14", name: "The Brando", meta: "1 pick \u00B7 Page 83", entries: [["Nº 0366 \u00B7 Living and dining room under pandanus vault", 83]] },
+              { no: "Resort 15", name: "Constance Prince Maurice", meta: "3 picks \u00B7 Pages 84 to 86", entries: [["Nº 0389 \u00B7 Bedroom with draped poster bed and X frame bench", 84], ["Nº 0394 \u00B7 Bedroom with teal cushions and louvred deck doors", 85], ["Nº 0398 \u00B7 Thatched dining pavilion with stone wall and chandelier", 86]] },
+              { no: "Resort 16", name: "Alila Ubud", meta: "2 picks \u00B7 Pages 87 to 88", entries: [["Nº 0458 \u00B7 Twin room with garden terrace and outdoor armchairs", 87], ["Nº 0466 \u00B7 Open bedroom with timber desk, rattan chair and draped canopy bed", 88]] },
+              { no: "Resort 17", name: "COMO Shambhala Estate", meta: "1 pick \u00B7 Page 89", entries: [["Nº 0536 \u00B7 Living space with sofas under timber pavilion", 89]] }
+            ]
           }
         };
 
-        var PAGE_LABELS = { v1: {}, v2: {}, v3: {} };
+        var PAGE_LABELS = { v1: {}, v2: {}, v3: {}, app: {} };
         Object.keys(VOLUMES).forEach(function (k) {
           var V = VOLUMES[k];
           PAGE_LABELS[k][1] = "Cover";
@@ -1391,6 +1750,14 @@
         PAGE_LABELS.v3[3] = "Contents, Pool Bathroom and Guest Suite Bathroom";
         PAGE_LABELS.v3[4] = "Contents, Hallway Bathroom and Studio Bathroom";
         PAGE_LABELS.v3[5] = "Contents, Laundry Room, Flooring and Paint";
+        PAGE_LABELS.app[2] = "Contents, Capella Bangkok";
+        PAGE_LABELS.app[3] = "Contents, Joali Maldives and Amanoi";
+        PAGE_LABELS.app[4] = "Contents, Mandapa and Four Seasons Resort Koh Samui";
+        PAGE_LABELS.app[5] = "Contents, One&Only Reethi Rah and The Nautilus Maldives";
+        PAGE_LABELS.app[6] = "Contents, Four Seasons Resort The Nam Hai and Raffles Bali";
+        PAGE_LABELS.app[7] = "Contents, Kona Village and Four Seasons Resort Bali at Sayan";
+        PAGE_LABELS.app[8] = "Contents, The Datai Langkawi, Amanpuri and The Brando";
+        PAGE_LABELS.app[9] = "Contents, Constance Prince Maurice, Alila Ubud and COMO Shambhala Estate";
 
         var state = { vol: "v1", page: 1 };
         function $(id) { return document.getElementById(id); }
@@ -1410,16 +1777,11 @@
           try { base = location.href.split("#")[0]; } catch (e) { base = ""; }
           return base + "#/read/" + state.vol + "/" + state.page;
         }
-
         function renderToc() {
           var V = VOLUMES[state.vol];
           var html = "<h3>Contents</h3><p class=\"toc-sub\">" + V.name + " \u00B7 " + V.title + " \u00B7 " + V.pages + " pages. Select any entry to jump to its page.</p>";
           html += "<button class=\"toc-entry\" type=\"button\" data-page=\"1\"><span>Cover</span><span class=\"pg\">1</span></button>";
-          if (state.vol === "v3") {
-            html += "<button class=\"toc-entry\" type=\"button\" data-page=\"2\"><span>Contents</span><span class=\"pg\">2 to 5</span></button>";
-          } else {
-            html += "<button class=\"toc-entry\" type=\"button\" data-page=\"2\"><span>Contents</span><span class=\"pg\">2 to 4</span></button>";
-          }
+          html += "<button class=\"toc-entry\" type=\"button\" data-page=\"2\"><span>Contents</span><span class=\"pg\">" + V.contents + "</span></button>";
           V.sections.forEach(function (s) {
             html += "<div class=\"toc-sec\"><p class=\"sec-no\">" + s.no + "</p><p class=\"sec-name\">" + s.name + "</p><p class=\"sec-meta\">" + s.meta + "</p></div>";
             s.entries.forEach(function (e) {
@@ -1501,7 +1863,7 @@
           $("readerVol").innerHTML = V.name + " <span>\u00B7</span> " + V.title;
           $("reader-heading").textContent = V.name + " \u00B7 " + V.title;
           $("topbarVol").innerHTML = V.name + " <span>\u00B7</span> " + V.title;
-          var backHref = "#vol-" + state.vol.slice(1);
+          var backHref = "#" + V.anchor;
           $("backLink").setAttribute("href", backHref);
           var bb = $("backLinkBottom");
           bb.setAttribute("href", backHref);
@@ -1672,9 +2034,13 @@
         var fullSections = document.querySelectorAll("section.vol");
         for (var fs = 0; fs < fullSections.length; fs++) {
           (function (sec) {
-            var sm = (sec.id || "").match(/^vol-([123])$/);
-            if (!sm) { return; }
-            var volKey = "v" + sm[1];
+            var volKey = null;
+            if (sec.id === "appendix-a") { volKey = "app"; }
+            else {
+              var sm = (sec.id || "").match(/^vol-([123])$/);
+              if (!sm) { return; }
+              volKey = "v" + sm[1];
+            }
             var items = sec.querySelectorAll("details.full .toc-list li");
             for (var i = 0; i < items.length; i++) {
               var li = items[i];
@@ -1722,7 +2088,8 @@
           "the-isle-vol-1-furniture.pdf": 17617497,
           "the-isle-vol-2-decor.pdf": 19313958,
           "the-isle-vol-3-build-selections.pdf": 6786861,
-          "the-isle-catalogue.zip": 42497140
+          "the-isle-appendix-a-inspiration.pdf": 43978654,
+          "the-isle-catalogue.zip": 79628391
         };
         var pdfBlobs = {};
         function savePdfBlob(blob, name) {
@@ -1741,7 +2108,7 @@
         function downloadPdf(link) {
           var url = link.href;
           var name = link.getAttribute("download") || "The Isle.pdf";
-          var volKey = (url.match(/vol-[123]/) || ["vol"])[0];
+          var volKey = (url.match(/vol-[123]|appendix-a/) || ["vol"])[0];
           if (url.indexOf("the-isle-catalogue.zip") !== -1) { volKey = "full-catalogue"; }
           var original = link.innerHTML;
           function failNote() {
@@ -1958,10 +2325,10 @@
         }
         function route() {
           var h = location.hash || "";
-          var m = h.match(/^#\/read\/(v[123])(?:\/(\d+))?/);
+          var m = h.match(/^#\/read\/(v[123]|app)(?:\/(\d+))?/);
           if (m) { openReader(m[1], m[2] ? parseInt(m[2], 10) : 1); return; }
           var anchor = h.replace(/^#/, "");
-          showHome(anchor.indexOf("vol-") === 0 ? anchor : null);
+          showHome((anchor.indexOf("vol-") === 0 || anchor === "appendix-a") ? anchor : null);
         }
         /* ---------- visit counting (GoatCounter) ----------
            The counter script is set to no_onload, so every view is

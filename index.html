@@ -11,6 +11,7 @@
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preload" as="image" href="assets/ridge.jpg" imagesrcset="assets/ridge-1170.webp 1170w, assets/ridge.webp 2384w" imagesizes="100vw">
 <meta property="og:title" content="Bear LP">
 <meta property="og:description" content="An Investment Holding Company">
 <meta property="og:type" content="website">
@@ -21,38 +22,57 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{height:100%}html{background:#061826}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;background:#061826;color:#f3eee3;min-height:100vh;min-height:100dvh;position:relative;overflow:hidden}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;background:#061826;color:#f3eee3;min-height:100vh;min-height:100dvh;position:relative;overflow:hidden}
 .stage{position:fixed;inset:0;overflow:hidden;background:#061826}
-.slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;animation:fade 37.5s linear infinite,drift 37.5s linear infinite}
-.slide.s1{object-position:94% center;animation-delay:0s}
-.slide.s2{object-position:center;animation-delay:7.5s}
-.slide.s3{object-position:center;animation-delay:15s}
-.slide.s4{object-position:center;animation-delay:22.5s}
-.slide.s5{object-position:center;animation-delay:30s}
+.slide{position:absolute;inset:0;width:100%;height:100%;display:block;opacity:0;animation:fade 37.5s linear infinite,drift 37.5s linear infinite}
+.slide img{width:100%;height:100%;object-fit:cover;display:block}
+.slide.s1{animation-delay:0s}.s1 img{object-position:94% center}
+.slide.s2{animation-delay:7.5s}.s2 img{object-position:center}
+.slide.s3{animation-delay:15s}.s3 img{object-position:center}
+.slide.s4{animation-delay:22.5s}.s4 img{object-position:center}
+.slide.s5{animation-delay:30s}.s5 img{object-position:center}
 @keyframes fade{0%{opacity:0;animation-timing-function:ease-in-out}6.67%{opacity:1;animation-timing-function:linear}20%{opacity:1;animation-timing-function:ease-in-out}26.67%{opacity:0}100%{opacity:0}}
 @keyframes drift{0%{transform:scale(1)}26.67%{transform:scale(1.03)}26.7%{transform:scale(1)}100%{transform:scale(1)}}
 body.loading .slide{animation-play-state:paused}
 body.loading .slide.s1{opacity:1}
 @media (prefers-reduced-motion: reduce){.slide{animation:none}.slide.s1{opacity:1}}
-.scrim{position:absolute;inset:0;background:radial-gradient(640px 460px at 4% 100%,rgba(6,24,38,.42),rgba(6,24,38,0) 70%),radial-gradient(125% 95% at 50% 42%,rgba(0,0,0,0) 58%,rgba(4,16,26,.26) 100%),linear-gradient(to top,rgba(6,24,38,1) 0%,rgba(6,24,38,1) 12%,rgba(6,24,38,.55) 34%,rgba(6,24,38,0) 62%),linear-gradient(to bottom,rgba(6,24,38,.35) 0%,rgba(6,24,38,0) 20%)}
+.scrim{position:absolute;inset:0;background:radial-gradient(640px 460px at 4% 100%,rgba(6,24,38,.42),rgba(6,24,38,0) 70%),radial-gradient(125% 95% at 50% 42%,rgba(0,0,0,0) 58%,rgba(4,16,26,.26) 100%),linear-gradient(to top,rgba(6,24,38,.88) 0%,rgba(6,24,38,.5) 45%,rgba(6,24,38,0) 90%),linear-gradient(to bottom,rgba(6,24,38,.35) 0%,rgba(6,24,38,0) 20%)}
 .block{position:absolute;left:48px;bottom:calc(54px + env(safe-area-inset-bottom,0px));z-index:3;width:min(288px,58vw);container-type:inline-size}
 .block img{width:100%;height:auto;display:block}
 .rule{width:min(288px,58vw);height:1px;background:linear-gradient(90deg,#aa936d 0%,#aa936d 62%,rgba(170,147,109,0) 100%);margin:8px 0 6px}
 .descriptor{font-size:11px;font-size:3.82cqw;font-weight:500;letter-spacing:.272em;text-transform:uppercase;color:#f3eee3;line-height:1.35;white-space:nowrap}
+.veil{position:absolute;inset:0;background:#061826;z-index:6;pointer-events:none;opacity:1;transition:opacity .8s ease-out}
+body:not(.loading) .veil{opacity:0}
+@media (prefers-reduced-motion: reduce){.veil{transition:none}}
 .visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
 @media (max-width:640px){
     .block{left:24px;right:24px;bottom:calc(36px + env(safe-area-inset-bottom,0px))}
-  .slide.s1{object-position:96% center}
+  .s1 img{object-position:96% center}
 }
 </style>
 </head>
 <body class="loading">
 <div class="stage">
-<img class="slide s1" src="assets/ridge.jpg" alt="" fetchpriority="high" decoding="async">
-<img class="slide s2" data-src="assets/coast.jpg" alt="" decoding="async">
-<img class="slide s3" data-src="assets/pair.jpg" alt="" decoding="async">
-<img class="slide s4" data-src="assets/forest.jpg" alt="" decoding="async">
-<img class="slide s5" data-src="assets/lake.jpg" alt="" decoding="async">
+<picture class="slide s1">
+  <source type="image/webp" srcset="assets/ridge-1170.webp 1170w, assets/ridge.webp 2384w" sizes="100vw">
+  <img src="assets/ridge.jpg" alt="" fetchpriority="high" decoding="async">
+</picture>
+<picture class="slide s2">
+  <source type="image/webp" data-srcset="assets/coast-1170.webp 1170w, assets/coast.webp 2384w" sizes="100vw">
+  <img data-src="assets/coast.jpg" alt="" decoding="async">
+</picture>
+<picture class="slide s3">
+  <source type="image/webp" data-srcset="assets/pair-1170.webp 1170w, assets/pair.webp 2384w" sizes="100vw">
+  <img data-src="assets/pair.jpg" alt="" decoding="async">
+</picture>
+<picture class="slide s4">
+  <source type="image/webp" data-srcset="assets/forest-1170.webp 1170w, assets/forest.webp 2384w" sizes="100vw">
+  <img data-src="assets/forest.jpg" alt="" decoding="async">
+</picture>
+<picture class="slide s5">
+  <source type="image/webp" data-srcset="assets/lake-1170.webp 1170w, assets/lake.webp 2384w" sizes="100vw">
+  <img data-src="assets/lake.jpg" alt="" decoding="async">
+</picture>
 <div class="scrim" aria-hidden="true"></div>
 <main class="block">
   <h1 class="visually-hidden">Bear LP</h1>
@@ -60,6 +80,7 @@ body.loading .slide.s1{opacity:1}
   <div class="rule" aria-hidden="true"></div>
   <p class="descriptor">An Investment Holding Company</p>
 </main>
+<div class="veil" aria-hidden="true"></div>
 </div>
 <script>
 (function () {
@@ -76,22 +97,37 @@ body.loading .slide.s1{opacity:1}
     var queue = slides.slice(1), i = 0;
     (function next() {
       if (i >= queue.length) return;
-      var el = queue[i++], url = el.getAttribute("data-src"), pre = new Image();
-      pre.onload = pre.onerror = function () { el.src = url; next(); };
-      pre.src = url;
+      var pic = queue[i++], img = pic.querySelector("img"), src = pic.querySelector("source");
+      function done() {
+        img.removeEventListener("load", done);
+        img.removeEventListener("error", done);
+        next();
+      }
+      img.addEventListener("load", done);
+      img.addEventListener("error", done);
+      if (src) src.srcset = src.getAttribute("data-srcset");
+      img.src = img.getAttribute("data-src");
     })();
+  }
+  function liftVeil() {
+    setTimeout(function () {
+      var v = document.querySelector(".veil");
+      if (v) v.remove();
+    }, 900);
   }
   function begin() {
     if (started) return;
     started = true;
     startClock();
     loadRest();
+    liftVeil();
   }
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     body.classList.remove("loading");
+    liftVeil();
     return;
   }
-  var s1 = slides[0];
+  var s1 = slides[0].querySelector("img");
   if (s1.complete && s1.naturalWidth > 0) begin();
   else {
     s1.addEventListener("load", begin);

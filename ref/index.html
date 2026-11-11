@@ -195,10 +195,7 @@
       }
       .trio .t-pages { display: block; font-size: 13.5px; color: #b9c1ca; margin-top: 3px; }
       .hero-note { margin: 46px auto 0; font-size: 13.5px; color: #98a3ae; letter-spacing: 0.04em; }
-      .hero-dl { margin: 24px auto 0; display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 8px 16px; }
-      /* Round three, candidate 6: the catalogue zip's size beside its
-         button, in the hero note's small print. */
-      .hero-dl-size { font-size: 13.5px; color: #98a3ae; letter-spacing: 0.04em; }
+      .hero-dl { margin: 24px auto 0; display: flex; justify-content: center; }
       .hero-dl a.btn-dl { color: var(--gold-bright); }
       .hero-dl a.btn-dl:hover, .hero-dl a.btn-dl:focus-visible { background: var(--gold); color: #16222f; }
 
@@ -267,11 +264,6 @@
       .inside-row figure { margin: 0; }
       .inside-row a { display: block; }
       .inside-row a:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
-      /* Round three, candidate 7: the Inside previews tint on hover
-         like the Contents at a Glance cards beside them, and one
-         helper line in the contents note style says they open. */
-      .inside-row a:hover { background: var(--paper-tint); }
-      .inside-note { font-size: 13.5px; line-height: 1.6; color: var(--ink-soft); margin: 14px 0 0; max-width: 62ch; }
       .dl-fail { flex: 1 1 100%; margin: 12px 0 0; font-size: 14.5px; line-height: 1.55; }
       .dl-fail a { color: var(--gold-text); font-weight: 600; }
       .hero .dl-fail { color: #e8e2d2; }
@@ -343,18 +335,6 @@
       details.full[open ] summary .when-open { display: inline; }
       details.full[open ] summary .when-closed { display: none; }
       .full-body { padding: 6px 22px 26px; border-top: 1px solid var(--line-soft); }
-      .full-hide {
-        display: flex; align-items: center; justify-content: space-between; gap: 16px;
-        width: 100%; margin-top: 18px; padding: 18px 0 2px;
-        border: none; border-top: 1px solid var(--line-soft); background: none; cursor: pointer;
-        font-family: var(--sans); font-size: 13px; font-weight: 700;
-        letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink); text-align: left;
-      }
-      .full-hide .chev {
-        width: 10px; height: 10px; flex: none;
-        border-right: 2px solid var(--gold); border-bottom: 2px solid var(--gold);
-        transform: rotate(225deg); margin-right: 4px;
-      }
       .full-body .toc-note { font-size: 13.5px; line-height: 1.6; color: var(--ink-soft); margin: 16px 0 0; max-width: 62ch; }
       .full-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px 40px; }
       .full-grid.many { grid-template-columns: repeat(3, 1fr); }
@@ -372,8 +352,8 @@
       }
       .toc-list li:last-child { border-bottom: none; }
       .toc-list a.toc-line {
-        display: flex; justify-content: space-between; align-items: center; gap: 14px;
-        padding: 7px 8px; margin: 0 -8px; min-height: 44px;
+        display: flex; justify-content: space-between; align-items: baseline; gap: 14px;
+        padding: 7px 8px; margin: 0 -8px;
         color: inherit; text-decoration: none; cursor: pointer;
       }
       .toc-list a.toc-line:hover { background: var(--paper-tint); }
@@ -413,15 +393,9 @@
         font-size: clamp(32px, 4.6vw, 44px); line-height: 1.1; margin: 14px 0 0;
       }
       .reader {
-        max-width: 1120px; margin: 38px auto 0; position: relative;
+        max-width: 1120px; margin: 38px auto 0;
         background: var(--paper); border: 1px solid var(--line);
         box-shadow: var(--shadow-page);
-        /* Round three note: an overflow-anchor: none correction for
-           the phone entry return was tried here and measured inert
-           (the close still landed at 28px with the rule in place and
-           with anchoring forced off on every ancestor), so it does
-           not stand in the shipped file; the build report carries
-           the full account. */
       }
       .reader-toolbar {
         display: flex; flex-wrap: wrap; align-items: center; gap: 12px;
@@ -443,16 +417,14 @@
       button.tool-link { font-family: var(--sans); cursor: pointer; }
       button.tool-link:hover, button.tool-link:focus-visible { border-color: var(--gold); color: var(--gold-text); }
       .link-bar {
-        position: absolute; left: 0; right: 0; z-index: 20;
         display: flex; flex-wrap: wrap; align-items: center; gap: 10px;
         padding: 12px 18px; border-bottom: 1px solid var(--line); background: var(--paper);
-        box-shadow: var(--shadow-page);
       }
       .link-bar label {
         font-size: 12.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink);
       }
       .link-bar input {
-        flex: 1 1 260px; min-width: 0; padding: 9px 12px; font: inherit; font-size: 16px;
+        flex: 1 1 260px; min-width: 0; padding: 9px 12px; font: inherit; font-size: 14px;
         color: var(--ink); background: var(--paper-tint); border: 1px solid var(--line); border-radius: 0;
       }
       .link-bar .link-status { font-size: 13.5px; color: var(--gold-text); font-weight: 600; }
@@ -481,38 +453,14 @@
         border: 1px solid rgba(201, 171, 114, 0.6); padding: 9px 16px; min-height: 44px;
       }
       .fullsize-close:hover, .fullsize-close:focus-visible { background: var(--gold); color: #16222f; }
-      /* Round three, candidate 1: Previous and Next in the full-size
-         bar, in the bar's own button style. */
-      .fullsize-nav {
-        font-family: var(--sans); cursor: pointer;
-        font-size: 13px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
-        color: var(--gold-bright); background: transparent;
-        border: 1px solid rgba(201, 171, 114, 0.6); padding: 9px 16px; min-height: 44px;
-      }
-      .fullsize-nav:hover, .fullsize-nav:focus-visible { background: var(--gold); color: #16222f; }
-      .fullsize-nav:disabled { opacity: 0.35; cursor: default; }
-      .fullsize-nav:disabled:hover { background: transparent; color: var(--gold-bright); }
-      /* Round three, defect 3: the Reader's failure note, styled to
-         the overlay, standing in the scroll area under the bar. */
-      .fullsize-fail {
-        flex: none; margin: 0; padding: 12px 20px; text-align: center;
-        color: #f2ead6; font-size: 14.5px; line-height: 1.55;
-        border-bottom: 1px solid rgba(201, 171, 114, 0.55);
-      }
-      .fullsize-fail button {
-        margin-left: 8px; font: inherit; font-size: 12.5px; font-weight: 700;
-        letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer;
-        color: var(--gold-bright); background: transparent; min-height: 44px;
-        border: 1px solid rgba(201, 171, 114, 0.6); padding: 8px 14px;
-      }
       .fullsize-scroll {
         flex: 1; overflow: auto; -webkit-overflow-scrolling: touch;
         display: flex; align-items: flex-start; justify-content: center;
         padding: 22px 18px 30px;
       }
       .fullsize-scroll img {
-        display: block; width: auto; height: auto; flex: none; cursor: pointer;
-        max-width: 100%; max-height: 100%;
+        display: block; width: auto; height: auto;
+        max-width: 100%; max-height: none;
         background: #ffffff; box-shadow: 0 14px 40px rgba(0, 0, 0, 0.55);
       }
       @media (max-width: 680px) {
@@ -547,20 +495,6 @@
         padding: 7px 20px; color: var(--ink); font-size: 14.5px; line-height: 1.35;
       }
       .toc-entry:hover { background: var(--paper-tint); }
-      /* Round three, candidate 3: the Appendix resort index at the
-         top of the contents list. Tapping a name scrolls the list
-         itself to that resort's section, on the visitor's tap only. */
-      .toc-index { margin: 0 20px 14px; }
-      .toc-index .toc-index-label {
-        font-size: 11px; font-weight: 700; letter-spacing: 0.26em;
-        text-transform: uppercase; color: var(--gold-text); margin: 0 0 6px;
-      }
-      .toc-index-links { display: flex; flex-wrap: wrap; gap: 4px 14px; }
-      .toc-index-links button {
-        background: none; border: none; cursor: pointer; padding: 4px 0; min-height: 32px;
-        font-family: var(--sans); font-size: 13.5px; color: var(--ink); text-align: left;
-      }
-      .toc-index-links button:hover { color: var(--gold-text); text-decoration: underline; }
       .toc-entry .pg { font-family: var(--serif); color: var(--gold-text); font-size: 14px; flex: none; }
       .toc-entry.current { background: rgba(176, 141, 87, 0.16); }
       @media (prefers-color-scheme: dark) {
@@ -572,42 +506,9 @@
         background: var(--navy-deep); padding: 26px 18px 22px;
         display: flex; flex-direction: column; align-items: center;
       }
-      /* The figure is sized by whichever constraint is tighter, the
-         stage width or the height the page needs to stand whole in
-         the viewport: 100dvh less the measured Reader chrome that
-         shares the screen (top bar 103, section pad 44, title block
-         70, shell offset 38, toolbar 73, stage pad 26, caption 41,
-         nav 62, progress 21, stage foot 22 = 500 at widths above
-         900px. The stacked bands carry a larger constant (854 at
-         900px and below, 772 at 680px and below) because their
-         page turn lands on the stage top beside the 340px
-         contents band, whose column height the grid row follows:
-         the extra covers the taller caption allowance there, so
-         the whole stage row stands in view after the landing. --page-ar is the
-         current page's width over height ratio, set by the script
-         (portrait 1275/1650; Volume Three landscape pages
-         1650/1275). Where the viewport is taller than the page at
-         full width, the 780px width limit rules and nothing
-         changes. */
-      .stage figure {
-        margin: 0; width: 100%;
-        max-width: min(780px, calc((100dvh - 501px) * var(--page-ar, 0.7727)));
-      }
-      @media (max-width: 900px) {
-        .stage figure { max-width: min(780px, calc((100dvh - 854px) * var(--page-ar, 0.7727))); }
-      }
-      @media (max-width: 680px) {
-        .stage figure { max-width: min(780px, calc((100dvh - 772px) * var(--page-ar, 0.7727))); }
-      }
-      /* Short screens (a landscape phone is 390 tall): caption and
-         nav cannot stand alongside, so the page image alone is
-         fitted whole: viewport less the sticky top bar and the
-         stage padding (103 + 48 = 151, rounded to 155). */
-      @media (max-height: 520px) {
-        .stage figure { max-width: min(780px, calc((100dvh - 155px) * var(--page-ar, 0.7727))); }
-      }
+      .stage figure { margin: 0; width: 100%; max-width: 780px; }
       .stage img.page {
-        display: block; width: 100%; height: auto; background: #ffffff; cursor: pointer;
+        display: block; width: 100%; height: auto; background: #ffffff;
         box-shadow: 0 14px 40px rgba(0, 0, 0, 0.55);
       }
       .stage figcaption {
@@ -623,7 +524,6 @@
         display: flex; align-items: center; gap: 14px; margin-top: 18px;
         flex-wrap: wrap; justify-content: center;
       }
-      .page-nav.turning .nav-btn { opacity: 0.55; }
       .nav-btn {
         cursor: pointer; font-family: var(--sans);
         border: 1px solid var(--gold); background: transparent; color: var(--gold-bright);
@@ -632,28 +532,9 @@
       }
       .nav-btn:hover:not(:disabled) { background: var(--gold); color: #16222f; }
       .nav-btn:disabled { opacity: 0.35; cursor: default; }
-      /* Round three, candidate 5: the Go control beside the page box
-         takes the Previous and Next button style. */
-      .page-go {
-        cursor: pointer; font-family: var(--sans);
-        border: 1px solid var(--gold); background: transparent; color: var(--gold-bright);
-        padding: 10px 16px; font-size: 13px; font-weight: 700; min-height: 44px;
-        letter-spacing: 0.16em; text-transform: uppercase;
-      }
-      .page-go:hover { background: var(--gold); color: #16222f; }
-      /* Round three, candidate 4: one helper line under the pager, in
-         the thumb band's note sizing, on the stage's dark ground. */
-      .reader-keys-note {
-        margin: 14px 0 0; font-size: 13.5px; line-height: 1.5; color: #b9c1ca; text-align: center;
-      }
-      /* Round three, candidate 5: the out-of-range note under the
-         pager, in the same note style. */
-      .page-range-note {
-        margin: 10px 0 0; font-size: 13.5px; line-height: 1.5; color: var(--gold-bright); text-align: center;
-      }
       .page-jump { display: flex; align-items: center; gap: 8px; color: #c9cfd4; font-size: 14px; }
       .page-jump input {
-        width: 62px; padding: 8px; min-height: 44px; font: inherit; font-size: 16px; text-align: center;
+        width: 62px; padding: 8px; min-height: 44px; font: inherit; text-align: center;
         background: #0d1826; color: #f2ead6; border: 1px solid #33506e; border-radius: 0;
       }
       .progress { width: 100%; max-width: 780px; height: 3px; background: #22374d; margin-top: 18px; }
@@ -675,15 +556,6 @@
         display: block; width: 100%; aspect-ratio: 612 / 792; object-fit: contain;
         border: 1px solid var(--line-soft); background: #ffffff;
       }
-      /* Round three, candidate 8: Volume Three's landscape pages take
-         a frame of their own ratio. The portrait cell height is set
-         by the grid row, so a landscape frame centred in that cell
-         would stand as tall as its portrait neighbours and only
-         mask the letterbox; instead the landscape thumbnails span
-         two columns at the landscape ratio, the page itself filling
-         its frame. Portrait thumbnails are unchanged. */
-      .thumb.land { grid-column: span 2; }
-      .thumb.land img { aspect-ratio: 1650 / 1275; }
       .thumb .t-no {
         position: absolute; left: 0; right: 0; bottom: 0; text-align: center;
         font-size: 11px; letter-spacing: 0.1em; padding: 2px 0;
@@ -716,12 +588,10 @@
         font-size: 13px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
         color: var(--gold-bright); text-decoration: none;
         border: 1px solid rgba(201, 171, 114, 0.6); padding: 9px 15px;
-        display: inline-flex; align-items: center; min-height: 44px;
       }
       .back-link:hover, .back-link:focus-visible { background: var(--gold); color: #16222f; }
       .reader-brand {
         margin: 0 0 0 auto; font-family: var(--serif); font-size: 21px; font-weight: 500; color: #ffffff; text-decoration: none;
-        display: inline-flex; align-items: baseline; min-height: 44px;
       }
       .reader-brand span {
         font-family: var(--sans); font-size: 11px; font-weight: 600;
@@ -740,7 +610,6 @@
       .reader-foot a {
         justify-self: start; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; font-size: 12.5px;
         color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--gold); padding-bottom: 2px;
-        display: inline-flex; align-items: center; min-height: 44px;
       }
       .reader-foot span { justify-self: center; }
       .reader-foot a:hover, .reader-foot a:focus-visible { color: var(--gold-text); }
@@ -817,7 +686,7 @@
       .reader-brand { margin-right: 118px; }
       .theme-slider {
         position: fixed; bottom: calc(14px + env(safe-area-inset-bottom, 0px)); right: 14px; z-index: 40;
-        width: 96px; height: 44px; border-radius: 999px; padding: 0;
+        width: 96px; height: 36px; border-radius: 999px; padding: 0;
         background: rgba(21, 33, 48, 0.94); border: 1px solid rgba(201, 171, 114, 0.55);
         cursor: pointer; box-shadow: 0 4px 14px rgba(13, 20, 30, 0.25);
       }
@@ -841,24 +710,6 @@
       .theme-slider[data-mode="dark"] .ts-knob { transform: translate(42px, -50%); }
       .theme-slider:hover { border-color: var(--gold-bright); }
       .theme-slider:focus-visible { outline: 2px solid var(--gold-bright); outline-offset: 2px; }
-      /* One visible focus ring for every interactive element, in the
-         gold the designed rings already use, so keyboard focus is
-         never the browser default outline. */
-      a:focus-visible, button:focus-visible, summary:focus-visible,
-      input:focus-visible, .toc-entry:focus-visible, .thumb:focus-visible,
-      .toc-list a.toc-line:focus-visible {
-        outline: 2px solid var(--gold); outline-offset: 2px;
-      }
-      .glance a.sec:focus-visible, .toc-list a.toc-line:focus-visible {
-        outline-offset: -2px;
-      }
-      /* Reduced motion, restated at the end of the sheet so these
-         rules follow the transitions they zero (the knob and the
-         contents chevron both keep a 0.25s transition otherwise). */
-      @media (prefers-reduced-motion: reduce) {
-        .theme-slider .ts-knob { transition: none; }
-        details.full summary .chev { transition: none; }
-      }
     </style>
   </head>
   <body>
@@ -881,7 +732,7 @@
         <nav class="trio" aria-label="The three volumes and Appendix">
           <a href="#vol-1">
             <figure>
-              <img fetchpriority="high" decoding="async" src="assets/cover-vol-1.jpg" srcset="assets/cover-vol-1-mid.jpg 800w, assets/cover-vol-1.jpg 1445w" sizes="(max-width: 680px) 330px, (max-width: 900px) 290px, 250px" alt="Cover of The Isle, Volume One, Furniture: a carved palm and flower panel in dark wood above the title on deep navy" width="1445" height="1870" />
+              <img fetchpriority="high" decoding="async" src="assets/cover-vol-1.jpg" alt="Cover of The Isle, Volume One, Furniture: a carved palm and flower panel in dark wood above the title on deep navy" width="1445" height="1870" />
               <figcaption>
                 <span class="t-vol">Volume One</span>
                 <span class="t-name">Furniture</span>
@@ -891,7 +742,7 @@
           </a>
           <a href="#vol-2">
             <figure>
-              <img fetchpriority="high" decoding="async" src="assets/cover-vol-2.jpg" srcset="assets/cover-vol-2-mid.jpg 800w, assets/cover-vol-2.jpg 1445w" sizes="(max-width: 680px) 330px, (max-width: 900px) 290px, 250px" alt="Cover of The Isle, Volume Two, Decor: Hokusai, Under the Wave off Kanagawa, above the title on deep navy" width="1445" height="1870" />
+              <img fetchpriority="high" decoding="async" src="assets/cover-vol-2.jpg" alt="Cover of The Isle, Volume Two, Decor: Hokusai, Under the Wave off Kanagawa, above the title on deep navy" width="1445" height="1870" />
               <figcaption>
                 <span class="t-vol">Volume Two</span>
                 <span class="t-name">Decor</span>
@@ -901,7 +752,7 @@
           </a>
           <a href="#vol-3">
             <figure>
-              <img fetchpriority="high" decoding="async" src="assets/cover-vol-3.jpg" srcset="assets/cover-vol-3-mid.jpg 800w, assets/cover-vol-3.jpg 1445w" sizes="(max-width: 680px) 330px, (max-width: 900px) 290px, 250px" alt="Cover of The Isle, Volume Three, Build Selections: the house at dusk above the title on deep navy" width="1445" height="1870" />
+              <img fetchpriority="high" decoding="async" src="assets/cover-vol-3.jpg" alt="Cover of The Isle, Volume Three, Build Selections: the house at dusk above the title on deep navy" width="1445" height="1870" />
               <figcaption>
                 <span class="t-vol">Volume Three</span>
                 <span class="t-name">Build Selections</span>
@@ -911,7 +762,7 @@
           </a>
           <a href="#appendix">
             <figure>
-              <img loading="lazy" decoding="async" src="assets/cover-appendix.jpg" srcset="assets/cover-appendix-mid.jpg 800w, assets/cover-appendix.jpg 1445w" sizes="(max-width: 680px) 330px, (max-width: 900px) 290px, 250px" alt="Cover of The Isle, Appendix, Inspiration: a painted sand spit in Zanzibar at golden hour above the title on deep navy" width="1445" height="1870" />
+              <img loading="lazy" decoding="async" src="assets/cover-appendix.jpg" alt="Cover of The Isle, Appendix, Inspiration: a painted sand spit in Zanzibar at golden hour above the title on deep navy" width="1445" height="1870" />
               <figcaption>
                 <span class="t-vol">Appendix</span>
                 <span class="t-name">Inspiration</span>
@@ -926,7 +777,6 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             Download the full catalogue
           </a>
-          <span class="hero-dl-size">79.6 MB</span>
         </div>
       </div>
     </header>
@@ -938,7 +788,7 @@
         <p class="vol-label"><span class="rule"></span>Volume One<span class="rule"></span></p>
         <div class="vol-grid">
           <figure class="cover-fig">
-            <img fetchpriority="high" decoding="async" src="assets/cover-vol-1.jpg" srcset="assets/cover-vol-1-mid.jpg 800w, assets/cover-vol-1.jpg 1445w" sizes="(max-width: 680px) 330px, (max-width: 900px) 280px, 340px" alt="Cover of The Isle, Volume One, Furniture" width="1445" height="1870" />
+            <img fetchpriority="high" decoding="async" src="assets/cover-vol-1.jpg" alt="Cover of The Isle, Volume One, Furniture" width="1445" height="1870" />
             <figcaption>Cover: The carved palm panel of the Balboa Carved Door Chest, Cabinet 001 in this volume.</figcaption>
           </figure>
           <div class="vol-info">
@@ -968,7 +818,6 @@
                   <figcaption>Balboa Carved Door Chest, page 5</figcaption>
                 </figure>
               </div>
-              <p class="inside-note">Select a preview to open this volume at that page.</p>
             </div>
           </div>
         </div>
@@ -1055,7 +904,6 @@
                 </ul>
               </div>
             </div>
-            <button class="full-hide" type="button"><span>Hide the full contents</span><span class="chev" aria-hidden="true"></span></button>
           </div>
         </details>
       </div>
@@ -1067,7 +915,7 @@
         <p class="vol-label"><span class="rule"></span>Volume Two<span class="rule"></span></p>
         <div class="vol-grid">
           <figure class="cover-fig">
-            <img fetchpriority="high" decoding="async" src="assets/cover-vol-2.jpg" srcset="assets/cover-vol-2-mid.jpg 800w, assets/cover-vol-2.jpg 1445w" sizes="(max-width: 680px) 330px, (max-width: 900px) 280px, 340px" alt="Cover of The Isle, Volume Two, Decor" width="1445" height="1870" />
+            <img fetchpriority="high" decoding="async" src="assets/cover-vol-2.jpg" alt="Cover of The Isle, Volume Two, Decor" width="1445" height="1870" />
             <figcaption>Cover: Under the Wave off Kanagawa by Katsushika Hokusai, Art 006 in this volume.</figcaption>
           </figure>
           <div class="vol-info">
@@ -1097,7 +945,6 @@
                   <figcaption>Creatures of the Ocean I, page 7</figcaption>
                 </figure>
               </div>
-              <p class="inside-note">Select a preview to open this volume at that page.</p>
             </div>
           </div>
         </div>
@@ -1174,7 +1021,6 @@
                 </ul>
               </div>
             </div>
-            <button class="full-hide" type="button"><span>Hide the full contents</span><span class="chev" aria-hidden="true"></span></button>
           </div>
         </details>
       </div>
@@ -1186,7 +1032,7 @@
         <p class="vol-label"><span class="rule"></span>Volume Three<span class="rule"></span></p>
         <div class="vol-grid">
           <figure class="cover-fig">
-            <img fetchpriority="high" decoding="async" src="assets/cover-vol-3.jpg" srcset="assets/cover-vol-3-mid.jpg 800w, assets/cover-vol-3.jpg 1445w" sizes="(max-width: 680px) 330px, (max-width: 900px) 280px, 340px" alt="Cover of The Isle, Volume Three, Build Selections" width="1445" height="1870" />
+            <img fetchpriority="high" decoding="async" src="assets/cover-vol-3.jpg" alt="Cover of The Isle, Volume Three, Build Selections" width="1445" height="1870" />
             <figcaption>Cover: The house at dusk.</figcaption>
           </figure>
           <div class="vol-info">
@@ -1216,7 +1062,6 @@
                   <figcaption>A composed preview, page 6</figcaption>
                 </figure>
               </div>
-              <p class="inside-note">Select a preview to open this volume at that page.</p>
             </div>
           </div>
         </div>
@@ -1400,7 +1245,6 @@
                 </ul>
               </div>
             </div>
-            <button class="full-hide" type="button"><span>Hide the full contents</span><span class="chev" aria-hidden="true"></span></button>
           </div>
         </details>
       </div>
@@ -1412,7 +1256,7 @@
         <p class="vol-label"><span class="rule"></span>Appendix<span class="rule"></span></p>
         <div class="vol-grid">
           <figure class="cover-fig">
-            <img fetchpriority="high" decoding="async" src="assets/cover-appendix.jpg" srcset="assets/cover-appendix-mid.jpg 800w, assets/cover-appendix.jpg 1445w" sizes="(max-width: 680px) 330px, (max-width: 900px) 280px, 340px" alt="Cover of The Isle, Appendix, Inspiration" width="1445" height="1870" />
+            <img fetchpriority="high" decoding="async" src="assets/cover-appendix.jpg" alt="Cover of The Isle, Appendix, Inspiration" width="1445" height="1870" />
             <figcaption>Cover: A sand spit in Zanzibar at golden hour, painted for this book. The back cover shows a lava cove in Samoa at sunset.</figcaption>
           </figure>
           <div class="vol-info">
@@ -1442,7 +1286,6 @@
                   <figcaption>Riverfront Pool Villa, Mandapa, page 33</figcaption>
                 </figure>
               </div>
-              <p class="inside-note">Select a preview to open this appendix at that page.</p>
             </div>
           </div>
         </div>
@@ -1712,7 +1555,6 @@
                 </ul>
               </div>
             </div>
-            <button class="full-hide" type="button"><span>Hide the full contents</span><span class="chev" aria-hidden="true"></span></button>
           </div>
         </details>
       </div>
@@ -1767,7 +1609,7 @@
           <aside class="toc" id="toc" aria-label="Contents of the current volume"></aside>
           <div class="stage">
             <figure>
-              <img class="page" id="pageImg" src="assets/pages/vol-1/page-01.jpg" alt="Volume One, Furniture, page 1: Cover" tabindex="0" role="button" aria-label="Volume One, Furniture, page 1: Cover. Open this page full size" />
+              <img class="page" id="pageImg" src="assets/pages/vol-1/page-01.jpg" alt="Volume One, Furniture, page 1: Cover" />
               <p class="page-fail" id="pageFail" hidden role="alert">This page could not be loaded. Check your connection, then <button type="button" id="pageRetry">try again</button>.</p>
               <figcaption>
                 <span class="cap-title" id="capTitle">Cover</span>
@@ -1780,11 +1622,8 @@
                 <input type="number" id="pageInput" min="1" max="42" value="1" aria-label="Go to page" />
                 <span id="pageTotal">of 42</span>
               </label>
-              <button class="page-go" type="button" id="pageGo">Go</button>
               <button class="nav-btn" type="button" id="nextBtn">Next &rarr;</button>
             </div>
-            <p class="page-range-note" id="pageRangeNote" hidden role="status"></p>
-            <p class="reader-keys-note">Use the arrow keys to turn the pages.</p>
             <div class="progress" aria-hidden="true"><i id="progressBar"></i></div>
           </div>
         </div>
@@ -1805,13 +1644,10 @@
     <div id="fullsizeOverlay" class="fullsize-overlay" hidden role="dialog" aria-modal="true" aria-labelledby="fullsizeTitle">
       <div class="fullsize-bar">
         <p class="fullsize-title" id="fullsizeTitle">Volume One &middot; Page 1</p>
-        <button class="fullsize-nav" type="button" id="fullsizePrev">&larr; Previous</button>
-        <button class="fullsize-nav" type="button" id="fullsizeNext">Next &rarr;</button>
         <button class="fullsize-close" type="button" id="fullsizeClose">Close &times;</button>
       </div>
-      <p class="fullsize-fail" id="fullsizeFail" hidden role="alert">This page could not be loaded. Check your connection, then <button type="button" id="fullsizeRetry">try again</button>.</p>
       <div class="fullsize-scroll" id="fullsizeScroll">
-        <img id="fullsizeImg" src="assets/pages/vol-1/page-01.jpg" alt="Volume One, Furniture, page 1: Cover, full size" aria-label="Volume One, Furniture, page 1: Cover, full size. Return to the reader page" />
+        <img id="fullsizeImg" src="assets/pages/vol-1/page-01.jpg" alt="Volume One, Furniture, page 1: Cover, full size" />
       </div>
     </div>
 
@@ -1955,31 +1791,6 @@
         PAGE_LABELS.app[9] = "Contents, Constance Prince Maurice, Alila Ubud and COMO Shambhala Estate";
 
         var state = { vol: "v1", page: 1 };
-        /* Scroll handling for the Reader. The document sets smooth
-           scrolling for anchor glides, but the Reader's own resets are
-           functional, not decorative: they land instantly. The home
-           scroll position is saved when a Reader opens and restored
-           when the visitor returns within this visit, so Back and the
-           All volumes routes give the visitor their place back. This
-           is not a memory of the last volume or page: a fresh visit
-           still opens at the top, and nothing is stored. */
-        function scrollInstant(y) {
-          try { window.scrollTo({ top: y, left: 0, behavior: "instant" }); }
-          catch (e) { window.scrollTo(0, y); }
-        }
-        function stackedLayout() {
-          return window.matchMedia && window.matchMedia("(max-width: 900px)").matches;
-        }
-        /* Fit-to-screen (round two, item C): the stage figure's
-           height-driven width limit uses the current page's own
-           ratio. Only Volume Three pages 6 to 12 are landscape
-           (1650 by 1275); every other page is portrait (1275 by
-           1650). Kept exact here and verified against the served
-           image files by measurement. */
-        function pageRatio(vol, n) {
-          return (vol === "v3" && n >= 6 && n <= 12) ? (1650 / 1275) : (1275 / 1650);
-        }
-        var savedHomeY = null, readerAnchorY = null, anchorReturnArmed = false;
         function $(id) { return document.getElementById(id); }
         var readerEl = $("reader"), readerTop = $("readerTop");
         var homeView = $("view-home"), readerView = $("view-reader");
@@ -2000,18 +1811,6 @@
         function renderToc() {
           var V = VOLUMES[state.vol];
           var html = "<h3>Contents</h3><p class=\"toc-sub\">" + V.name + " \u00B7 " + V.title + " \u00B7 " + V.pages + " pages. Select any entry to jump to its page.</p>";
-          /* Round three, candidate 3: in the Appendix, a tappable
-             index of the seventeen resorts stands at the top of the
-             list. A tap scrolls the contents list itself to that
-             resort's section head; nothing moves on its own, and no
-             other volume carries the index. */
-          if (state.vol === "app") {
-            html += "<div class=\"toc-index\"><p class=\"toc-index-label\">Resorts and hotels</p><div class=\"toc-index-links\">";
-            V.sections.forEach(function (s, idx) {
-              html += "<button type=\"button\" data-resort=\"" + idx + "\">" + s.name + "</button>";
-            });
-            html += "</div></div>";
-          }
           html += "<button class=\"toc-entry\" type=\"button\" data-page=\"1\"><span>Cover</span><span class=\"pg\">1</span></button>";
           html += "<button class=\"toc-entry\" type=\"button\" data-page=\"2\"><span>Contents</span><span class=\"pg\">" + V.contents + "</span></button>";
           V.sections.forEach(function (s) {
@@ -2026,14 +1825,6 @@
           for (var i = 0; i < btns.length; i++) {
             btns[i].addEventListener("click", function () { goTo(parseInt(this.getAttribute("data-page"), 10)); });
           }
-          var idxBtns = toc.querySelectorAll(".toc-index-links button");
-          var secHeads = toc.querySelectorAll(".toc-sec");
-          for (var j = 0; j < idxBtns.length; j++) {
-            idxBtns[j].addEventListener("click", function () {
-              var head = secHeads[parseInt(this.getAttribute("data-resort"), 10)];
-              if (head) { toc.scrollTop = Math.max(0, toc.scrollTop + head.getBoundingClientRect().top - toc.getBoundingClientRect().top); }
-            });
-          }
         }
 
         function renderThumbs() {
@@ -2041,18 +1832,12 @@
           thumbTitle.textContent = "All pages, " + V.name;
           var html = "";
           for (var n = 1; n <= V.pages; n++) {
-            /* Round three, candidate 3: every thumbnail carries its
-               pick's name as a title, so a desktop hover names the
-               page. Round three, candidate 8: Volume Three's
-               landscape pages take the landscape frame class. */
-            var landCls = (state.vol === "v3" && n >= 6 && n <= 12) ? " land" : "";
-            html += "<button class=\"thumb" + landCls + "\" type=\"button\" data-page=\"" + n + "\" title=\"" + label(state.vol, n) + "\" aria-label=\"Open page " + n + ", " + label(state.vol, n) + ", full size\"><img loading=\"lazy\" decoding=\"async\" src=\"" + thumbPath(state.vol, n) + "\" alt=\"\" /><span class=\"t-no\">" + n + "</span></button>";
+            html += "<button class=\"thumb\" type=\"button\" data-page=\"" + n + "\" aria-label=\"Open page " + n + ", " + label(state.vol, n) + ", full size\"><img loading=\"lazy\" decoding=\"async\" src=\"" + thumbPath(state.vol, n) + "\" alt=\"\" /><span class=\"t-no\">" + n + "</span></button>";
           }
           thumbGrid.innerHTML = html;
           var btns = thumbGrid.querySelectorAll(".thumb");
           for (var i = 0; i < btns.length; i++) {
             btns[i].addEventListener("click", function () {
-              fullsizeSavedY = window.scrollY;
               goTo(parseInt(this.getAttribute("data-page"), 10));
               openFullsize(this);
             });
@@ -2074,81 +1859,27 @@
         }
 
         var swapTokens = {};
-        /* Round three: the swap now reports failure as failure. The
-           Reader used to assign the source on error too, which let
-           the image element's own error handling run; the full-size
-           view had no error handling at all, so a failed page there
-           showed a broken box under a confident title (defect 3).
-           onFail is optional: where a caller passes none, the old
-           assign-on-error behaviour stands. */
-        function swapPageImage(img, src, key, onSwap, onPending, onFail) {
+        function swapPageImage(img, src, key, onSwap) {
           if (img.getAttribute("src") === src) { if (onSwap) { onSwap(); } return; }
           var token = (swapTokens[key] = (swapTokens[key] || 0) + 1);
-          if (onPending) { onPending(); }
           var pre = new Image();
           pre.onload = function () {
             if (swapTokens[key] === token) { img.src = src; if (onSwap) { onSwap(); } }
           };
           pre.onerror = function () {
-            if (swapTokens[key] === token) {
-              if (onFail) { onFail(); }
-              else { img.src = src; if (onSwap) { onSwap(); } }
-            }
+            if (swapTokens[key] === token) { img.src = src; if (onSwap) { onSwap(); } }
           };
           pre.src = src;
         }
 
-        function show(opts) {
+        function show() {
           var V = VOLUMES[state.vol];
           var src = imgPath(state.vol, state.page);
-          var navEl = document.querySelector(".page-nav");
-          /* Round three, defect 2: the caption and its accompanying
-             labels (the image's alt text and the stage ratio) belong
-             to the page on screen, so they update in the swap
-             callback, together with the image, not in the same call
-             that asks for it. On a slow load the old page keeps its
-             own name until its replacement is actually there; the
-             dimmed pager (the turning state) is the loading sign.
-             The page box, the progress bar and the pager disabled
-             states stay immediate: they are the visitor's own input
-             and position, not labels of the image. */
-          swapPageImage(pageImg, src, "reader", function () {
-            if (navEl) { navEl.classList.remove("turning"); }
-            pageImg.alt = V.name + ", " + V.title + ", page " + state.page + ": " + label(state.vol, state.page);
-            pageImg.setAttribute("aria-label", pageImg.alt + ". Open this page full size");
-            var stageSwap = document.querySelector(".stage");
-            if (stageSwap) { stageSwap.style.setProperty("--page-ar", String(pageRatio(state.vol, state.page))); }
-            capTitle.textContent = label(state.vol, state.page);
-            capPage.textContent = V.name + " \u00B7 Page " + state.page + " of " + V.pages;
-            /* Round three, defect 4: re-assert the turn's landing
-               now that the new page stands at its own size. The
-               landing scroll in show() runs while the previous page
-               still occupies the stage; where the browser resolves
-               the fitted size late (the user's iPad in Safari slid
-               up by roughly the page's own top portion on every
-               Next), the landed position is computed against the
-               old box and the view ends past the stage top. Entry
-               keeps its own landing at the document top. */
-            if (readerView && !readerView.hidden && !(opts && opts.entry)) {
-              var stageLand = document.querySelector(".stage");
-              if (stageLand) { scrollInstant(Math.max(0, Math.round(stageLand.getBoundingClientRect().top + window.scrollY))); }
-            }
-          }, function () {
-            if (navEl) { navEl.classList.add("turning"); }
-          });
-          if (readerView && !readerView.hidden) {
-            if (opts && opts.entry) {
-              scrollInstant(0);
-            } else {
-              /* One landing rule at every width: the deepest the
-                 visitor ever has to be is the stage top; where the
-                 whole Reader fits the screen the scroll clamps to
-                 the document end, which is that same view. */
-              var stageEl = document.querySelector(".stage");
-              if (stageEl) { scrollInstant(Math.max(0, Math.round(stageEl.getBoundingClientRect().top + window.scrollY))); }
-              else { scrollInstant(0); }
-            }
-          }
+          swapPageImage(pageImg, src, "reader");
+          if (readerView && !readerView.hidden) { window.scrollTo(0, 0); }
+          pageImg.alt = V.name + ", " + V.title + ", page " + state.page + ": " + label(state.vol, state.page);
+          capTitle.textContent = label(state.vol, state.page);
+          capPage.textContent = V.name + " \u00B7 Page " + state.page + " of " + V.pages;
           pageInput.value = state.page;
           pageInput.max = V.pages;
           pageTotal.textContent = "of " + V.pages;
@@ -2183,12 +1914,6 @@
         function goTo(n) {
           var V = VOLUMES[state.vol];
           state.page = Math.max(1, Math.min(V.pages, n));
-          /* Round three, candidate 5: a valid in-range turn clears
-             the out-of-range note. The note is set by the page box's
-             own apply path after its goTo returns, so this clear
-             never races it. */
-          var rn = $("pageRangeNote");
-          if (rn && n >= 1 && n <= V.pages) { rn.hidden = true; }
           show();
         }
         function setVolume(vol, page) {
@@ -2198,7 +1923,7 @@
           renderToc();
           if (toc) { toc.scrollTop = 0; }
           renderThumbs();
-          show({ entry: true });
+          show();
         }
 
         /* ---------- full size view: shows the current page in-page ---------- */
@@ -2208,46 +1933,18 @@
         function updateFullsize() {
           var V = VOLUMES[state.vol];
           var src = imgPath(state.vol, state.page);
-          /* Round three, defect 3: the overlay gains the Reader's
-             failure path. The title names the page being asked for,
-             as it always has; the note appears only when that page
-             fails to arrive, and its retry asks again, with a query
-             on the retry as the Reader's retry does. */
           swapPageImage(fullsizeImg, src, "fullsize", function () {
             /* Reset again once the new page is actually in place: the
                deferred swap lets the browser's scroll anchoring restore
                the previous depth in the meantime. */
-            var ff = $("fullsizeFail");
-            if (ff) { ff.hidden = true; }
             fullsizeScroll.scrollTop = 0; fullsizeScroll.scrollLeft = 0;
-          }, null, function () {
-            var ff = $("fullsizeFail");
-            if (ff) { ff.hidden = false; }
           });
           fullsizeImg.alt = V.name + ", " + V.title + ", page " + state.page + ": " + label(state.vol, state.page) + ", full size";
-          fullsizeImg.setAttribute("aria-label", fullsizeImg.alt + ". Return to the reader page");
           fullsizeTitle.innerHTML = V.name + " &middot; " + V.title + " &middot; Page " + state.page + " of " + V.pages + " <span>&middot; " + label(state.vol, state.page) + "</span>";
-          /* Round three, candidate 1: the bar's Previous and Next
-             follow the Reader's own pager state. */
-          var fp = $("fullsizePrev"), fn = $("fullsizeNext");
-          if (fp) { fp.disabled = state.page <= 1; }
-          if (fn) { fn.disabled = state.page >= V.pages; }
         }
-        var fullsizeReturnEl = null, fullsizeSavedY = null;
+        var fullsizeReturnEl = null;
         function openFullsize(returnEl) {
           fullsizeReturnEl = (returnEl && returnEl !== fullSizeBtn) ? returnEl : fullSizeBtn;
-          /* Opening from a thumbnail turns the page first, which moves
-             the window; the position to restore on close is the one the
-             visitor tapped from, captured by the thumbnail handler
-             before the turn. Toolbar opens keep the current position. */
-          if (returnEl === fullSizeBtn) { fullsizeSavedY = window.scrollY; }
-          /* An image tap opens from wherever the reader happens to
-             be scrolled, the top of the Reader included; the save
-             above covers only the toolbar button, so the image path
-             (round two) and any other caller take their position
-             here. The thumbnail handler sets its own save, from
-             before the page turn, before calling, and that stands. */
-          if (fullsizeSavedY === null) { fullsizeSavedY = window.scrollY; }
           updateFullsize();
           fullsizeScroll.scrollTop = 0; fullsizeScroll.scrollLeft = 0;
           fullsizeOverlay.hidden = false;
@@ -2259,63 +1956,10 @@
           document.body.style.overflow = "";
           var target = (fullsizeReturnEl && document.contains(fullsizeReturnEl)) ? fullsizeReturnEl : fullSizeBtn;
           fullsizeReturnEl = null;
-          if (target) { target.focus({ preventScroll: true }); }
-          if (fullsizeSavedY !== null) {
-            var restoreY = fullsizeSavedY;
-            fullsizeSavedY = null;
-            scrollInstant(restoreY);
-            /* The focus return above can be followed by the
-               browser's own scroll anchoring as the overlay leaves
-               and the stage settles at the fitted size; a second
-               instant restore on the next frame holds the saved
-               position against that drift. */
-            window.requestAnimationFrame(function () { scrollInstant(restoreY); });
-            /* Round three correction, tried and measured: at phone
-               width the browser moves the window during the open
-               itself (0 to 28 within about 84ms of the tap) and the
-               close's restores provably write the saved 0 and land
-               there, yet the settled position is 28, because the
-               stage's own landing for the page being read sits at
-               the same 28 and re-asserts itself around the close.
-               A settled re-restore at 350ms was measured landing at
-               28 as well (the value is the stage landing, not drift),
-               and adopting the drifted position as the restore target
-               contradicts the check's yardstick, the saved position.
-               No variant met the acceptance terms (both entry
-               returns exact, no other landing moved), so no
-               correction stands here; the build report carries the
-               full account and the check remains as it was. */
-          }
+          if (target) { target.focus(); }
         }
         if (fullSizeBtn) { fullSizeBtn.addEventListener("click", function () { openFullsize(fullSizeBtn); }); }
         if (fullsizeClose) { fullsizeClose.addEventListener("click", closeFullsize); }
-        /* Round three, candidate 1: Previous and Next in the
-           full-size bar turn the Reader's own page; show() brings
-           the overlay with it through updateFullsize. */
-        var fullsizePrevBtn = $("fullsizePrev"), fullsizeNextBtn = $("fullsizeNext");
-        if (fullsizePrevBtn) { fullsizePrevBtn.addEventListener("click", function () { goTo(state.page - 1); }); }
-        if (fullsizeNextBtn) { fullsizeNextBtn.addEventListener("click", function () { goTo(state.page + 1); }); }
-        var fullsizeRetryBtn = $("fullsizeRetry");
-        if (fullsizeRetryBtn) {
-          fullsizeRetryBtn.addEventListener("click", function () {
-            var ff = $("fullsizeFail");
-            if (ff) { ff.hidden = true; }
-            fullsizeImg.src = imgPath(state.vol, state.page) + "?retry=1";
-          });
-        }
-        fullsizeImg.addEventListener("load", function () {
-          var ff = $("fullsizeFail");
-          if (ff) { ff.hidden = true; }
-        });
-        fullsizeImg.addEventListener("error", function () {
-          /* The swap helper's failure path shows the note when a
-             load is refused outright; this catches a failure of the
-             image element itself, including a retried load. */
-          if (!fullsizeOverlay.hidden && fullsizeImg.getAttribute("src")) {
-            var ff = $("fullsizeFail");
-            if (ff) { ff.hidden = false; }
-          }
-        });
 
         /* ---------- link to this page ----------
            Restored at the reader's request. The button copies the current
@@ -2409,98 +2053,10 @@
         }
         prevBtn.addEventListener("click", function () { goTo(state.page - 1); });
         nextBtn.addEventListener("click", function () { goTo(state.page + 1); });
-        /* Tap toggles full size (round two, item B): a press counts
-           as a tap only if the pointer stays within 10px and lifts
-           within 600ms, so swipes (which turn the page through the
-           touch handlers below), drags and long presses never
-           trigger it. Tapping the Reader image opens the full size
-           view through the same path as the Full size button,
-           position save and focus handling included; tapping the
-           full size image returns, exactly as Close does. This
-           replaces the former tap to zoom inside full size; pinch
-           zoom remains the browser's own gesture. */
-        function onTap(el, fn) {
-          var tapX = null, tapY = null, tapT = 0;
-          el.addEventListener("pointerdown", function (event) {
-            tapX = event.clientX; tapY = event.clientY; tapT = Date.now();
-          });
-          el.addEventListener("pointercancel", function () { tapX = null; });
-          el.addEventListener("pointerup", function (event) {
-            if (tapX === null) { return; }
-            var dx = event.clientX - tapX, dy = event.clientY - tapY;
-            var dt = Date.now() - tapT;
-            tapX = null;
-            if (Math.abs(dx) <= 10 && Math.abs(dy) <= 10 && dt <= 600) { fn(); }
-          });
-        }
-        onTap(pageImg, function () { openFullsize(pageImg); });
-        onTap(fullsizeImg, function () { closeFullsize(); });
-        pageImg.addEventListener("keydown", function (event) {
-          if (event.key === "Enter" || event.key === " ") {
-            event.preventDefault();
-            openFullsize(pageImg);
-          }
+        pageInput.addEventListener("change", function () {
+          var n = parseInt(pageInput.value, 10);
+          if (!isNaN(n)) { goTo(n); } else { pageInput.value = state.page; }
         });
-        /* The All volumes and Return links leave the Reader by an
-           explicit click: handle the click here, push the history
-           entry the default anchor jump would have created, and let
-           showHome glide to the volume section. A later Back press
-           arrives at the same anchor address through hashchange,
-           with the Reader still showing, and restores the saved
-           place instead (see the hashchange handler). */
-        ["backLink", "backLinkBottom"].forEach(function (id) {
-          var bl = $(id);
-          if (!bl) { return; }
-          bl.addEventListener("click", function (event) {
-            event.preventDefault();
-            var href = bl.getAttribute("href") || "";
-            try { history.pushState(null, "", href); } catch (e) {}
-            showHome(href.replace(/^#/, "") || null);
-          });
-        });
-        /* Round three, candidate 5: the Go control applies the typed
-           page, as Enter and the field's change event already did,
-           and an out-of-range entry is no longer silently rewritten:
-           a note under the pager says which page the visitor landed
-           on, and it clears on the next valid entry. */
-        /* The apply can run twice for one Go tap: browsers that
-           fire the field's change event on blur run it before the
-           button's click lands. The first pass clamps the typed
-           number and show() rewrites the box to the page landed on;
-           the second pass then reads that rewritten value as a
-           fresh valid entry and clears the note the first pass just
-           raised. pageNoteEcho holds the landed page of a note
-           still standing: an apply that reads exactly that value
-           back while the note stands is the echo of the clamp, not
-           a new entry, and is ignored. A genuine edit fires the
-           field's input event and clears the guard, so the next
-           valid entry still clears the note as specified. */
-        var pageNoteEcho = null;
-        function applyPageInput() {
-          var V = VOLUMES[state.vol];
-          var raw = pageInput.value;
-          var n = parseInt(raw, 10);
-          var note = $("pageRangeNote");
-          if (pageNoteEcho !== null && note && !note.hidden && n === pageNoteEcho) { return; }
-          if (isNaN(n)) { pageInput.value = state.page; if (note) { note.hidden = true; } pageNoteEcho = null; return; }
-          if (n < 1 || n > V.pages) {
-            var landed = Math.max(1, Math.min(V.pages, n));
-            if (note) {
-              note.textContent = "Page " + n + " is beyond this volume, which runs from page 1 to page " + V.pages + ". Showing page " + landed + ".";
-              note.hidden = false;
-            }
-            pageNoteEcho = landed;
-            goTo(n);
-          } else {
-            if (note) { note.hidden = true; }
-            pageNoteEcho = null;
-            goTo(n);
-          }
-        }
-        pageInput.addEventListener("input", function () { pageNoteEcho = null; });
-        pageInput.addEventListener("change", function () { applyPageInput(); });
-        var pageGoBtn = $("pageGo");
-        if (pageGoBtn) { pageGoBtn.addEventListener("click", function () { applyPageInput(); }); }
 
         /* ---------- full contents lines: each line opens the reader ----------
            Every line of the home page "Show full contents" lists becomes a
@@ -2533,17 +2089,6 @@
               li.appendChild(line);
             }
           })(fullSections[fs]);
-        }
-
-        /* The foot of each expanded home contents list repeats the
-           Hide control, so a visitor at the bottom of a long list can
-           close it without travelling back to the summary line. */
-        var hideBtns = document.querySelectorAll(".full-hide");
-        for (var hb = 0; hb < hideBtns.length; hb++) {
-          hideBtns[hb].addEventListener("click", function () {
-            var det = this.closest ? this.closest("details.full") : null;
-            if (det) { det.open = false; det.querySelector("summary").focus({ preventScroll: true }); }
-          });
         }
 
         /* ---------- PDF downloads ----------
@@ -2708,16 +2253,6 @@
             var n;
             for (n = start + 1; n <= V.pages; n++) { order.push(n); }
             for (n = 1; n < start; n++) { order.push(n); }
-            /* The whole volume still arrives one image at a time, but
-               the bulk of it is gated: browsers that report the
-               connection type hold it back on metered links, and
-               everywhere the bulk waits until the visitor has settled
-               on a page for a few seconds. The neighbouring pages are
-               already warm from show(). Only this volume is ever
-               fetched, never another. */
-            var conn = (navigator && navigator.connection) ? navigator.connection : null;
-            var metered = !!(conn && (conn.saveData || /cellular|2g/.test(conn.effectiveType || "") || /cellular/.test(conn.type || "")));
-            if (metered) { return; }
             var idx = 0;
             function next() {
               if (token !== preloadToken || state.vol !== vol) { return; }
@@ -2728,7 +2263,7 @@
               im.src = imgPath(vol, order[idx]);
             }
             next();
-          }, 2500);
+          }, 700);
         }
         function cancelPreload() {
           preloadToken++;
@@ -2772,79 +2307,29 @@
           var fsOverlay = $("fullsizeOverlay");
           if (fsOverlay && !fsOverlay.hidden) {
             if (event.key === "Escape") { event.preventDefault(); closeFullsize(); }
-            /* Round three, candidate 1: the arrow keys turn pages
-               inside full size as they do in the Reader. */
-            else if (event.key === "ArrowRight") { event.preventDefault(); goTo(state.page + 1); }
-            else if (event.key === "ArrowLeft") { event.preventDefault(); goTo(state.page - 1); }
             return;
           }
-          if (!readerView || readerView.hidden) { return; }
           var tag = (event.target && event.target.tagName) || "";
-          var inField = (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT");
-          /* Round three, candidate 4: Escape in the Reader acts as
-             All volumes, through the same path the link's own click
-             takes, so the saved place is restored the same way. */
-          if (event.key === "Escape") {
-            var bl = $("backLink");
-            if (bl) { event.preventDefault(); bl.click(); }
-            return;
-          }
-          /* The arrow keys turn pages even while the page box has
-             focus (candidate 4); every other key in a field, digits
-             included, is left to the field. */
-          if (inField && event.key !== "ArrowRight" && event.key !== "ArrowLeft") { return; }
+          if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") { return; }
+          if (!readerView || readerView.hidden) { return; }
           var rect = readerEl.getBoundingClientRect();
           if (rect.bottom < 0 || rect.top > window.innerHeight) { return; }
           if (event.key === "ArrowRight") { goTo(state.page + 1); }
           else if (event.key === "ArrowLeft") { goTo(state.page - 1); }
         });
-        /* Round three, defect 1: a swipe counts only when the
-           gesture is horizontally dominant. The handler used to
-           threshold the horizontal travel alone, so a mostly
-           vertical scroll drag with sideways drift turned the page.
-           The same shape serves the Reader image and, since round
-           three, the full-size image (candidate 1). */
-        function swipeTurn(el, turn) {
-          var sx = null, sy = null;
-          el.addEventListener("touchstart", function (event) {
-            sx = event.changedTouches[0].clientX; sy = event.changedTouches[0].clientY;
-          }, { passive: true });
-          el.addEventListener("touchend", function (event) {
-            if (sx === null) { return; }
-            var dx = event.changedTouches[0].clientX - sx;
-            var dy = event.changedTouches[0].clientY - sy;
-            sx = null; sy = null;
-            if (Math.abs(dx) > 60 && Math.abs(dx) >= 1.5 * Math.abs(dy)) { turn(dx); }
-          }, { passive: true });
-        }
-        swipeTurn(pageImg, function (dx) { goTo(state.page + (dx < 0 ? 1 : -1)); });
-        swipeTurn(fullsizeImg, function (dx) { goTo(state.page + (dx < 0 ? 1 : -1)); });
-        /* Round three, candidate 2: rotating across the layout
-           breakpoint mid-read re-lands on the stage top, as a page
-           turn does. Only a crossing fires; ordinary resizes, the
-           mobile address bar among them, change nothing. */
-        var wasStacked = stackedLayout();
-        var resizeTimer = null;
-        window.addEventListener("resize", function () {
-          if (resizeTimer) { window.clearTimeout(resizeTimer); }
-          resizeTimer = window.setTimeout(function () {
-            var nowStacked = stackedLayout();
-            if (nowStacked === wasStacked) { return; }
-            wasStacked = nowStacked;
-            if (!readerView || readerView.hidden) { return; }
-            if (!$("fullsizeOverlay").hidden) { return; }
-            var stageEl = document.querySelector(".stage");
-            if (stageEl) { scrollInstant(Math.max(0, Math.round(stageEl.getBoundingClientRect().top + window.scrollY))); }
-          }, 150);
-        });
+        var touchX = null;
+        pageImg.addEventListener("touchstart", function (event) { touchX = event.changedTouches[0].clientX; }, { passive: true });
+        pageImg.addEventListener("touchend", function (event) {
+          if (touchX === null) { return; }
+          var dx = event.changedTouches[0].clientX - touchX;
+          if (dx < -60) { goTo(state.page + 1); }
+          else if (dx > 60) { goTo(state.page - 1); }
+          touchX = null;
+        }, { passive: true });
 
         /* ---------- routing: home page and Reader page ---------- */
-        function showHome(anchorId, restoreSaved) {
+        function showHome(anchorId) {
           cancelPreload();
-          /* Every route home leaves the Reader; if that closing was
-             inside the overlay path the saved position was already
-             consumed there. */
-          var returnY = savedHomeY;
           var lb = $("linkBar");
           if (lb) { lb.hidden = true; }
           var ls = $("linkStatus");
@@ -2855,47 +2340,26 @@
           homeView.hidden = false;
           document.title = "The Isle \u00B7 Reference Catalogues";
           gcHit("/ref/", false, "The Isle \u00B7 Reference Catalogues");
-          if (anchorId && !restoreSaved) {
-            readerAnchorY = returnY;
-            anchorReturnArmed = returnY !== null;
+          if (anchorId) {
             var el = document.getElementById(anchorId);
             if (el) { el.scrollIntoView(); }
-          } else if (returnY !== null) {
-            savedHomeY = null;
-            scrollInstant(returnY);
           }
         }
         function openReader(vol, page) {
           if (!VOLUMES[vol]) { showHome(null); return; }
-          /* Opening a Reader from the home view saves where the
-             visitor was standing; re-routing inside the Reader (page
-             turns replace the address) leaves the saved place alone. */
-          var wasHidden = readerView.hidden;
-          if (readerView.hidden) {
-            savedHomeY = readerAnchorY !== null ? readerAnchorY : window.scrollY;
-            readerAnchorY = null;
-            anchorReturnArmed = false;
-          }
           homeView.hidden = true;
           readerView.hidden = false;
           setVolume(vol, page);
           document.title = VOLUMES[vol].name + " " + VOLUMES[vol].title + " \u00B7 The Isle Reader";
-          scrollInstant(0);
-          /* Round three, candidate 4: focus moves to the page image
-             on entry, so the arrow keys work at once and the focus
-             ring has a home. preventScroll keeps the entry landing
-             exactly where the scroll handling put it. Only a fresh
-             entry takes focus; page turns inside the Reader are
-             re-routes through here and must not steal it. */
-          if (wasHidden) { pageImg.focus({ preventScroll: true }); }
+          window.scrollTo(0, 0);
           schedulePreload();
         }
-        function route(restoreSaved) {
+        function route() {
           var h = location.hash || "";
           var m = h.match(/^#\/read\/(v[123]|app)(?:\/(\d+))?/);
           if (m) { openReader(m[1], m[2] ? parseInt(m[2], 10) : 1); return; }
           var anchor = h.replace(/^#/, "");
-          showHome((anchor.indexOf("vol-") === 0 || anchor === "appendix") ? anchor : null, !!restoreSaved);
+          showHome((anchor.indexOf("vol-") === 0 || anchor === "appendix") ? anchor : null);
         }
         /* ---------- visit counting (GoatCounter) ----------
            The counter script is set to no_onload, so every view is
@@ -2922,25 +2386,7 @@
         }, 300);
         window.setTimeout(function () { window.clearInterval(gcTimer); }, 15000);
 
-        window.addEventListener("hashchange", function () {
-          /* An anchor address reached while the Reader is still
-             showing is a history move out of the Reader (the All
-             volumes links handle their own clicks and never arrive
-             here): restore the saved place rather than gliding to
-             the section again. */
-          var restoreSaved = /^(#vol-|#appendix)/.test(location.hash || "") && readerView && !readerView.hidden;
-          /* A history move (Back or Forward) that lands on the home
-             view after an anchor return is the visitor going back to
-             where they were reading from: hand the saved place to the
-             restore path before routing. */
-          if (anchorReturnArmed && readerAnchorY !== null) {
-            var hNow = location.hash || "";
-            if (!/^#\/read\//.test(hNow)) { savedHomeY = readerAnchorY; }
-            readerAnchorY = null;
-            anchorReturnArmed = false;
-          }
-          route(restoreSaved);
-        });
+        window.addEventListener("hashchange", route);
         route();
       })();
     </script>

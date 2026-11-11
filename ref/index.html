@@ -335,6 +335,18 @@
       details.full[open ] summary .when-open { display: inline; }
       details.full[open ] summary .when-closed { display: none; }
       .full-body { padding: 6px 22px 26px; border-top: 1px solid var(--line-soft); }
+      .full-hide {
+        display: flex; align-items: center; justify-content: space-between; gap: 16px;
+        width: 100%; margin-top: 18px; padding: 18px 0 2px;
+        border: none; border-top: 1px solid var(--line-soft); background: none; cursor: pointer;
+        font-family: var(--sans); font-size: 13px; font-weight: 700;
+        letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink); text-align: left;
+      }
+      .full-hide .chev {
+        width: 10px; height: 10px; flex: none;
+        border-right: 2px solid var(--gold); border-bottom: 2px solid var(--gold);
+        transform: rotate(225deg); margin-right: 4px;
+      }
       .full-body .toc-note { font-size: 13.5px; line-height: 1.6; color: var(--ink-soft); margin: 16px 0 0; max-width: 62ch; }
       .full-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px 40px; }
       .full-grid.many { grid-template-columns: repeat(3, 1fr); }
@@ -352,8 +364,8 @@
       }
       .toc-list li:last-child { border-bottom: none; }
       .toc-list a.toc-line {
-        display: flex; justify-content: space-between; align-items: baseline; gap: 14px;
-        padding: 7px 8px; margin: 0 -8px;
+        display: flex; justify-content: space-between; align-items: center; gap: 14px;
+        padding: 7px 8px; margin: 0 -8px; min-height: 44px;
         color: inherit; text-decoration: none; cursor: pointer;
       }
       .toc-list a.toc-line:hover { background: var(--paper-tint); }
@@ -393,7 +405,7 @@
         font-size: clamp(32px, 4.6vw, 44px); line-height: 1.1; margin: 14px 0 0;
       }
       .reader {
-        max-width: 1120px; margin: 38px auto 0;
+        max-width: 1120px; margin: 38px auto 0; position: relative;
         background: var(--paper); border: 1px solid var(--line);
         box-shadow: var(--shadow-page);
       }
@@ -417,14 +429,16 @@
       button.tool-link { font-family: var(--sans); cursor: pointer; }
       button.tool-link:hover, button.tool-link:focus-visible { border-color: var(--gold); color: var(--gold-text); }
       .link-bar {
+        position: absolute; left: 0; right: 0; z-index: 20;
         display: flex; flex-wrap: wrap; align-items: center; gap: 10px;
         padding: 12px 18px; border-bottom: 1px solid var(--line); background: var(--paper);
+        box-shadow: var(--shadow-page);
       }
       .link-bar label {
         font-size: 12.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink);
       }
       .link-bar input {
-        flex: 1 1 260px; min-width: 0; padding: 9px 12px; font: inherit; font-size: 14px;
+        flex: 1 1 260px; min-width: 0; padding: 9px 12px; font: inherit; font-size: 16px;
         color: var(--ink); background: var(--paper-tint); border: 1px solid var(--line); border-radius: 0;
       }
       .link-bar .link-status { font-size: 13.5px; color: var(--gold-text); font-weight: 600; }
@@ -524,6 +538,7 @@
         display: flex; align-items: center; gap: 14px; margin-top: 18px;
         flex-wrap: wrap; justify-content: center;
       }
+      .page-nav.turning .nav-btn { opacity: 0.55; }
       .nav-btn {
         cursor: pointer; font-family: var(--sans);
         border: 1px solid var(--gold); background: transparent; color: var(--gold-bright);
@@ -534,7 +549,7 @@
       .nav-btn:disabled { opacity: 0.35; cursor: default; }
       .page-jump { display: flex; align-items: center; gap: 8px; color: #c9cfd4; font-size: 14px; }
       .page-jump input {
-        width: 62px; padding: 8px; min-height: 44px; font: inherit; text-align: center;
+        width: 62px; padding: 8px; min-height: 44px; font: inherit; font-size: 16px; text-align: center;
         background: #0d1826; color: #f2ead6; border: 1px solid #33506e; border-radius: 0;
       }
       .progress { width: 100%; max-width: 780px; height: 3px; background: #22374d; margin-top: 18px; }
@@ -588,10 +603,12 @@
         font-size: 13px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
         color: var(--gold-bright); text-decoration: none;
         border: 1px solid rgba(201, 171, 114, 0.6); padding: 9px 15px;
+        display: inline-flex; align-items: center; min-height: 44px;
       }
       .back-link:hover, .back-link:focus-visible { background: var(--gold); color: #16222f; }
       .reader-brand {
         margin: 0 0 0 auto; font-family: var(--serif); font-size: 21px; font-weight: 500; color: #ffffff; text-decoration: none;
+        display: inline-flex; align-items: center; min-height: 44px;
       }
       .reader-brand span {
         font-family: var(--sans); font-size: 11px; font-weight: 600;
@@ -610,6 +627,7 @@
       .reader-foot a {
         justify-self: start; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; font-size: 12.5px;
         color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--gold); padding-bottom: 2px;
+        display: inline-flex; align-items: center; min-height: 44px;
       }
       .reader-foot span { justify-self: center; }
       .reader-foot a:hover, .reader-foot a:focus-visible { color: var(--gold-text); }
@@ -686,7 +704,7 @@
       .reader-brand { margin-right: 118px; }
       .theme-slider {
         position: fixed; bottom: calc(14px + env(safe-area-inset-bottom, 0px)); right: 14px; z-index: 40;
-        width: 96px; height: 36px; border-radius: 999px; padding: 0;
+        width: 96px; height: 44px; border-radius: 999px; padding: 0;
         background: rgba(21, 33, 48, 0.94); border: 1px solid rgba(201, 171, 114, 0.55);
         cursor: pointer; box-shadow: 0 4px 14px rgba(13, 20, 30, 0.25);
       }
@@ -710,6 +728,24 @@
       .theme-slider[data-mode="dark"] .ts-knob { transform: translate(42px, -50%); }
       .theme-slider:hover { border-color: var(--gold-bright); }
       .theme-slider:focus-visible { outline: 2px solid var(--gold-bright); outline-offset: 2px; }
+      /* One visible focus ring for every interactive element, in the
+         gold the designed rings already use, so keyboard focus is
+         never the browser default outline. */
+      a:focus-visible, button:focus-visible, summary:focus-visible,
+      input:focus-visible, .toc-entry:focus-visible, .thumb:focus-visible,
+      .toc-list a.toc-line:focus-visible {
+        outline: 2px solid var(--gold); outline-offset: 2px;
+      }
+      .glance a.sec:focus-visible, .toc-list a.toc-line:focus-visible {
+        outline-offset: -2px;
+      }
+      /* Reduced motion, restated at the end of the sheet so these
+         rules follow the transitions they zero (the knob and the
+         contents chevron both keep a 0.25s transition otherwise). */
+      @media (prefers-reduced-motion: reduce) {
+        .theme-slider .ts-knob { transition: none; }
+        details.full summary .chev { transition: none; }
+      }
     </style>
   </head>
   <body>
@@ -732,7 +768,7 @@
         <nav class="trio" aria-label="The three volumes and Appendix">
           <a href="#vol-1">
             <figure>
-              <img fetchpriority="high" decoding="async" src="assets/cover-vol-1.jpg" alt="Cover of The Isle, Volume One, Furniture: a carved palm and flower panel in dark wood above the title on deep navy" width="1445" height="1870" />
+              <img fetchpriority="high" decoding="async" src="assets/cover-vol-1.jpg" srcset="assets/cover-vol-1-mid.jpg 800w, assets/cover-vol-1.jpg 1445w" sizes="(max-width: 680px) 330px, (max-width: 900px) 290px, 250px" alt="Cover of The Isle, Volume One, Furniture: a carved palm and flower panel in dark wood above the title on deep navy" width="1445" height="1870" />
               <figcaption>
                 <span class="t-vol">Volume One</span>
                 <span class="t-name">Furniture</span>
@@ -742,7 +778,7 @@
           </a>
           <a href="#vol-2">
             <figure>
-              <img fetchpriority="high" decoding="async" src="assets/cover-vol-2.jpg" alt="Cover of The Isle, Volume Two, Decor: Hokusai, Under the Wave off Kanagawa, above the title on deep navy" width="1445" height="1870" />
+              <img fetchpriority="high" decoding="async" src="assets/cover-vol-2.jpg" srcset="assets/cover-vol-2-mid.jpg 800w, assets/cover-vol-2.jpg 1445w" sizes="(max-width: 680px) 330px, (max-width: 900px) 290px, 250px" alt="Cover of The Isle, Volume Two, Decor: Hokusai, Under the Wave off Kanagawa, above the title on deep navy" width="1445" height="1870" />
               <figcaption>
                 <span class="t-vol">Volume Two</span>
                 <span class="t-name">Decor</span>
@@ -752,7 +788,7 @@
           </a>
           <a href="#vol-3">
             <figure>
-              <img fetchpriority="high" decoding="async" src="assets/cover-vol-3.jpg" alt="Cover of The Isle, Volume Three, Build Selections: the house at dusk above the title on deep navy" width="1445" height="1870" />
+              <img fetchpriority="high" decoding="async" src="assets/cover-vol-3.jpg" srcset="assets/cover-vol-3-mid.jpg 800w, assets/cover-vol-3.jpg 1445w" sizes="(max-width: 680px) 330px, (max-width: 900px) 290px, 250px" alt="Cover of The Isle, Volume Three, Build Selections: the house at dusk above the title on deep navy" width="1445" height="1870" />
               <figcaption>
                 <span class="t-vol">Volume Three</span>
                 <span class="t-name">Build Selections</span>
@@ -762,7 +798,7 @@
           </a>
           <a href="#appendix">
             <figure>
-              <img loading="lazy" decoding="async" src="assets/cover-appendix.jpg" alt="Cover of The Isle, Appendix, Inspiration: a painted sand spit in Zanzibar at golden hour above the title on deep navy" width="1445" height="1870" />
+              <img loading="lazy" decoding="async" src="assets/cover-appendix.jpg" srcset="assets/cover-appendix-mid.jpg 800w, assets/cover-appendix.jpg 1445w" sizes="(max-width: 680px) 330px, (max-width: 900px) 290px, 250px" alt="Cover of The Isle, Appendix, Inspiration: a painted sand spit in Zanzibar at golden hour above the title on deep navy" width="1445" height="1870" />
               <figcaption>
                 <span class="t-vol">Appendix</span>
                 <span class="t-name">Inspiration</span>
@@ -788,7 +824,7 @@
         <p class="vol-label"><span class="rule"></span>Volume One<span class="rule"></span></p>
         <div class="vol-grid">
           <figure class="cover-fig">
-            <img fetchpriority="high" decoding="async" src="assets/cover-vol-1.jpg" alt="Cover of The Isle, Volume One, Furniture" width="1445" height="1870" />
+            <img fetchpriority="high" decoding="async" src="assets/cover-vol-1.jpg" srcset="assets/cover-vol-1-mid.jpg 800w, assets/cover-vol-1.jpg 1445w" sizes="(max-width: 680px) 330px, (max-width: 900px) 280px, 340px" alt="Cover of The Isle, Volume One, Furniture" width="1445" height="1870" />
             <figcaption>Cover: The carved palm panel of the Balboa Carved Door Chest, Cabinet 001 in this volume.</figcaption>
           </figure>
           <div class="vol-info">
@@ -904,6 +940,7 @@
                 </ul>
               </div>
             </div>
+            <button class="full-hide" type="button"><span>Hide the full contents</span><span class="chev" aria-hidden="true"></span></button>
           </div>
         </details>
       </div>
@@ -915,7 +952,7 @@
         <p class="vol-label"><span class="rule"></span>Volume Two<span class="rule"></span></p>
         <div class="vol-grid">
           <figure class="cover-fig">
-            <img fetchpriority="high" decoding="async" src="assets/cover-vol-2.jpg" alt="Cover of The Isle, Volume Two, Decor" width="1445" height="1870" />
+            <img fetchpriority="high" decoding="async" src="assets/cover-vol-2.jpg" srcset="assets/cover-vol-2-mid.jpg 800w, assets/cover-vol-2.jpg 1445w" sizes="(max-width: 680px) 330px, (max-width: 900px) 280px, 340px" alt="Cover of The Isle, Volume Two, Decor" width="1445" height="1870" />
             <figcaption>Cover: Under the Wave off Kanagawa by Katsushika Hokusai, Art 006 in this volume.</figcaption>
           </figure>
           <div class="vol-info">
@@ -1021,6 +1058,7 @@
                 </ul>
               </div>
             </div>
+            <button class="full-hide" type="button"><span>Hide the full contents</span><span class="chev" aria-hidden="true"></span></button>
           </div>
         </details>
       </div>
@@ -1032,7 +1070,7 @@
         <p class="vol-label"><span class="rule"></span>Volume Three<span class="rule"></span></p>
         <div class="vol-grid">
           <figure class="cover-fig">
-            <img fetchpriority="high" decoding="async" src="assets/cover-vol-3.jpg" alt="Cover of The Isle, Volume Three, Build Selections" width="1445" height="1870" />
+            <img fetchpriority="high" decoding="async" src="assets/cover-vol-3.jpg" srcset="assets/cover-vol-3-mid.jpg 800w, assets/cover-vol-3.jpg 1445w" sizes="(max-width: 680px) 330px, (max-width: 900px) 280px, 340px" alt="Cover of The Isle, Volume Three, Build Selections" width="1445" height="1870" />
             <figcaption>Cover: The house at dusk.</figcaption>
           </figure>
           <div class="vol-info">
@@ -1245,6 +1283,7 @@
                 </ul>
               </div>
             </div>
+            <button class="full-hide" type="button"><span>Hide the full contents</span><span class="chev" aria-hidden="true"></span></button>
           </div>
         </details>
       </div>
@@ -1256,7 +1295,7 @@
         <p class="vol-label"><span class="rule"></span>Appendix<span class="rule"></span></p>
         <div class="vol-grid">
           <figure class="cover-fig">
-            <img fetchpriority="high" decoding="async" src="assets/cover-appendix.jpg" alt="Cover of The Isle, Appendix, Inspiration" width="1445" height="1870" />
+            <img fetchpriority="high" decoding="async" src="assets/cover-appendix.jpg" srcset="assets/cover-appendix-mid.jpg 800w, assets/cover-appendix.jpg 1445w" sizes="(max-width: 680px) 330px, (max-width: 900px) 280px, 340px" alt="Cover of The Isle, Appendix, Inspiration" width="1445" height="1870" />
             <figcaption>Cover: A sand spit in Zanzibar at golden hour, painted for this book. The back cover shows a lava cove in Samoa at sunset.</figcaption>
           </figure>
           <div class="vol-info">
@@ -1555,6 +1594,7 @@
                 </ul>
               </div>
             </div>
+            <button class="full-hide" type="button"><span>Hide the full contents</span><span class="chev" aria-hidden="true"></span></button>
           </div>
         </details>
       </div>
@@ -1791,6 +1831,22 @@
         PAGE_LABELS.app[9] = "Contents, Constance Prince Maurice, Alila Ubud and COMO Shambhala Estate";
 
         var state = { vol: "v1", page: 1 };
+        /* Scroll handling for the Reader. The document sets smooth
+           scrolling for anchor glides, but the Reader's own resets are
+           functional, not decorative: they land instantly. The home
+           scroll position is saved when a Reader opens and restored
+           when the visitor returns within this visit, so Back and the
+           All volumes routes give the visitor their place back. This
+           is not a memory of the last volume or page: a fresh visit
+           still opens at the top, and nothing is stored. */
+        function scrollInstant(y) {
+          try { window.scrollTo({ top: y, left: 0, behavior: "instant" }); }
+          catch (e) { window.scrollTo(0, y); }
+        }
+        function stackedLayout() {
+          return window.matchMedia && window.matchMedia("(max-width: 900px)").matches;
+        }
+        var savedHomeY = null, readerAnchorY = null, anchorReturnArmed = false;
         function $(id) { return document.getElementById(id); }
         var readerEl = $("reader"), readerTop = $("readerTop");
         var homeView = $("view-home"), readerView = $("view-reader");
@@ -1838,6 +1894,7 @@
           var btns = thumbGrid.querySelectorAll(".thumb");
           for (var i = 0; i < btns.length; i++) {
             btns[i].addEventListener("click", function () {
+              fullsizeSavedY = window.scrollY;
               goTo(parseInt(this.getAttribute("data-page"), 10));
               openFullsize(this);
             });
@@ -1859,9 +1916,10 @@
         }
 
         var swapTokens = {};
-        function swapPageImage(img, src, key, onSwap) {
+        function swapPageImage(img, src, key, onSwap, onPending) {
           if (img.getAttribute("src") === src) { if (onSwap) { onSwap(); } return; }
           var token = (swapTokens[key] = (swapTokens[key] || 0) + 1);
+          if (onPending) { onPending(); }
           var pre = new Image();
           pre.onload = function () {
             if (swapTokens[key] === token) { img.src = src; if (onSwap) { onSwap(); } }
@@ -1872,11 +1930,26 @@
           pre.src = src;
         }
 
-        function show() {
+        function show(opts) {
           var V = VOLUMES[state.vol];
           var src = imgPath(state.vol, state.page);
-          swapPageImage(pageImg, src, "reader");
-          if (readerView && !readerView.hidden) { window.scrollTo(0, 0); }
+          var navEl = document.querySelector(".page-nav");
+          swapPageImage(pageImg, src, "reader", function () {
+            if (navEl) { navEl.classList.remove("turning"); }
+          }, function () {
+            if (navEl) { navEl.classList.add("turning"); }
+          });
+          if (readerView && !readerView.hidden) {
+            if (opts && opts.entry) {
+              scrollInstant(0);
+            } else if (stackedLayout()) {
+              var stageEl = document.querySelector(".stage");
+              if (stageEl) { scrollInstant(Math.max(0, Math.round(stageEl.getBoundingClientRect().top + window.scrollY))); }
+              else { scrollInstant(0); }
+            } else {
+              scrollInstant(0);
+            }
+          }
           pageImg.alt = V.name + ", " + V.title + ", page " + state.page + ": " + label(state.vol, state.page);
           capTitle.textContent = label(state.vol, state.page);
           capPage.textContent = V.name + " \u00B7 Page " + state.page + " of " + V.pages;
@@ -1923,7 +1996,7 @@
           renderToc();
           if (toc) { toc.scrollTop = 0; }
           renderThumbs();
-          show();
+          show({ entry: true });
         }
 
         /* ---------- full size view: shows the current page in-page ---------- */
@@ -1942,9 +2015,14 @@
           fullsizeImg.alt = V.name + ", " + V.title + ", page " + state.page + ": " + label(state.vol, state.page) + ", full size";
           fullsizeTitle.innerHTML = V.name + " &middot; " + V.title + " &middot; Page " + state.page + " of " + V.pages + " <span>&middot; " + label(state.vol, state.page) + "</span>";
         }
-        var fullsizeReturnEl = null;
+        var fullsizeReturnEl = null, fullsizeSavedY = null;
         function openFullsize(returnEl) {
           fullsizeReturnEl = (returnEl && returnEl !== fullSizeBtn) ? returnEl : fullSizeBtn;
+          /* Opening from a thumbnail turns the page first, which moves
+             the window; the position to restore on close is the one the
+             visitor tapped from, captured by the thumbnail handler
+             before the turn. Toolbar opens keep the current position. */
+          if (returnEl === fullSizeBtn) { fullsizeSavedY = window.scrollY; }
           updateFullsize();
           fullsizeScroll.scrollTop = 0; fullsizeScroll.scrollLeft = 0;
           fullsizeOverlay.hidden = false;
@@ -1956,7 +2034,8 @@
           document.body.style.overflow = "";
           var target = (fullsizeReturnEl && document.contains(fullsizeReturnEl)) ? fullsizeReturnEl : fullSizeBtn;
           fullsizeReturnEl = null;
-          if (target) { target.focus(); }
+          if (target) { target.focus({ preventScroll: true }); }
+          if (fullsizeSavedY !== null) { scrollInstant(fullsizeSavedY); fullsizeSavedY = null; }
         }
         if (fullSizeBtn) { fullSizeBtn.addEventListener("click", function () { openFullsize(fullSizeBtn); }); }
         if (fullsizeClose) { fullsizeClose.addEventListener("click", closeFullsize); }
@@ -2053,6 +2132,23 @@
         }
         prevBtn.addEventListener("click", function () { goTo(state.page - 1); });
         nextBtn.addEventListener("click", function () { goTo(state.page + 1); });
+        /* The All volumes and Return links leave the Reader by an
+           explicit click: handle the click here, push the history
+           entry the default anchor jump would have created, and let
+           showHome glide to the volume section. A later Back press
+           arrives at the same anchor address through hashchange,
+           with the Reader still showing, and restores the saved
+           place instead (see the hashchange handler). */
+        ["backLink", "backLinkBottom"].forEach(function (id) {
+          var bl = $(id);
+          if (!bl) { return; }
+          bl.addEventListener("click", function (event) {
+            event.preventDefault();
+            var href = bl.getAttribute("href") || "";
+            try { history.pushState(null, "", href); } catch (e) {}
+            showHome(href.replace(/^#/, "") || null);
+          });
+        });
         pageInput.addEventListener("change", function () {
           var n = parseInt(pageInput.value, 10);
           if (!isNaN(n)) { goTo(n); } else { pageInput.value = state.page; }
@@ -2089,6 +2185,17 @@
               li.appendChild(line);
             }
           })(fullSections[fs]);
+        }
+
+        /* The foot of each expanded home contents list repeats the
+           Hide control, so a visitor at the bottom of a long list can
+           close it without travelling back to the summary line. */
+        var hideBtns = document.querySelectorAll(".full-hide");
+        for (var hb = 0; hb < hideBtns.length; hb++) {
+          hideBtns[hb].addEventListener("click", function () {
+            var det = this.closest ? this.closest("details.full") : null;
+            if (det) { det.open = false; det.querySelector("summary").focus({ preventScroll: true }); }
+          });
         }
 
         /* ---------- PDF downloads ----------
@@ -2253,6 +2360,16 @@
             var n;
             for (n = start + 1; n <= V.pages; n++) { order.push(n); }
             for (n = 1; n < start; n++) { order.push(n); }
+            /* The whole volume still arrives one image at a time, but
+               the bulk of it is gated: browsers that report the
+               connection type hold it back on metered links, and
+               everywhere the bulk waits until the visitor has settled
+               on a page for a few seconds. The neighbouring pages are
+               already warm from show(). Only this volume is ever
+               fetched, never another. */
+            var conn = (navigator && navigator.connection) ? navigator.connection : null;
+            var metered = !!(conn && (conn.saveData || /cellular|2g/.test(conn.effectiveType || "") || /cellular/.test(conn.type || "")));
+            if (metered) { return; }
             var idx = 0;
             function next() {
               if (token !== preloadToken || state.vol !== vol) { return; }
@@ -2263,7 +2380,7 @@
               im.src = imgPath(vol, order[idx]);
             }
             next();
-          }, 700);
+          }, 2500);
         }
         function cancelPreload() {
           preloadToken++;
@@ -2328,8 +2445,12 @@
         }, { passive: true });
 
         /* ---------- routing: home page and Reader page ---------- */
-        function showHome(anchorId) {
+        function showHome(anchorId, restoreSaved) {
           cancelPreload();
+          /* Every route home leaves the Reader; if that closing was
+             inside the overlay path the saved position was already
+             consumed there. */
+          var returnY = savedHomeY;
           var lb = $("linkBar");
           if (lb) { lb.hidden = true; }
           var ls = $("linkStatus");
@@ -2340,26 +2461,39 @@
           homeView.hidden = false;
           document.title = "The Isle \u00B7 Reference Catalogues";
           gcHit("/ref/", false, "The Isle \u00B7 Reference Catalogues");
-          if (anchorId) {
+          if (anchorId && !restoreSaved) {
+            readerAnchorY = returnY;
+            anchorReturnArmed = returnY !== null;
             var el = document.getElementById(anchorId);
             if (el) { el.scrollIntoView(); }
+          } else if (returnY !== null) {
+            savedHomeY = null;
+            scrollInstant(returnY);
           }
         }
         function openReader(vol, page) {
           if (!VOLUMES[vol]) { showHome(null); return; }
+          /* Opening a Reader from the home view saves where the
+             visitor was standing; re-routing inside the Reader (page
+             turns replace the address) leaves the saved place alone. */
+          if (readerView.hidden) {
+            savedHomeY = readerAnchorY !== null ? readerAnchorY : window.scrollY;
+            readerAnchorY = null;
+            anchorReturnArmed = false;
+          }
           homeView.hidden = true;
           readerView.hidden = false;
           setVolume(vol, page);
           document.title = VOLUMES[vol].name + " " + VOLUMES[vol].title + " \u00B7 The Isle Reader";
-          window.scrollTo(0, 0);
+          scrollInstant(0);
           schedulePreload();
         }
-        function route() {
+        function route(restoreSaved) {
           var h = location.hash || "";
           var m = h.match(/^#\/read\/(v[123]|app)(?:\/(\d+))?/);
           if (m) { openReader(m[1], m[2] ? parseInt(m[2], 10) : 1); return; }
           var anchor = h.replace(/^#/, "");
-          showHome((anchor.indexOf("vol-") === 0 || anchor === "appendix") ? anchor : null);
+          showHome((anchor.indexOf("vol-") === 0 || anchor === "appendix") ? anchor : null, !!restoreSaved);
         }
         /* ---------- visit counting (GoatCounter) ----------
            The counter script is set to no_onload, so every view is
@@ -2386,7 +2520,25 @@
         }, 300);
         window.setTimeout(function () { window.clearInterval(gcTimer); }, 15000);
 
-        window.addEventListener("hashchange", route);
+        window.addEventListener("hashchange", function () {
+          /* An anchor address reached while the Reader is still
+             showing is a history move out of the Reader (the All
+             volumes links handle their own clicks and never arrive
+             here): restore the saved place rather than gliding to
+             the section again. */
+          var restoreSaved = /^(#vol-|#appendix)/.test(location.hash || "") && readerView && !readerView.hidden;
+          /* A history move (Back or Forward) that lands on the home
+             view after an anchor return is the visitor going back to
+             where they were reading from: hand the saved place to the
+             restore path before routing. */
+          if (anchorReturnArmed && readerAnchorY !== null) {
+            var hNow = location.hash || "";
+            if (!/^#\/read\//.test(hNow)) { savedHomeY = readerAnchorY; }
+            readerAnchorY = null;
+            anchorReturnArmed = false;
+          }
+          route(restoreSaved);
+        });
         route();
       })();
     </script>

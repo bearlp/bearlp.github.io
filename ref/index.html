@@ -473,8 +473,8 @@
         padding: 22px 18px 30px;
       }
       .fullsize-scroll img {
-        display: block; width: auto; height: auto;
-        max-width: 100%; max-height: none;
+        display: block; width: auto; height: auto; flex: none; cursor: pointer;
+        max-width: 100%; max-height: 100%;
         background: #ffffff; box-shadow: 0 14px 40px rgba(0, 0, 0, 0.55);
       }
       @media (max-width: 680px) {
@@ -520,9 +520,42 @@
         background: var(--navy-deep); padding: 26px 18px 22px;
         display: flex; flex-direction: column; align-items: center;
       }
-      .stage figure { margin: 0; width: 100%; max-width: 780px; }
+      /* The figure is sized by whichever constraint is tighter, the
+         stage width or the height the page needs to stand whole in
+         the viewport: 100dvh less the measured Reader chrome that
+         shares the screen (top bar 103, section pad 44, title block
+         70, shell offset 38, toolbar 73, stage pad 26, caption 41,
+         nav 62, progress 21, stage foot 22 = 500 at widths above
+         900px. The stacked bands carry a larger constant (854 at
+         900px and below, 772 at 680px and below) because their
+         page turn lands on the stage top beside the 340px
+         contents band, whose column height the grid row follows:
+         the extra covers the taller caption allowance there, so
+         the whole stage row stands in view after the landing. --page-ar is the
+         current page's width over height ratio, set by the script
+         (portrait 1275/1650; Volume Three landscape pages
+         1650/1275). Where the viewport is taller than the page at
+         full width, the 780px width limit rules and nothing
+         changes. */
+      .stage figure {
+        margin: 0; width: 100%;
+        max-width: min(780px, calc((100dvh - 501px) * var(--page-ar, 0.7727)));
+      }
+      @media (max-width: 900px) {
+        .stage figure { max-width: min(780px, calc((100dvh - 854px) * var(--page-ar, 0.7727))); }
+      }
+      @media (max-width: 680px) {
+        .stage figure { max-width: min(780px, calc((100dvh - 772px) * var(--page-ar, 0.7727))); }
+      }
+      /* Short screens (a landscape phone is 390 tall): caption and
+         nav cannot stand alongside, so the page image alone is
+         fitted whole: viewport less the sticky top bar and the
+         stage padding (103 + 48 = 151, rounded to 155). */
+      @media (max-height: 520px) {
+        .stage figure { max-width: min(780px, calc((100dvh - 155px) * var(--page-ar, 0.7727))); }
+      }
       .stage img.page {
-        display: block; width: 100%; height: auto; background: #ffffff;
+        display: block; width: 100%; height: auto; background: #ffffff; cursor: pointer;
         box-shadow: 0 14px 40px rgba(0, 0, 0, 0.55);
       }
       .stage figcaption {
@@ -608,7 +641,7 @@
       .back-link:hover, .back-link:focus-visible { background: var(--gold); color: #16222f; }
       .reader-brand {
         margin: 0 0 0 auto; font-family: var(--serif); font-size: 21px; font-weight: 500; color: #ffffff; text-decoration: none;
-        display: inline-flex; align-items: center; min-height: 44px;
+        display: inline-flex; align-items: baseline; min-height: 44px;
       }
       .reader-brand span {
         font-family: var(--sans); font-size: 11px; font-weight: 600;
@@ -1649,7 +1682,7 @@
           <aside class="toc" id="toc" aria-label="Contents of the current volume"></aside>
           <div class="stage">
             <figure>
-              <img class="page" id="pageImg" src="assets/pages/vol-1/page-01.jpg" alt="Volume One, Furniture, page 1: Cover" />
+              <img class="page" id="pageImg" src="assets/pages/vol-1/page-01.jpg" alt="Volume One, Furniture, page 1: Cover" tabindex="0" role="button" aria-label="Volume One, Furniture, page 1: Cover. Open this page full size" />
               <p class="page-fail" id="pageFail" hidden role="alert">This page could not be loaded. Check your connection, then <button type="button" id="pageRetry">try again</button>.</p>
               <figcaption>
                 <span class="cap-title" id="capTitle">Cover</span>
@@ -1687,7 +1720,7 @@
         <button class="fullsize-close" type="button" id="fullsizeClose">Close &times;</button>
       </div>
       <div class="fullsize-scroll" id="fullsizeScroll">
-        <img id="fullsizeImg" src="assets/pages/vol-1/page-01.jpg" alt="Volume One, Furniture, page 1: Cover, full size" />
+        <img id="fullsizeImg" src="assets/pages/vol-1/page-01.jpg" alt="Volume One, Furniture, page 1: Cover, full size" aria-label="Volume One, Furniture, page 1: Cover, full size. Return to the reader page" />
       </div>
     </div>
 
@@ -1846,6 +1879,15 @@
         function stackedLayout() {
           return window.matchMedia && window.matchMedia("(max-width: 900px)").matches;
         }
+        /* Fit-to-screen (round two, item C): the stage figure's
+           height-driven width limit uses the current page's own
+           ratio. Only Volume Three pages 6 to 12 are landscape
+           (1650 by 1275); every other page is portrait (1275 by
+           1650). Kept exact here and verified against the served
+           image files by measurement. */
+        function pageRatio(vol, n) {
+          return (vol === "v3" && n >= 6 && n <= 12) ? (1650 / 1275) : (1275 / 1650);
+        }
         var savedHomeY = null, readerAnchorY = null, anchorReturnArmed = false;
         function $(id) { return document.getElementById(id); }
         var readerEl = $("reader"), readerTop = $("readerTop");
@@ -1942,15 +1984,20 @@
           if (readerView && !readerView.hidden) {
             if (opts && opts.entry) {
               scrollInstant(0);
-            } else if (stackedLayout()) {
+            } else {
+              /* One landing rule at every width: the deepest the
+                 visitor ever has to be is the stage top; where the
+                 whole Reader fits the screen the scroll clamps to
+                 the document end, which is that same view. */
               var stageEl = document.querySelector(".stage");
               if (stageEl) { scrollInstant(Math.max(0, Math.round(stageEl.getBoundingClientRect().top + window.scrollY))); }
               else { scrollInstant(0); }
-            } else {
-              scrollInstant(0);
             }
           }
           pageImg.alt = V.name + ", " + V.title + ", page " + state.page + ": " + label(state.vol, state.page);
+          pageImg.setAttribute("aria-label", pageImg.alt + ". Open this page full size");
+          var stageEl2 = document.querySelector(".stage");
+          if (stageEl2) { stageEl2.style.setProperty("--page-ar", String(pageRatio(state.vol, state.page))); }
           capTitle.textContent = label(state.vol, state.page);
           capPage.textContent = V.name + " \u00B7 Page " + state.page + " of " + V.pages;
           pageInput.value = state.page;
@@ -2013,6 +2060,7 @@
             fullsizeScroll.scrollTop = 0; fullsizeScroll.scrollLeft = 0;
           });
           fullsizeImg.alt = V.name + ", " + V.title + ", page " + state.page + ": " + label(state.vol, state.page) + ", full size";
+          fullsizeImg.setAttribute("aria-label", fullsizeImg.alt + ". Return to the reader page");
           fullsizeTitle.innerHTML = V.name + " &middot; " + V.title + " &middot; Page " + state.page + " of " + V.pages + " <span>&middot; " + label(state.vol, state.page) + "</span>";
         }
         var fullsizeReturnEl = null, fullsizeSavedY = null;
@@ -2023,6 +2071,13 @@
              visitor tapped from, captured by the thumbnail handler
              before the turn. Toolbar opens keep the current position. */
           if (returnEl === fullSizeBtn) { fullsizeSavedY = window.scrollY; }
+          /* An image tap opens from wherever the reader happens to
+             be scrolled, the top of the Reader included; the save
+             above covers only the toolbar button, so the image path
+             (round two) and any other caller take their position
+             here. The thumbnail handler sets its own save, from
+             before the page turn, before calling, and that stands. */
+          if (fullsizeSavedY === null) { fullsizeSavedY = window.scrollY; }
           updateFullsize();
           fullsizeScroll.scrollTop = 0; fullsizeScroll.scrollLeft = 0;
           fullsizeOverlay.hidden = false;
@@ -2035,7 +2090,17 @@
           var target = (fullsizeReturnEl && document.contains(fullsizeReturnEl)) ? fullsizeReturnEl : fullSizeBtn;
           fullsizeReturnEl = null;
           if (target) { target.focus({ preventScroll: true }); }
-          if (fullsizeSavedY !== null) { scrollInstant(fullsizeSavedY); fullsizeSavedY = null; }
+          if (fullsizeSavedY !== null) {
+            var restoreY = fullsizeSavedY;
+            fullsizeSavedY = null;
+            scrollInstant(restoreY);
+            /* The focus return above can be followed by the
+               browser's own scroll anchoring as the overlay leaves
+               and the stage settles at the fitted size; a second
+               instant restore on the next frame holds the saved
+               position against that drift. */
+            window.requestAnimationFrame(function () { scrollInstant(restoreY); });
+          }
         }
         if (fullSizeBtn) { fullSizeBtn.addEventListener("click", function () { openFullsize(fullSizeBtn); }); }
         if (fullsizeClose) { fullsizeClose.addEventListener("click", closeFullsize); }
@@ -2132,6 +2197,38 @@
         }
         prevBtn.addEventListener("click", function () { goTo(state.page - 1); });
         nextBtn.addEventListener("click", function () { goTo(state.page + 1); });
+        /* Tap toggles full size (round two, item B): a press counts
+           as a tap only if the pointer stays within 10px and lifts
+           within 600ms, so swipes (which turn the page through the
+           touch handlers below), drags and long presses never
+           trigger it. Tapping the Reader image opens the full size
+           view through the same path as the Full size button,
+           position save and focus handling included; tapping the
+           full size image returns, exactly as Close does. This
+           replaces the former tap to zoom inside full size; pinch
+           zoom remains the browser's own gesture. */
+        function onTap(el, fn) {
+          var tapX = null, tapY = null, tapT = 0;
+          el.addEventListener("pointerdown", function (event) {
+            tapX = event.clientX; tapY = event.clientY; tapT = Date.now();
+          });
+          el.addEventListener("pointercancel", function () { tapX = null; });
+          el.addEventListener("pointerup", function (event) {
+            if (tapX === null) { return; }
+            var dx = event.clientX - tapX, dy = event.clientY - tapY;
+            var dt = Date.now() - tapT;
+            tapX = null;
+            if (Math.abs(dx) <= 10 && Math.abs(dy) <= 10 && dt <= 600) { fn(); }
+          });
+        }
+        onTap(pageImg, function () { openFullsize(pageImg); });
+        onTap(fullsizeImg, function () { closeFullsize(); });
+        pageImg.addEventListener("keydown", function (event) {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            openFullsize(pageImg);
+          }
+        });
         /* The All volumes and Return links leave the Reader by an
            explicit click: handle the click here, push the history
            entry the default anchor jump would have created, and let

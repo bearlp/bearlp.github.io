@@ -398,6 +398,7 @@
         box-shadow: var(--shadow-page);
       }
       .reader-toolbar {
+        position: relative;
         display: flex; flex-wrap: wrap; align-items: center; gap: 12px;
         padding: 14px 18px; border-bottom: 1px solid var(--line); background: var(--paper-tint);
       }
@@ -416,15 +417,19 @@
       .tool-link:hover { border-color: var(--gold); color: var(--gold-text); }
       button.tool-link { font-family: var(--sans); cursor: pointer; }
       button.tool-link:hover, button.tool-link:focus-visible { border-color: var(--gold); color: var(--gold-text); }
+      /* The link bar hangs over the reader body from the toolbar, so
+         opening it never pushes the page down. */
       .link-bar {
         display: flex; flex-wrap: wrap; align-items: center; gap: 10px;
         padding: 12px 18px; border-bottom: 1px solid var(--line); background: var(--paper);
+        position: absolute; top: 100%; left: 0; right: 0; z-index: 25;
+        box-shadow: 0 12px 24px rgba(13, 20, 30, 0.20);
       }
       .link-bar label {
         font-size: 12.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink);
       }
       .link-bar input {
-        flex: 1 1 260px; min-width: 0; padding: 9px 12px; font: inherit; font-size: 14px;
+        flex: 1 1 260px; min-width: 0; padding: 9px 12px; font: inherit; font-size: 16px;
         color: var(--ink); background: var(--paper-tint); border: 1px solid var(--line); border-radius: 0;
       }
       .link-bar .link-status { font-size: 13.5px; color: var(--gold-text); font-weight: 600; }
@@ -460,7 +465,7 @@
       }
       .fullsize-scroll img {
         display: block; width: auto; height: auto;
-        max-width: 100%; max-height: none;
+        max-width: 100%; max-height: 100%;
         background: #ffffff; box-shadow: 0 14px 40px rgba(0, 0, 0, 0.55);
       }
       @media (max-width: 680px) {
@@ -506,9 +511,14 @@
         background: var(--navy-deep); padding: 26px 18px 22px;
         display: flex; flex-direction: column; align-items: center;
       }
-      .stage figure { margin: 0; width: 100%; max-width: 780px; }
+      .stage figure {
+        margin: 0; width: 100%; max-width: 780px;
+        max-width: min(780px, calc((100vh - var(--fit-overhead, 0px)) * var(--page-ar, 0.772727)));
+        max-width: min(780px, calc((100dvh - var(--fit-overhead, 0px)) * var(--page-ar, 0.772727)));
+      }
       .stage img.page {
         display: block; width: 100%; height: auto; background: #ffffff;
+        aspect-ratio: var(--page-ar-css, 1275 / 1650);
         box-shadow: 0 14px 40px rgba(0, 0, 0, 0.55);
       }
       .stage figcaption {
@@ -534,7 +544,7 @@
       .nav-btn:disabled { opacity: 0.35; cursor: default; }
       .page-jump { display: flex; align-items: center; gap: 8px; color: #c9cfd4; font-size: 14px; }
       .page-jump input {
-        width: 62px; padding: 8px; min-height: 44px; font: inherit; text-align: center;
+        width: 62px; padding: 8px; min-height: 44px; font: inherit; font-size: 16px; text-align: center;
         background: #0d1826; color: #f2ead6; border: 1px solid #33506e; border-radius: 0;
       }
       .progress { width: 100%; max-width: 780px; height: 3px; background: #22374d; margin-top: 18px; }
@@ -595,7 +605,7 @@
       }
       .reader-brand span {
         font-family: var(--sans); font-size: 11px; font-weight: 600;
-        letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold-bright); margin-left: 10px;
+        letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold-bright); margin-left: 10px; vertical-align: middle;
       }
       .reader-topbar-vol {
         margin: 0; width: 100%;
@@ -1597,13 +1607,13 @@
           <button class="tool-link" type="button" id="fullSizeBtn">Full size</button>
           <button class="tool-link" type="button" id="linkBtn">Link to this page</button>
           <a class="tool-link" id="pdfLink" href="assets/the-isle-vol-1-furniture.pdf" download="The Isle Vol. 1 - Furniture.pdf">Download PDF</a>
-        </div>
-        <div class="link-bar" id="linkBar" hidden>
-          <label for="linkInput">Link to this page</label>
-          <input id="linkInput" type="text" readonly value="" aria-label="Link to this page" />
-          <button class="tool-link" type="button" id="linkCopyBtn">Copy link</button>
-          <button class="tool-link" type="button" id="linkHideBtn">Hide</button>
-          <span class="link-status" id="linkStatus" role="status" aria-live="polite"></span>
+          <div class="link-bar" id="linkBar" hidden>
+            <label for="linkInput">Link to this page</label>
+            <input id="linkInput" type="text" readonly value="" aria-label="Link to this page" />
+            <button class="tool-link" type="button" id="linkCopyBtn">Copy link</button>
+            <button class="tool-link" type="button" id="linkHideBtn">Hide</button>
+            <span class="link-status" id="linkStatus" role="status" aria-live="polite"></span>
+          </div>
         </div>
         <div class="reader-body">
           <aside class="toc" id="toc" aria-label="Contents of the current volume"></aside>
@@ -1872,11 +1882,108 @@
           pre.src = src;
         }
 
+        /* ---------- smooth, consistent landings ----------
+           The document keeps its smooth scrolling for the home page
+           anchors (the All volumes glide). The Reader's own moves are
+           landings, not journeys: they are applied instantly, at the
+           same position on every device. */
+        function scrollToInstant(y) {
+          var root = document.documentElement;
+          var prev = root.style.scrollBehavior;
+          root.style.scrollBehavior = "auto";
+          void root.offsetHeight;
+          try { window.scrollTo({ top: y, left: 0, behavior: "instant" }); }
+          catch (e) { window.scrollTo(0, y); }
+          root.style.scrollBehavior = prev;
+        }
+        var readerEntry = false;
+        var landState = { turn: 0, y: 0, userMoved: false };
+        function landOnStage() {
+          var stageEl = document.querySelector(".stage");
+          var tb = document.querySelector(".reader-topbar");
+          if (!stageEl) { return; }
+          var y = stageEl.getBoundingClientRect().top + window.scrollY - (tb ? tb.offsetHeight : 0);
+          if (y < 0) { y = 0; }
+          landState.turn++;
+          landState.y = y;
+          landState.userMoved = false;
+          scrollToInstant(y);
+          var t = landState.turn;
+          window.requestAnimationFrame(function () {
+            if (landState.turn === t && !landState.userMoved) { scrollToInstant(landState.y); }
+          });
+        }
+        function landForShow() {
+          if (readerEntry) {
+            readerEntry = false;
+            landState.turn++;
+            landState.y = 0;
+            landState.userMoved = false;
+            scrollToInstant(0);
+            return;
+          }
+          landOnStage();
+        }
+        /* Once the turned-to image is actually in place, land once
+           more on the same spot, so nothing the browser settled while
+           the image loaded can leave the view slid away from the page.
+           If the visitor has taken the scroll into their own hands in
+           the meantime, their position stands. */
+        function relandAfterSwap() {
+          if (landState.userMoved) { return; }
+          if (readerView && !readerView.hidden) { scrollToInstant(landState.y); }
+        }
+        /* ---------- the page fits the screen ----------
+           The stage figure is sized from the page's own ratio and the
+           measured height of everything that shares the view with it,
+           so the whole page, its caption and the pager sit inside the
+           screen at every size. On a screen too short for all of it,
+           the pager gives way first. */
+        function pageIsLandscape() {
+          return state.vol === "v3" && state.page >= 6 && state.page <= 12;
+        }
+        function fitStage() {
+          var fig = pageImg.parentNode;
+          if (!fig || fig.tagName !== "FIGURE") { return; }
+          var land = pageIsLandscape();
+          fig.style.setProperty("--page-ar", land ? (1650 / 1275) : (1275 / 1650));
+          fig.style.setProperty("--page-ar-css", land ? "1650 / 1275" : "1275 / 1650");
+          var tb = document.querySelector(".reader-topbar");
+          var stageEl = fig.parentNode;
+          var cs = window.getComputedStyle(stageEl);
+          var capEl = fig.querySelector("figcaption");
+          var capH = 0;
+          if (capEl) {
+            /* The caption is measured at the figure's natural width.
+               Measured at the fitted width it wraps taller, the fit
+               then shrinks the page for room the caption only needs
+               because the page was shrunk, and the two chase each
+               other down, worst on short screens. */
+            var prevMW = fig.style.maxWidth;
+            fig.style.maxWidth = "none";
+            capH = capEl.offsetHeight;
+            fig.style.maxWidth = prevMW;
+          }
+          var overhead = (tb ? tb.offsetHeight : 0)
+            + (parseFloat(cs.paddingTop) || 0) + (parseFloat(cs.paddingBottom) || 0)
+            + capH;
+          if (window.innerHeight > 520) {
+            var nav = document.querySelector(".page-nav");
+            if (nav) { overhead += nav.offsetHeight + (parseFloat(window.getComputedStyle(nav).marginTop) || 0); }
+            var prog = document.querySelector(".progress");
+            if (prog) { overhead += prog.offsetHeight + (parseFloat(window.getComputedStyle(prog).marginTop) || 0); }
+          }
+          fig.style.setProperty("--fit-overhead", overhead + "px");
+        }
+        var savedHomeY = null;
+        var anchorReturn = false;
+
         function show() {
           var V = VOLUMES[state.vol];
           var src = imgPath(state.vol, state.page);
-          swapPageImage(pageImg, src, "reader");
-          if (readerView && !readerView.hidden) { window.scrollTo(0, 0); }
+          fitStage();
+          swapPageImage(pageImg, src, "reader", function () { relandAfterSwap(); });
+          if (readerView && !readerView.hidden) { landForShow(); }
           pageImg.alt = V.name + ", " + V.title + ", page " + state.page + ": " + label(state.vol, state.page);
           capTitle.textContent = label(state.vol, state.page);
           capPage.textContent = V.name + " \u00B7 Page " + state.page + " of " + V.pages;
@@ -1943,8 +2050,15 @@
           fullsizeTitle.innerHTML = V.name + " &middot; " + V.title + " &middot; Page " + state.page + " of " + V.pages + " <span>&middot; " + label(state.vol, state.page) + "</span>";
         }
         var fullsizeReturnEl = null;
+        var fullsizeSavedY = null;
         function openFullsize(returnEl) {
           fullsizeReturnEl = (returnEl && returnEl !== fullSizeBtn) ? returnEl : fullSizeBtn;
+          /* The visitor's place in the Reader, saved before opening:
+             handing focus to the overlay's Close button makes the
+             browser glide the window to the top behind the overlay,
+             and the focus return alone cannot put the place back
+             when the return target sits near the top. */
+          fullsizeSavedY = window.scrollY;
           updateFullsize();
           fullsizeScroll.scrollTop = 0; fullsizeScroll.scrollLeft = 0;
           fullsizeOverlay.hidden = false;
@@ -1956,10 +2070,74 @@
           document.body.style.overflow = "";
           var target = (fullsizeReturnEl && document.contains(fullsizeReturnEl)) ? fullsizeReturnEl : fullSizeBtn;
           fullsizeReturnEl = null;
-          if (target) { target.focus(); }
+          if (target === fullSizeBtn && fullsizeSavedY !== null) {
+            /* The toolbar button path is the one that lost the
+               visitor's place: its focus reveal glides the window
+               to the top of the Reader. Restore the saved place
+               instead, and move landState.y with it, so a page
+               swap still in flight that completes after the close
+               re-lands on the restored place, not on the stage.
+               A thumbnail's own focus reveal is what returns the
+               visitor to the thumbnail they opened from, and the
+               image path is unchanged, so both keep their plain
+               focus return below. */
+            landState.y = fullsizeSavedY;
+            scrollToInstant(fullsizeSavedY);
+          }
+          fullsizeSavedY = null;
+          if (target) {
+            if (target === fullSizeBtn) { target.focus({ preventScroll: true }); }
+            else { target.focus(); }
+          }
         }
         if (fullSizeBtn) { fullSizeBtn.addEventListener("click", function () { openFullsize(fullSizeBtn); }); }
         if (fullsizeClose) { fullsizeClose.addEventListener("click", closeFullsize); }
+
+        /* Full size moves like the Reader: a swipe turns the page
+           back and forth, and a plain tap on the image returns to the
+           Reader. A drag that scrolls the full-size view, or a swipe
+           that runs mostly downward, does neither. */
+        var fsTouch = null, fsTouchEndAt = 0;
+        function fsSwipeStart(event) {
+          var t = event.changedTouches[0];
+          fsTouch = { x: t.clientX, y: t.clientY, top: fullsizeScroll.scrollTop, left: fullsizeScroll.scrollLeft };
+        }
+        function fsSwipeEnd(event, tapReturns) {
+          if (!fsTouch) { return; }
+          var t = event.changedTouches[0];
+          var dx = t.clientX - fsTouch.x, dy = t.clientY - fsTouch.y;
+          var scrolled = Math.abs(fullsizeScroll.scrollTop - fsTouch.top) > 4
+            || Math.abs(fullsizeScroll.scrollLeft - fsTouch.left) > 4;
+          fsTouch = null;
+          fsTouchEndAt = Date.now();
+          if (scrolled) { return; }
+          if (dx < -60 && Math.abs(dy) < Math.abs(dx)) { goTo(state.page + 1); }
+          else if (dx > 60 && Math.abs(dy) < Math.abs(dx)) { goTo(state.page - 1); }
+          else if (tapReturns && Math.abs(dx) <= 10 && Math.abs(dy) <= 10) { closeFullsize(); }
+        }
+        fullsizeImg.addEventListener("touchstart", fsSwipeStart, { passive: true });
+        fullsizeImg.addEventListener("touchend", function (event) { fsSwipeEnd(event, true); }, { passive: true });
+        /* The swipe belongs to the whole full-size view, not only to
+           the image itself: on a short screen the fitted image can be
+           narrower than a comfortable swipe. Taps off the image do
+           not return; only a tap on the image does, as before. */
+        fullsizeScroll.addEventListener("touchstart", function (event) {
+          if (event.target === fullsizeImg) { return; }
+          if (event.target && event.target.closest && event.target.closest("button, a, input")) { return; }
+          fsSwipeStart(event);
+        }, { passive: true });
+        fullsizeScroll.addEventListener("touchend", function (event) {
+          if (event.target === fullsizeImg) { return; }
+          fsSwipeEnd(event, false);
+        }, { passive: true });
+        var fsMouse = null;
+        fullsizeImg.addEventListener("mousedown", function (event) { fsMouse = { x: event.clientX, y: event.clientY }; });
+        fullsizeImg.addEventListener("click", function (event) {
+          if (Date.now() - fsTouchEndAt < 700) { return; }
+          var drag = fsMouse && (Math.abs(event.clientX - fsMouse.x) > 10 || Math.abs(event.clientY - fsMouse.y) > 10);
+          fsMouse = null;
+          if (!drag && !fullsizeOverlay.hidden) { closeFullsize(); }
+        });
 
         /* ---------- link to this page ----------
            Restored at the reader's request. The button copies the current
@@ -2293,6 +2471,14 @@
            page (#/read/<volume>/<page>); following one navigates to that
            page, handled by the router below. If the address already names
            this exact reader page, route again in place. */
+        /* The Reader's own return links name a section: following one
+           is a fresh jump to that section, with its glide, and not a
+           return to the visitor's saved place. Browser Back carries
+           no such mark, and showHome tells the two apart by it. */
+        [$("backLink"), $("backLinkBottom")].forEach(function (el) {
+          if (el) { el.addEventListener("click", function () { anchorReturn = true; }); }
+        });
+
         var readLinks = document.querySelectorAll("a[data-reader]");
         for (var r = 0; r < readLinks.length; r++) {
           readLinks[r].addEventListener("click", function (event) {
@@ -2317,6 +2503,8 @@
           if (event.key === "ArrowRight") { goTo(state.page + 1); }
           else if (event.key === "ArrowLeft") { goTo(state.page - 1); }
         });
+        window.addEventListener("wheel", function () { landState.userMoved = true; }, { passive: true });
+        window.addEventListener("touchmove", function () { landState.userMoved = true; }, { passive: true });
         var touchX = null;
         pageImg.addEventListener("touchstart", function (event) { touchX = event.changedTouches[0].clientX; }, { passive: true });
         pageImg.addEventListener("touchend", function (event) {
@@ -2330,6 +2518,7 @@
         /* ---------- routing: home page and Reader page ---------- */
         function showHome(anchorId) {
           cancelPreload();
+          var fromReader = readerView && !readerView.hidden;
           var lb = $("linkBar");
           if (lb) { lb.hidden = true; }
           var ls = $("linkStatus");
@@ -2340,24 +2529,41 @@
           homeView.hidden = false;
           document.title = "The Isle \u00B7 Reference Catalogues";
           gcHit("/ref/", false, "The Isle \u00B7 Reference Catalogues");
-          if (anchorId) {
+          if (fromReader && !anchorReturn && savedHomeY !== null) {
+            /* Back from the Reader: the visitor's own place on the
+               home page is restored, instantly, exactly as it was. */
+            scrollToInstant(savedHomeY);
+          } else if (anchorId) {
             var el = document.getElementById(anchorId);
             if (el) { el.scrollIntoView(); }
           }
+          anchorReturn = false;
+          savedHomeY = null;
         }
         function openReader(vol, page) {
           if (!VOLUMES[vol]) { showHome(null); return; }
+          if (homeView && !homeView.hidden) { savedHomeY = window.scrollY; }
           homeView.hidden = true;
           readerView.hidden = false;
+          readerEntry = true;
           setVolume(vol, page);
           document.title = VOLUMES[vol].name + " " + VOLUMES[vol].title + " \u00B7 The Isle Reader";
-          window.scrollTo(0, 0);
+          scrollToInstant(0);
           schedulePreload();
         }
         function route() {
           var h = location.hash || "";
           var m = h.match(/^#\/read\/(v[123]|app)(?:\/(\d+))?/);
-          if (m) { openReader(m[1], m[2] ? parseInt(m[2], 10) : 1); return; }
+          if (m) {
+            var pg = m[2] ? parseInt(m[2], 10) : 1;
+            /* A routing pass that names the page already on screen
+               changes nothing. Without this, a late pass on a slow
+               device could reset the Reader to the top after the
+               visitor has already turned the page. */
+            if (readerView && !readerView.hidden && state.vol === m[1] && state.page === pg) { return; }
+            openReader(m[1], pg);
+            return;
+          }
           var anchor = h.replace(/^#/, "");
           showHome((anchor.indexOf("vol-") === 0 || anchor === "appendix") ? anchor : null);
         }
@@ -2386,6 +2592,13 @@
         }, 300);
         window.setTimeout(function () { window.clearInterval(gcTimer); }, 15000);
 
+        var fitResizeTimer = null;
+        window.addEventListener("resize", function () {
+          if (fitResizeTimer) { window.clearTimeout(fitResizeTimer); }
+          fitResizeTimer = window.setTimeout(function () {
+            if (readerView && !readerView.hidden) { fitStage(); }
+          }, 150);
+        });
         window.addEventListener("hashchange", route);
         route();
       })();

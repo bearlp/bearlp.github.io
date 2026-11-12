@@ -520,7 +520,9 @@
         display: block; width: 100%; height: auto; background: #ffffff;
         aspect-ratio: var(--page-ar-css, 1275 / 1650);
         box-shadow: 0 14px 40px rgba(0, 0, 0, 0.55);
+        cursor: pointer;
       }
+      .stage img.page:focus-visible { outline: 2px solid var(--gold-bright); outline-offset: 3px; }
       .stage figcaption {
         display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 18px;
         padding-top: 14px; color: #d8dee4; font-size: 14px;
@@ -549,6 +551,19 @@
       }
       .progress { width: 100%; max-width: 780px; height: 3px; background: #22374d; margin-top: 18px; }
       .progress i { display: block; height: 100%; background: var(--gold-bright); width: 0; transition: width 0.25s ease; }
+      /* Phone widths: the toolbar and the pager lay out deliberately
+         instead of wrapping where they fall. The toolbar's buttons
+         fill the rows they land on, so no row ends short or strands
+         a button short of the card's edge. The pager puts Previous
+         and Next side by side as equals, with the page box centred
+         beneath them. */
+      @media (max-width: 680px) {
+        .reader-toolbar .tool-link { flex: 1 1 auto; }
+        .page-nav { gap: 12px; }
+        .page-nav #prevBtn { order: 1; flex: 1 1 0; }
+        .page-nav #nextBtn { order: 2; flex: 1 1 0; }
+        .page-nav .page-jump { order: 3; flex: 1 1 100%; justify-content: center; }
+      }
       @media (prefers-reduced-motion: reduce) {
         .progress i { transition: none; }
       }
@@ -720,6 +735,14 @@
       .theme-slider[data-mode="dark"] .ts-knob { transform: translate(42px, -50%); }
       .theme-slider:hover { border-color: var(--gold-bright); }
       .theme-slider:focus-visible { outline: 2px solid var(--gold-bright); outline-offset: 2px; }
+      /* While the Reader is open, the switch docks at the top right,
+         in the space the brand line already keeps clear for it, so in
+         the Reader it never floats over the page, the pager or the
+         progress bar, and never past the Reader card's edge. On the
+         home page it keeps its bottom corner, as it always has. */
+      body:has(#view-reader:not([hidden])) .theme-slider {
+        top: calc(16px + env(safe-area-inset-top, 0px)); bottom: auto;
+      }
     </style>
   </head>
   <body>
@@ -1619,7 +1642,7 @@
           <aside class="toc" id="toc" aria-label="Contents of the current volume"></aside>
           <div class="stage">
             <figure>
-              <img class="page" id="pageImg" src="assets/pages/vol-1/page-01.jpg" alt="Volume One, Furniture, page 1: Cover" />
+              <img class="page" id="pageImg" src="assets/pages/vol-1/page-01.jpg" alt="Volume One, Furniture, page 1: Cover" tabindex="0" role="button" />
               <p class="page-fail" id="pageFail" hidden role="alert">This page could not be loaded. Check your connection, then <button type="button" id="pageRetry">try again</button>.</p>
               <figcaption>
                 <span class="cap-title" id="capTitle">Cover</span>
@@ -2070,23 +2093,25 @@
           document.body.style.overflow = "";
           var target = (fullsizeReturnEl && document.contains(fullsizeReturnEl)) ? fullsizeReturnEl : fullSizeBtn;
           fullsizeReturnEl = null;
-          if (target === fullSizeBtn && fullsizeSavedY !== null) {
+          var exactReturn = (target === fullSizeBtn || target === pageImg);
+          if (exactReturn && fullsizeSavedY !== null) {
             /* The toolbar button path is the one that lost the
                visitor's place: its focus reveal glides the window
-               to the top of the Reader. Restore the saved place
+               to the top of the Reader. The page image path shares
+               that return, since focusing the image would otherwise
+               pull the view to the stage. Restore the saved place
                instead, and move landState.y with it, so a page
                swap still in flight that completes after the close
                re-lands on the restored place, not on the stage.
                A thumbnail's own focus reveal is what returns the
-               visitor to the thumbnail they opened from, and the
-               image path is unchanged, so both keep their plain
-               focus return below. */
+               visitor to the thumbnail they opened from, so that
+               path keeps its plain focus return below. */
             landState.y = fullsizeSavedY;
             scrollToInstant(fullsizeSavedY);
           }
           fullsizeSavedY = null;
           if (target) {
-            if (target === fullSizeBtn) { target.focus({ preventScroll: true }); }
+            if (exactReturn) { target.focus({ preventScroll: true }); }
             else { target.focus(); }
           }
         }
@@ -2514,6 +2539,48 @@
           else if (dx > 60) { goTo(state.page - 1); }
           touchX = null;
         }, { passive: true });
+        /* A tap on the page opens it full size, the mirror of the
+           tap that returns from full size. The open needs a near
+           still touch, briefly held, so a swipe still turns the
+           page and a scroll never opens; a mouse click that did
+           not drag opens too, and Enter or Space, now that the
+           page itself can take focus. */
+        var imgTap = null, imgTapEndAt = 0;
+        pageImg.addEventListener("touchstart", function (event) {
+          var t = event.changedTouches[0];
+          imgTap = { x: t.clientX, y: t.clientY, at: Date.now() };
+        }, { passive: true });
+        pageImg.addEventListener("touchend", function (event) {
+          if (!imgTap) { return; }
+          var t = event.changedTouches[0];
+          var tdx = t.clientX - imgTap.x, tdy = t.clientY - imgTap.y;
+          var held = Date.now() - imgTap.at;
+          imgTap = null;
+          imgTapEndAt = Date.now();
+          if (Math.abs(tdx) <= 10 && Math.abs(tdy) <= 10 && held <= 600) {
+            /* Stamp the full-size view's own touch guard as well:
+               the compatibility click that follows this touch can
+               land on the freshly opened overlay image, whose click
+               would otherwise close what the tap just opened. */
+            fsTouchEndAt = Date.now();
+            openFullsize(pageImg);
+          }
+        }, { passive: true });
+        var imgMouse = null;
+        pageImg.addEventListener("mousedown", function (event) { imgMouse = { x: event.clientX, y: event.clientY }; });
+        pageImg.addEventListener("click", function (event) {
+          if (Date.now() - imgTapEndAt < 700 || Date.now() - fsTouchEndAt < 700) { return; }
+          var dragged = imgMouse && (Math.abs(event.clientX - imgMouse.x) > 10 || Math.abs(event.clientY - imgMouse.y) > 10);
+          imgMouse = null;
+          if (dragged || !fullsizeOverlay.hidden) { return; }
+          openFullsize(pageImg);
+        });
+        pageImg.addEventListener("keydown", function (event) {
+          if (event.key === "Enter" || event.key === " " || event.key === "Spacebar") {
+            event.preventDefault();
+            openFullsize(pageImg);
+          }
+        });
 
         /* ---------- routing: home page and Reader page ---------- */
         function showHome(anchorId) {
